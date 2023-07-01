@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
 import TransactionTable from "./TransactionTable";
 
-const Dashboard = () => {
+const Dashboard = ({setOpenTab}:{
+  setOpenTab: React.Dispatch<React.SetStateAction<number>>
+}) => {
   return (
     <div className="p-4">
       <div className="bg-[#303131] text-white md:max-w-md w-full md:p-6 p-4 rounded-xl">
@@ -15,11 +16,11 @@ const Dashboard = () => {
         <div className="grid grid-cols-2 gap-4 mt-4">
           <div className="bg-[#242424] p-3 flex gap-4 items-center justify-center rounded-lg text-center">
             <img src="/assets/deposit.svg" alt="notfound" />
-            <Link to={"/deposit"}>Deposit</Link>
+            <p onClick={()=>setOpenTab(2)}>Deposit</p>
           </div>
           <div className="bg-[#242424] p-3 flex gap-4 items-center justify-center rounded-lg text-center">
             <img src="/assets/withdraw.svg" alt="notfound" />
-            <Link to={"/withdraw"}>Withdraw</Link>
+            <p onClick={()=>setOpenTab(3)}>Withdraw</p>
           </div>
         </div>
       </div>

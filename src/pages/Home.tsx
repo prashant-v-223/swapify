@@ -108,7 +108,7 @@ const Home = () => {
         )}
         <div className="h-full flex flex-col min-w-0 w-full">
           {openTab === 1 ? (
-            <Dashboard />
+            <Dashboard setOpenTab={setOpenTab} />
           ) : openTab === 2 ? (
             <Deposit />
           ) : (
