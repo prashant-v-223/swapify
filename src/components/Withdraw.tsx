@@ -12,7 +12,7 @@ const Withdraw = () => {
           />
           <input
             type="text"
-            placeholder="Enter withdrawal address"
+            placeholder="Select currency to withdraw"
             className="text-white bg-transparent w-full h-full p-4 rounded-lg border-2 border-[#454545]"
           />
           <button
