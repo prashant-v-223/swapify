@@ -56,7 +56,7 @@ const menu = [
 export default function Navbar() {
   return (
     <>
-      <nav className="md:px-8 md:py-4 main items-center grid bg-transparent z-10">
+      <nav className="md:px-8 md:py-4 main items-center grid z-10">
         <Disclosure>
           {({ open }) => (
             <>
