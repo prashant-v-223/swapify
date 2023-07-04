@@ -5,7 +5,6 @@ import Hero from "@/components/Hero";
 import LookingHelp from "@/components/LookingHelp";
 import Partners from "@/components/Partners";
 import TopCrypto from "@/components/TopCrypto";
-import React from "react";
 
 const Main = () => {
   return (
