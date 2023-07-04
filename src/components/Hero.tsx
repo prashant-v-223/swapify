@@ -10,10 +10,10 @@ const Hero = () => {
   return (
     <div className="grid md:flex md:justify-around grid-col-1 gap-4 p-4 md:p-0 w-full">
       <div className="flex flex-col gap-4  justify-center ">
-        <span className="text-white md:my-1 text-3xl md:text-[48px] font-bold leading-10">
+        <span className="text-white md:my-1 text-2xl md:text-[48px] font-bold leading-10">
           Exchange your crypto
         </span>
-        <span className="text-white md:my-1 text-3xl md:text-[48px] font-bold leading-10">
+        <span className="text-white md:my-1 text-2xl md:text-[48px] font-bold leading-10">
           assets instantly on
         </span>
         <span className="text-3xl md:my-1 md:text-[48px] font-bold leading-10 text-yellow-400">

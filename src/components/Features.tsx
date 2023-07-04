@@ -21,7 +21,7 @@ const Features = () => {
             height={60}
           />
           <div>
-            <p className="text-white font-semibold text-2xl">
+            <p className="text-white font-semibold text-xl md:text-2xl">
               Fund your account
             </p>
             <p className="text-[#C0C0C0] text-base mt-2">
@@ -38,7 +38,7 @@ const Features = () => {
             height={60}
           />
           <div>
-            <p className="text-white font-semibold text-2xl">
+            <p className="text-white font-semibold text-xl md:text-2xl">
               No KYC requirements
             </p>
             <p className="text-[#C0C0C0] text-base mt-2">
@@ -55,7 +55,7 @@ const Features = () => {
             height={60}
           />
           <div>
-            <p className="text-white font-semibold text-2xl">
+            <p className="text-white font-semibold text-xl md:text-2xl">
               Fund your account
             </p>
             <p className="text-[#C0C0C0] text-base mt-2">
@@ -72,7 +72,7 @@ const Features = () => {
             height={60}
           />
           <div>
-            <p className="text-white font-semibold text-2xl">
+            <p className="text-white font-semibold text-xl md:text-2xl">
               No KYC requirements
             </p>
             <p className="text-[#C0C0C0] text-base mt-2">
