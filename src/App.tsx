@@ -8,6 +8,7 @@ import {
 import Navbar from "@/components/Navbar";
 import Home from "@/pages/Home";
 import React from "react";
+import Main from "./pages/Main";
 
 const Root = () => {
   return (
@@ -21,7 +22,8 @@ const Root = () => {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />}>
-      <Route index element={<Home />} />
+      <Route index element={<Main />} />
+      <Route path="dashboard" element={<Home/>} />
     </Route>
   )
 );
