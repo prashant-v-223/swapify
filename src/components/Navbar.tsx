@@ -56,7 +56,7 @@ const menu = [
 export default function Navbar() {
   return (
     <>
-      <nav className="md:px-8 md:py-4 main items-center grid z-10">
+      <nav className="md:px-8 md:py-4 bg-[#050505] items-center grid z-10">
         <Disclosure>
           {({ open }) => (
             <>
@@ -154,7 +154,7 @@ export default function Navbar() {
                 </div>
               </div>
               <Disclosure.Panel>
-                <div className="flex flex-col main z-20 items-center justify-start order-2 w-full md:hidden bg-slate-900 h-full">
+                <div className="flex flex-col z-20 items-center justify-start order-2 w-full md:hidden bg-black h-full">
                   {menu.map((item, index) => (
                     <React.Fragment key={index}>
                       {item.popupContent ? (
