@@ -119,7 +119,7 @@ export default function Navbar() {
                     </button>
                   </div>
                 </div>
-                <div className="flex items-center justify-between w-full md:w-auto p-4">
+                <div className="flex items-center justify-between w-full md:w-auto p-4 main">
                   <img
                     src="/assets/logo.svg"
                     width={100}
