@@ -7,15 +7,21 @@ import {
 } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Home from "@/pages/Home";
-import React from "react";
+import { Toaster } from "react-hot-toast";
 import Main from "./pages/Main";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import Forgot from "./pages/Forgot";
+import { QueryClient, QueryClientProvider } from "react-query";
+const queryClient = new QueryClient();
 
 const Root = () => {
   return (
-    <React.Fragment>
+    <QueryClientProvider client={queryClient}>
       <Navbar />
       <Outlet />
-    </React.Fragment>
+      <Toaster />
+    </QueryClientProvider>
   );
 };
 
@@ -23,7 +29,10 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />}>
       <Route index element={<Main />} />
-      <Route path="/dashboard" element={<Home/>} />
+      <Route path="/dashboard" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/forgot" element={<Forgot />} />
     </Route>
   )
 );

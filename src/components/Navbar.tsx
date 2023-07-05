@@ -37,7 +37,7 @@ const menu = [
   },
   {
     label: "Crypto",
-    href: "/",
+    href: "/dashboard",
   },
   {
     label: "FAQ",
@@ -61,13 +61,15 @@ export default function Navbar() {
           {({ open }) => (
             <>
               <div className="flex flex-wrap justify-between md:gap-10 md:flex-nowrap">
-                <img
-                  src="/assets/logoy.png"
-                  width={200}
-                  height={200}
-                  alt="notfound"
-                  className="md:flex hidden"
-                />
+                <Link to={"/"}>
+                  <img
+                    src="/assets/logoy.png"
+                    width={200}
+                    height={200}
+                    alt="notfound"
+                    className="md:flex hidden cursor-pointer"
+                  />{" "}
+                </Link>
                 <div className="flex-col items-center justify-start order-1 hidden w-full md:flex md:flex-row md:justify-end md:w-auto md:order-none md:flex-1">
                   {menu.map((item, index) => (
                     <React.Fragment key={index}>
@@ -111,22 +113,23 @@ export default function Navbar() {
                     </React.Fragment>
                   ))}
                   <div className="flex gap-4">
-                    <button className="leading-3 p-3 bg-[#F9DA0A] rounded-md text-[#000000] font-semibold">
+                    <Link to={'/login'} className="leading-3 p-3 bg-[#F9DA0A] rounded-md text-[#000000] font-semibold">
                       Login
-                    </button>
-                    <button className="leading-3 p-3 rounded-md bg-[#8484848A] text-white font-semibold">
+                    </Link>
+                    <Link to={'/signup'} className="leading-3 p-3 rounded-md bg-[#8484848A] text-white font-semibold">
                       Sign up
-                    </button>
+                    </Link>
                   </div>
                 </div>
                 <div className="flex items-center justify-between w-full md:w-auto p-4 main">
-                  <img
-                  src="/assets/logoy.png"
-                  width={100}
+                <Link to={'/'}>    <img
+                    src="/assets/logoy.png"
+                    width={100}
                     height={100}
                     alt="notfound"
                     className="md:hidden"
                   />
+                </Link>
                   <Disclosure.Button
                     aria-label="Toggle Menu"
                     className="px-2 py-1 ml-auto rounded-md md:hidden text-white focus:outline-none"
@@ -196,12 +199,12 @@ export default function Navbar() {
                     </React.Fragment>
                   ))}
                   <div className="flex gap-4 flex-col w-fit">
-                    <button className="leading-3 p-3 bg-[#F9DA0A] rounded-md text-[#000000] font-semibold">
+                  <Link to={'/login'} className="leading-3 p-3 bg-[#F9DA0A] rounded-md text-[#000000] font-semibold">
                       Login
-                    </button>
-                    <button className="leading-3 p-3 rounded-md bg-[#8484848A] text-white font-semibold">
+                    </Link>
+                    <Link to={'/signup'} className="leading-3 p-3 rounded-md bg-[#8484848A] text-white font-semibold">
                       Sign up
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </Disclosure.Panel>

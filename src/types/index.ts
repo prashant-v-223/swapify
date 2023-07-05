@@ -38,3 +38,23 @@ export interface Roi {
 export interface SparklineIn7D {
     price: any[];
 }
+
+
+
+export interface LoginForm {
+    email: string;
+    password: string;
+}
+
+export interface RegisterForm {
+    email: string;
+    password: string;
+    name: string;
+}
+
+
+export interface ForgotPasswordForm {
+    email: string;
+    password: string;
+    confirm_password: string;
+}
