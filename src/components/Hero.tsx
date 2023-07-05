@@ -17,11 +17,11 @@ const Hero = () => {
           assets instantly on
         </span>
         <span className="text-3xl md:my-1 md:text-[48px] font-bold leading-10 text-yellow-400">
-          Escoswap
+          Swapfry
         </span>
         <div className="text-white text-base md:my-1 md:text-xl font-medium leading-9">
           You can instantly swap your cryptocurrency <br />
-          assets on escoswap with minimal fees.
+          assets on Swapfry with minimal fees.
         </div>
         {/* \#F9DA0A, #7E6044 */}
         <button className="p-3 md:p-4 md:w-52 w-full bg-gradient-to-r from-[#F9DA0A] to-[#F9DA0A] text-[#000000] font-semibold rounded-xl text-base ">
@@ -91,7 +91,7 @@ const Hero = () => {
             </div>
             <span className="ml-2 text-sm font-medium text-[#898787]">
               By clicking Swap assets you agree to the terms & policy of
-              Escoswap exchange
+              Swapfry exchange
             </span>
           </label>
         </div>

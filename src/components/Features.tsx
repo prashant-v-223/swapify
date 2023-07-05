@@ -3,7 +3,7 @@ const Features = () => {
     <div className="my-4 w-full ">
       <div className="md:p-16 p-6 grid">
         <h1 className="text-white text-3xl font-semibold leading-9">
-          Escoswap <span className="text-[#F9DA0A]"> features</span>
+          Swapfry <span className="text-[#F9DA0A]"> features</span>
         </h1>
         <h1 className="text-3xl md:text-5xl text-[#F4F4F4] font-semibold">
           Super easy for you to swap with us..
@@ -25,7 +25,7 @@ const Features = () => {
               Fund your account
             </p>
             <p className="text-[#C0C0C0] text-base mt-2">
-              Add funds to your escoswap account to start. You can add funds
+              Add funds to your Swapfry account to start. You can add funds
               with a variety of payment methods.
             </p>
           </div>
@@ -59,7 +59,7 @@ const Features = () => {
               Fund your account
             </p>
             <p className="text-[#C0C0C0] text-base mt-2">
-              Add funds to your escoswap account to start. You can add funds
+              Add funds to your Swapfry account to start. You can add funds
               with a variety of payment methods.
             </p>
           </div>

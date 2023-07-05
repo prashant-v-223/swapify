@@ -62,7 +62,7 @@ export default function Navbar() {
             <>
               <div className="flex flex-wrap justify-between md:gap-10 md:flex-nowrap">
                 <img
-                  src="/assets/logo.svg"
+                  src="/assets/logoy.png"
                   width={200}
                   height={200}
                   alt="notfound"
@@ -121,8 +121,8 @@ export default function Navbar() {
                 </div>
                 <div className="flex items-center justify-between w-full md:w-auto p-4 main">
                   <img
-                    src="/assets/logo.svg"
-                    width={100}
+                  src="/assets/logoy.png"
+                  width={100}
                     height={100}
                     alt="notfound"
                     className="md:hidden"
