@@ -13,8 +13,12 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Forgot from "./pages/Forgot";
 import { QueryClient, QueryClientProvider } from "react-query";
+import {
+  ProtectedAuthPages,
+  ProtectedPages,
+} from "./components/ProtectedPages";
+import { fetchAndStoreUserInfo } from "./store";
 const queryClient = new QueryClient();
-
 const Root = () => {
   return (
     <QueryClientProvider client={queryClient}>
@@ -28,11 +32,22 @@ const Root = () => {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Root />}>
-      <Route index element={<Main />} />
-      <Route path="/dashboard" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/signup" element={<Signup />} />
-      <Route path="/forgot" element={<Forgot />} />
+      <Route element={<ProtectedAuthPages />}>
+        <Route index element={<Main />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/forgot" element={<Forgot />} />
+      </Route>
+      <Route element={<ProtectedPages />}>
+        <Route
+          loader={async () => {
+            fetchAndStoreUserInfo();
+            return null;
+          }}
+          path="/dashboard"
+          element={<Home />}
+        />
+      </Route>
     </Route>
   )
 );

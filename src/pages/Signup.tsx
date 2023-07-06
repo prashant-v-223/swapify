@@ -161,6 +161,7 @@ const Signup = () => {
                       type="password"
                       name="password"
                       id="password"
+                      minLength={6}
                       disabled={isOtpSent}
                       placeholder="••••••••"
                       className={`bg-transparent border-b text-white sm:text-sm  focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 ${

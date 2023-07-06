@@ -24,12 +24,15 @@ const Login = () => {
     onSuccess: (response) => {
       const token = response.data.authToken;
       console.log(response);
-      if (token) {
-        localStorage.setItem("token", token);
-        toast.success("Login success");
-        navigate("/dashboard");
-      } else {
+      try {
+        if (token) {
+          localStorage.setItem("token", token);
+          toast.success("Login success");
+        }
+      } catch (error) {
         toast.error("Invalid response");
+      } finally {
+        window.location.reload();
       }
     },
     onError: (error: AxiosError) => {

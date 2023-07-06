@@ -1,4 +1,7 @@
+import { useUserInfo } from "@/store";
+
 const TransactionTable = () => {
+  const { user } = useUserInfo((state) => state.data);
   return (
     <div className="relative overflow-x-auto mt-4 ">
       <table className="w-full text-sm text-left text-gray-500 md:border border-[#606060]">
@@ -8,68 +11,42 @@ const TransactionTable = () => {
               Sr.No
             </th>
             <th scope="col" className="px-6 py-3">
-              Recipent address
-            </th>
-            <th scope="col" className="px-6 py-3">
               Currency
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Amount
             </th>
             <th scope="col" className="px-6 py-3">
               Time
             </th>
             <th scope="col" className="px-6 py-3">
+              Amount
+            </th>
+            <th scope="col" className="px-6 py-3">
               Status
+            </th>
+            <th scope="col" className="px-6 py-3">
+              Type
             </th>
           </tr>
         </thead>
         <tbody>
-          <tr className="bg-[#1b1b1b] border-b border-[#444242] text-white">
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium  whitespace-nowrap "
-            >
-              1
-            </th>
-            <td className="px-6 py-4">
-              0xE62e1503D5ef5B405443860490acA5Eacb15ebEe
-            </td>
-            <td className="px-6 py-4">ETH</td>
-            <td className="px-6 py-4">22:10:40</td>
-            <td className="px-6 py-4">20.5000$</td>
-            <td className="px-6 py-4">Completed</td>
-          </tr>
-          <tr className="bg-[#1b1b1b] border-b border-[#444242] text-white">
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium  whitespace-nowrap "
-            >
-              2
-            </th>
-            <td className="px-6 py-4">
-              0xE62e1503D5ef5B405443860490acA5Eacb15ebEe
-            </td>
-            <td className="px-6 py-4">BTC</td>
-            <td className="px-6 py-4">22:10:40</td>
-            <td className="px-6 py-4">20.5000$</td>
-            <td className="px-6 py-4">Completed</td>
-          </tr>
-          <tr className="bg-[#1b1b1b] border-b border-[#444242] text-white">
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium  whitespace-nowrap "
-            >
-              3
-            </th>
-            <td className="px-6 py-4">
-              0xE62e1503D5ef5B405443860490acA5Eacb15ebEe
-            </td>
-            <td className="px-6 py-4">ADA</td>
-            <td className="px-6 py-4">22:10:40</td>
-            <td className="px-6 py-4">20.5000$</td>
-            <td className="px-6 py-4">Completed</td>
-          </tr>
+          {user.transactionIds.map((transactionId, index) => {
+            return (
+              <tr key={transactionId.id} className="bg-[#1b1b1b] border-b border-[#444242] text-white">
+                <th
+                  scope="row"
+                  className="px-6 py-4 font-medium  whitespace-nowrap "
+                >
+                  {index + 1}
+                </th>
+                <td className="px-6 py-4">{transactionId?.coin}</td>
+                <td className="px-6 py-4">
+                  {new Date(transactionId?.time).toDateString()}
+                </td>
+                <td className="px-6 py-4">{transactionId?.amount}</td>
+                <td className="px-6 py-4">{transactionId?.status}</td>
+                <td className="px-6 py-4">{transactionId?.transactionType.charAt(0).toUpperCase() +transactionId.transactionType.slice(1)}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

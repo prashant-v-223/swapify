@@ -1,7 +1,8 @@
 import { Coinlist } from "./fakedata";
 const TopCrypto = () => {
   return (
-    <div className="md:p-16 p-4 ">
+   <>
+    <div className="md:p-16 p-4 md:hidden">
       <p className="text-white font-semibold text-3xl">
         Top cryptocurrencies
       </p>
@@ -51,6 +52,47 @@ const TopCrypto = () => {
       </div>
      </div>
     </div>
+    <div className="md:p-16 p-4 md:block hidden">
+      <p className="text-white font-semibold text-3xl">Top cryptocurrencies</p>
+      <div className="md:p-16">
+        <div className="flex relative rounded-3xl topcrypto overflow-x-auto mt-4 justify-around flex-col md:flex-wrap md:flex-row">
+          <div className="w-full md:m-4 font-semibold text-sm text-left text-gray-500 ">
+            <div className="text-sm sm:text-base text-center bg-transparent rounded-lg text-white p-6 grid grid-cols-4">
+                <p className="p-6">Name</p>
+                <p className="p-6">Last price(USD)</p>
+                <p className="p-6">24 Change</p>
+                <p className="p-6">Volume</p>
+            </div>
+            <div className="">
+              {Coinlist.map((crypto) => (
+                <div key={crypto.id} className="bg-transparent text-center text-white grid grid-cols-4 ">
+                  <div className="px-6 py-4 flex justify-center w-full">
+                    <div className="flex items-center gap-4">
+                    <img
+                      width={40}
+                      height={50}
+                      src={crypto.image}
+                      alt={crypto.id}
+                    />
+                    <span>{crypto.name.split(" ")[0]}</span>
+                    <span className="text-[#787575]">
+                      {crypto.symbol.toUpperCase()}
+                    </span>
+                    </div>
+                  </div>
+                  <p className="px-6 py-4 ">
+                    {crypto.price_change_percentage_24h}
+                  </p>
+                  <p className="px-6 py-4 text-[#62DB92] ">+6.00%</p>
+                  <p className="px-6 py-4 ">43,65,100.00M</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   </>
   );
 };
 
