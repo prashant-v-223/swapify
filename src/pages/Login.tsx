@@ -1,11 +1,10 @@
 import { LoginForm } from "@/types";
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { Formik } from "formik";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useMutation } from "react-query";
 const Login = () => {
-  const navigate = useNavigate();
   const login = async (
     data: LoginForm
   ): Promise<AxiosResponse<{ authToken: string }>> => {
