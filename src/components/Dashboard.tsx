@@ -15,7 +15,7 @@ const Dashboard = ({
           <div className="flex flex-col">
             <h1 className="text-xl">Amount deposited</h1>
             <h1 className="text-2xl md:text-3xl">
-              {user.balance} <span className="font-semibold">$</span>
+              {user.balance.toFixed(2)} <span className="font-semibold">$</span>
             </h1>
           </div>
         </div>

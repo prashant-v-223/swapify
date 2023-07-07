@@ -6,7 +6,8 @@ import { toast } from "react-hot-toast";
 import DialogBox from "./DialogBox";
 import { Transaction } from "@/types";
 import { useUserInfo } from "@/store";
-
+import * as Yup from "yup";
+import Loader from "./Loader";
 const Deposit = () => {
   const { user } = useUserInfo((state) => state.data);
   let [isOpen, setIsOpen] = useState<boolean>(false);
@@ -48,11 +49,12 @@ const Deposit = () => {
     status: "",
     email: null,
   });
-
+  const [showLoading, setShowLoading] = useState<boolean>(false);
   function closeModal(): void {
     setIsOpen(false);
   }
   const createTransactiom = async (amount: string, resetForm: () => void) => {
+    setShowLoading(true);
     try {
       let response = await axios.post(
         " https://exolix.com/api/v2/transactions",
@@ -64,28 +66,29 @@ const Deposit = () => {
           withdrawalExtraId: user._id,
         }
       );
-      console.log(response.data);
-      setTransaction(response.data);
-      await axios.post(`${process.env.VITE_SERVER_URL}/users/transactions`, {
-        transaction: {
-          id: response.data.id,
-          amount: response.data.amountTo,
-          coin: "BTC",
-          status: "pending",
-          time: response.data.createdAt,
-          user_id: user._id,
-          transactionType: "deposit",
-        },
-        userId: user._id,
-      });
-      setIsOpen(true);
+      if (response.status === 201) {
+        await axios.post(`${process.env.VITE_SERVER_URL}/users/transactions`, {
+          transaction: {
+            id: response.data.id,
+            amount: response.data.amountTo,
+            coin: "BTC",
+            status: "pending",
+            time: response.data.createdAt,
+            user_id: user._id,
+            transactionType: "deposit",
+          },
+          userId: user._id,
+        });
+        setTransaction(response.data);
+        setIsOpen(true);
+      }
     } catch (error) {
       toast.error("Error while requesting deposit...");
     } finally {
+      setShowLoading(false);
       resetForm();
     }
   };
-
 
   return (
     <div className="p-4">
@@ -95,25 +98,48 @@ const Deposit = () => {
             amount: "",
             currencyToDeposit: "null",
           }}
+          validationSchema={Yup.object({
+            amount: Yup.number()
+              .required("Required")
+              .min(0.0035, "Amount must be greater than or equal to 0.0035"),
+            currencyToDeposit: Yup.string().required("Required"),
+          })}
           onSubmit={(values, { resetForm }) => {
             createTransactiom(values.amount, resetForm);
           }}
         >
-          {({ values, handleChange, handleBlur, handleSubmit }) => (
+          {({ values, handleChange, handleBlur, handleSubmit, errors }) => (
             <form onSubmit={handleSubmit}>
               <div className="flex flex-col justify-center items-start gap-4 p-4">
-                <input
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  id="amount"
-                  name="amount"
-                  value={values.amount}
-                  min={110}
-                  type="number"
-                  inputMode="numeric"
-                  placeholder="Enter amount to deposit"
-                  className="text-white bg-[#242424] disabled:cursor-not-allowed w-full h-full p-4 rounded-lg border-2 border-[#454545]"
-                />
+                <div className="flex w-full rounded-lg border-2 border-[#454545] items-center  bg-[#242424]">
+                  <input
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    id="amount"
+                    name="amount"
+                    value={values.amount}
+                    type="number"
+                    autoComplete="off"
+                    inputMode="numeric"
+                    placeholder="Enter amount to deposit"
+                    className="text-white appearance-none bg-[#242424] outline-none disabled:cursor-not-allowed w-full h-full p-4 "
+                  />
+                  <div className="w-fit pl-4 flex gap-4 justify-center items-center placeholder-white  h-full border-transparent bg-transparent text-white px-4 py-2 rounded-md appearance-none">
+                    <img
+                      src="/assets/btc.svg"
+                      width={20}
+                      height={20}
+                      alt="bitcoin"
+                    />
+                    <div className="flex flex-col">
+                      <p className="text-white text-sm font-semibold">BTC</p>
+                      <p className="text-[#7E6044] text-sm font-semibold">
+                        Bitcoin
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-sm text-red-700">{errors?.amount}</p>
                 <select
                   id="currencyToDeposit"
                   name="currencyToDeposit"
@@ -127,6 +153,9 @@ const Deposit = () => {
                   </option>
                   <option value="BTC">Bitcoin</option>
                 </select>
+                <p className="text-sm text-red-700">
+                  {errors?.currencyToDeposit}
+                </p>
                 <button
                   type="submit"
                   className={
@@ -152,7 +181,7 @@ const Deposit = () => {
           <div className="flex gap-4">
             <img src="/assets/greentick.svg" alt="user" />{" "}
             <p className="text-white text-base md:text-xl">
-              The Minimum Deposit Amount is 100$
+              The Minimum Deposit Amount is 0.0035 BTC
             </p>
           </div>
           <div className="flex gap-4">
@@ -169,6 +198,7 @@ const Deposit = () => {
         closeModal={closeModal}
         transaction={transaction}
       />
+      {showLoading && <Loader />}
     </div>
   );
 };

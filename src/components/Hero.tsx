@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   const [isChecked, setIsChecked] = useState(true);
@@ -39,7 +40,7 @@ const Hero = () => {
               placeholder="1"
               className="py-4 px-4 rounded-md placeholder-white placeholder-inherit bg-transparent border border-[#4E4E4E80] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full"
             />
-           <div className="absolute w-fit flex gap-4 justify-center items-center placeholder-white bg-[#090807] right-0 top-0 bottom-0 h-full border-transparent bg-transparent text-white py-2 pr-8 pl-4 rounded-md appearance-none">
+            <div className="absolute w-fit flex gap-4 justify-center items-center placeholder-white bg-[#090807] right-0 top-0 bottom-0 h-full border-transparent bg-transparent text-white py-2 pr-8 pl-4 rounded-md appearance-none">
               <img src="/assets/btc.svg" alt="bitcoin" />
               <div className="flex flex-col">
                 <p className="text-white font-semibold">BTC</p>
@@ -53,7 +54,7 @@ const Hero = () => {
           <div className="relative gap-4 w-full">
             <input
               type="text"
-              placeholder="1"
+              placeholder="15.20"
               className="py-4 px-4 rounded-md placeholder-white placeholder-inherit bg-transparent border border-[#4E4E4E80] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full"
             />
             <div className="absolute w-fit flex gap-4 justify-center items-center placeholder-white bg-[#090807] right-0 top-0 bottom-0 h-full border-transparent bg-transparent text-white py-2 pr-8 pl-4 rounded-md appearance-none">
@@ -90,15 +91,18 @@ const Hero = () => {
               )}
             </div>
             <span className="ml-2 text-sm font-medium text-[#898787]">
-              By clicking Swap assets you agree to the terms & policy of
-              Swapfry exchange
+              By clicking Swap assets you agree to the terms & policy of Swapfry
+              exchange
             </span>
           </label>
         </div>
-        <button className="p-3 md:p-3.5 flex items-center gap-2 justify-center w-full bg-[#F5D815E5] text-[#000000] font-semibold rounded-xl text-base">
+        <Link
+          to={"/login"}
+          className="p-3 md:p-3.5 flex items-center gap-2 justify-center w-full bg-[#F5D815E5] text-[#000000] font-semibold rounded-xl text-base"
+        >
           <img src="/assets/swap.svg" alt="swap" />
           Swap assets
-        </button>
+        </Link>
       </div>
     </div>
   );

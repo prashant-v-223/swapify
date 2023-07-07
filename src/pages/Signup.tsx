@@ -114,7 +114,7 @@ const Signup = () => {
                       type="text"
                       name="name"
                       id="name"
-                      className={`bg-transparent border-b text-white sm:text-sm  focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 ${
+                      className={`bg-transparent appearance-none border-b text-white sm:text-sm  focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 ${
                         errors.name && touched.name
                           ? "border-red-500"
                           : "border-blue-200"
@@ -133,13 +133,13 @@ const Signup = () => {
                     >
                       Email
                     </label>
-                    <input
+                    <input 
                       type="email"
                       name="email"
                       id="email"
                       inputMode="email"
                       placeholder="hello@swapfry.com"
-                      className={`bg-transparent border-b text-white sm:text-sm  focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 ${
+                      className={`bg-transparent appearance-none border-b text-white sm:text-sm  focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 ${
                         errors.email && touched.email
                           ? "border-red-500"
                           : "border-blue-200"
@@ -148,6 +148,7 @@ const Signup = () => {
                       value={values.email}
                       onBlur={handleBlur}
                       disabled={isOtpSent}
+                      autoComplete="off"
                     />
                   </div>
                   <div>
@@ -161,10 +162,11 @@ const Signup = () => {
                       type="password"
                       name="password"
                       id="password"
+                      autoComplete="off"
                       minLength={6}
                       disabled={isOtpSent}
                       placeholder="••••••••"
-                      className={`bg-transparent border-b text-white sm:text-sm  focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 ${
+                      className={`bg-transparent appearance-none border-b text-white sm:text-sm  focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 ${
                         errors.password && touched.password
                           ? "border-red-500"
                           : "border-blue-200"
@@ -186,14 +188,15 @@ const Signup = () => {
                         type="text"
                         inputMode="numeric"
                         name="otp"
-                        id="otp"
+                        id="otp" 
                         placeholder="Enter otp here"
-                        className="bg-transparent border-b  text-white sm:text-sm  focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 "
+                        className="bg-transparent appearance-none border-b  text-white sm:text-sm  focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 "
                         required
                         onChange={(e) => {
                           setOtp(e.target.value);
                         }}
                         value={otp}
+                        autoComplete="off"
                       />
                     </div>
                   ) : (
@@ -216,7 +219,7 @@ const Signup = () => {
                       </div>
                       <Link
                         to="/forgot"
-                        className="text-sm font-medium text-yellow-600 hover:underline"
+                        className="text-sm font-medium text-[#F9DA0A]  hover:underline"
                       >
                         Forgot password?
                       </Link>
@@ -226,7 +229,7 @@ const Signup = () => {
                   {!isOtpSent ? (
                     <button
                       type="submit"
-                      className="w-full text-white bg-yellow-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                      className="w-full text-white bg-[#F9DA0A]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                     >
                       Create Account
                     </button>
@@ -236,7 +239,7 @@ const Signup = () => {
                       onClick={() => {
                         verifyOtp({ otp, email: values.email });
                       }}
-                      className="w-full text-white bg-yellow-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                      className="w-full text-white bg-[#F9DA0A]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                     >
                       Verify Otp
                     </button>

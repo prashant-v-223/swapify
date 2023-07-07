@@ -30,7 +30,7 @@ export const useUserInfo = create<IuseUserInfo>((set) => ({
       status: "",
       transactionType: "",
      }],
-   }
+    },
   },
   // @ts-ignore
   setUserInfo: (data) => set(() => ({ data })),

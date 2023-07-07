@@ -1,26 +1,37 @@
 import { useUserInfo } from "@/store";
 import axios from "axios";
-import { Formik  } from "formik";
+import { Formik } from "formik";
 import toast from "react-hot-toast";
 import TransactionTable from "./TransactionTable";
+import * as Yup from "yup";
+import { useState } from "react";
+import Loader from "./Loader";
 const Withdraw = () => {
   const { user } = useUserInfo((state) => state.data);
-  const createTransactiom = async (amount: string, address: string,resetForm:()=>void) => {
+  const [showLoading, setShowLoading] = useState<boolean>(false);
+  const createTransactiom = async (
+    amount: string,
+    address: string,
+    resetForm: () => void
+  ) => {
     try {
+      if (user.balance < Number(amount)) {
+        setShowLoading(true);
       let response = await axios.post(
         "https://exolix.com/api/v2/transactions",
         {
           amount: amount,
-          coinFrom: "ETH",
-          coinTo: "BTC",
+          coinFrom: "BTC",
+          coinTo: "USDT",
           withdrawalAddress: address,
           withdrawalExtraId: user._id,
         }
       );
+     if (response.status === 201) {
       await axios.post(`${process.env.VITE_SERVER_URL}/users/transactions`, {
         transaction: {
           id: response.data.id,
-          amount: amount,
+          amount: response.data.amountTo,
           coin: "BTC",
           status: "pending",
           time: response.data.createdAt,
@@ -30,11 +41,20 @@ const Withdraw = () => {
         userId: user._id,
       });
       toast.success("Withdrawal request sent successfully");
+     }
+     else{
+      toast.error("Error while requesting withdrawal...");
+     }
+      }
+      else{
+        toast.error("Please make sure you have enough balance...");
+      }
     } catch (error) {
-      toast.error("Error while requesting deposit...");
-    }
-    finally{
-      resetForm()
+      console.log(error);
+      toast.error("Please make sure you have enough balance...");
+    } finally {
+      resetForm();
+      setShowLoading(false);
     }
   };
 
@@ -46,32 +66,61 @@ const Withdraw = () => {
             amount: "",
             withdrawAddress: "",
           }}
-          onSubmit={(values,{resetForm}) => {
-            createTransactiom(values.amount, values.withdrawAddress,resetForm);
+          validationSchema={Yup.object({
+            amount: Yup.number()
+              .required("Required")
+              .min(0.0035, "Amount must be greater than or equal to 0.0035"),
+            withdrawAddress: Yup.string().required("Required"),
+          })}
+          onSubmit={(values, { resetForm }) => {
+            createTransactiom(values.amount, values.withdrawAddress, resetForm);
           }}
         >
-          {({ values, handleChange, handleSubmit }) => (
+          {({ values, handleChange, handleSubmit, errors }) => (
             <form onSubmit={handleSubmit}>
               <div className="flex flex-col justify-center items-start gap-4 p-4">
+                <div className="flex w-full rounded-lg border-2 border-[#454545] items-center  bg-[#242424]">
+                  <input
+                    id="amount"
+                    name="amount"
+                    onChange={handleChange}
+                    value={values.amount}
+                    type="number"
+                    inputMode="numeric"
+                    placeholder="Select amount to withdraw"
+                    autoComplete="off"
+                    className="text-white appearance-none bg-[#242424] outline-none disabled:cursor-not-allowed w-full h-full p-4 "
+                  />
+                  <div className="w-fit pl-4 flex gap-4 justify-center items-center placeholder-white bg-[#090807]  h-full border-transparent bg-transparent text-white px-4 py-2 rounded-md appearance-none">
+                    <img
+                      src="/assets/btc.svg"
+                      width={20}
+                      height={20}
+                      alt="bitcoin"
+                    />
+                    <div className="flex flex-col">
+                      <p className="text-white text-sm font-semibold">BTC</p>
+                      <p className="text-[#7E6044] text-sm font-semibold">
+                        Bitcoin
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <p className="text-sm text-red-700">{errors?.amount}</p>
                 <input
                   id="withdrawAddress"
                   onChange={handleChange}
                   value={values.withdrawAddress}
                   name="withdrawAddress"
                   type="text"
-                  placeholder="Enter withdrawal address "
-                  className="text-white bg-transparent w-full h-full p-4 border-2 rounded-lg border-[#454545]"
+                  autoComplete="off"
+                  placeholder="Enter your USDT TRC20 wallet address"
+                  className="text-white bg-transparent bg-[#090807] w-full h-full p-4 border-2 rounded-lg border-[#454545]"
                 />
-                <input
-                  id="amount"
-                  name="amount"
-                  onChange={handleChange}
-                  value={values.amount}
-                  type="number"
-                  inputMode="numeric"
-                  placeholder="Select amount to withdraw"
-                  className="text-white bg-transparent w-full h-full p-4 rounded-lg border-2 border-[#454545]"
-                />
+                <p className="text-sm text-red-700">
+                  {errors?.withdrawAddress}
+                </p>
+
                 <button
                   type="submit"
                   className={
@@ -102,7 +151,8 @@ const Withdraw = () => {
           </div>
         </div>
       </div>
-      <TransactionTable/>
+      <TransactionTable /> 
+      {showLoading && <Loader />}
     </div>
   );
 };

@@ -93,7 +93,7 @@ const AdminTable = () => {
               <td className="px-6 py-4">{data.transactionType}</td>
               <td className="px-6 py-4">{data.time}</td>
               <td className="px-6 py-4">{data.status}</td>
-              <td className="px-6 py-4">{data.amount}</td>
+              <td className="px-6 py-4">{data.amount} $</td>
               <td className="flex items-center px-6 py-4 space-x-3">
                 <button
                   onClick={() => {

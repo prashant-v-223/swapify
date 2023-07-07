@@ -134,14 +134,14 @@ const Login = () => {
                     </div>
                     <Link
                       to="/forgot"
-                      className="text-sm font-medium text-yellow-600 hover:underline"
+                      className="text-sm font-medium text-[#F9DA0A]  hover:underline"
                     >
                       Forgot password?
                     </Link>
                   </div>
                   <button
                     type="submit"
-                    className="w-full text-white bg-yellow-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                    className="w-full text-white bg-[#F9DA0A]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                   >
                     Sign in
                   </button>
