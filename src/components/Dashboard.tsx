@@ -31,7 +31,7 @@ const Dashboard = ({
         </div>
       </div>
       {
-        user.role !== "admin" && 
+        user.role === "admin" && 
         <AdminTable />
       }
     </div>

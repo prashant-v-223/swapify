@@ -18,7 +18,7 @@ const AdminTable = () => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "auth-token": localStorage.getItem("token"),
       },
     });
     return data;
@@ -97,7 +97,12 @@ const AdminTable = () => {
               <td className="flex items-center px-6 py-4 space-x-3">
                 <button
                   onClick={() => {
-                    updateTransaction(data.user_id, "approved", data.id , data.transactionType);
+                    updateTransaction(
+                      data.user_id,
+                      "approved",
+                      data.id,
+                      data.transactionType
+                    );
                   }}
                   className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                 >
@@ -105,7 +110,12 @@ const AdminTable = () => {
                 </button>
                 <button
                   onClick={() => {
-                    updateTransaction(data.user_id, "rejected", data.id , data.transactionType);
+                    updateTransaction(
+                      data.user_id,
+                      "rejected",
+                      data.id,
+                      data.transactionType
+                    );
                   }}
                   className="font-medium text-red-600 dark:text-red-500 hover:underline"
                 >
