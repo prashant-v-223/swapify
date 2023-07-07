@@ -1,14 +1,26 @@
 import axios from "axios";
 import { Formik } from "formik";
+import { useState } from "react";
+import toast from "react-hot-toast";
 import * as Yup from "yup";
+import Loader from "./Loader";
 const Hero = () => {
+  const [showLoader, setShowLoader] = useState(false);
   const fetchPrice = async (amount: number,setFieldValue:(field:string,value:number)=>void) => {
+   try {
+    setShowLoader(true);
     const { data } = await axios.get(
       `https://exolix.com/api/v2/rate?coinFrom=BTC&coinTo=USDT&networkTo=TRX&amount=${Number(
         amount
       )}&rateType=fixed`
     );
     setFieldValue("receive",data.toAmount);
+   } catch (error) {
+    toast.error("Something went wrong");
+   }
+    finally{
+      setShowLoader(false);
+    }
   };
   return (
     <div className="grid md:flex md:justify-around grid-col-1 gap-4 p-4 md:p-0 w-full">
@@ -40,7 +52,7 @@ const Hero = () => {
           receive: Yup.number(),
         })}
       >
-        {({ values, handleSubmit, handleChange }) => (
+        {({ values, handleSubmit, handleChange , setFieldValue }) => (
           <form onSubmit={handleSubmit}>
             <div className="md:w-[365px] lg:w-[450px] justify-center w-full h-full bg-neutral-900 rounded-3xl p-4 px-6">
               <p className="text-white my-4 text-xl font-medium leading-9">
@@ -55,6 +67,11 @@ const Hero = () => {
                     value={values.send}
                     onChange={handleChange}
                     id="send"
+                    onKeyUp={(e) => {
+                      if (!isNaN(parseInt(e.key))) {
+                        fetchPrice(Number(values.send),setFieldValue);
+                      }
+                    }}
                     placeholder="0"
                     className="py-4 px-4 rounded-md placeholder-white placeholder-inherit bg-transparent border border-[#4E4E4E80] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full"
                   />
@@ -91,12 +108,12 @@ const Hero = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex justify-between my-4">
+              <div className="flex justify-between my-4 gap-4">
                 <span className="text-white text-sm">
-                  Minimum amount 0.0035 BTC
+                  Min. amount 0.0035 BTC
                 </span>
                 <span className="text-white text-sm">
-                  1 BTC = 15.20 Ethereum
+                  {values.send} BTC = {Number(values?.receive).toFixed(2)} Ethereum
                 </span>
               </div>
               <div className="flex items-center my-4">
@@ -126,6 +143,9 @@ const Hero = () => {
           </form>
         )}
       </Formik>
+      {
+        showLoader && <Loader />
+      }
     </div>
   );
 };
