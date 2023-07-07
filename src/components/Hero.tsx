@@ -9,7 +9,7 @@ const Hero = () => {
    try {
     setShowLoader(true);
     const { data } = await axios.get(
-      `https://exolix.com/api/v2/rate?coinFrom=BTC&coinTo=USDT&networkTo=TRX&amount=${Number(
+      `https://exolix.com/api/v2/rate?coinFrom=BTC&coinTo=ETH&networkTo=ETH&amount=${Number(
         amount
       )}&rateType=fixed`
     );
