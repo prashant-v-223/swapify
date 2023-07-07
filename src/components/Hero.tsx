@@ -1,7 +1,6 @@
 import axios from "axios";
 import { Formik } from "formik";
 import { useState } from "react";
-import toast from "react-hot-toast";
 import * as Yup from "yup";
 import Loader from "./Loader";
 const Hero = () => {
@@ -16,7 +15,7 @@ const Hero = () => {
     );
     setFieldValue("receive",data.toAmount);
    } catch (error) {
-    toast.error("Something went wrong");
+    console.log(error);
    }
     finally{
       setShowLoader(false);
@@ -67,10 +66,8 @@ const Hero = () => {
                     value={values.send}
                     onChange={handleChange}
                     id="send"
-                    onKeyUp={(e) => {
-                      if (!isNaN(parseInt(e.key))) {
+                    onKeyUp={() => {
                         fetchPrice(Number(values.send),setFieldValue);
-                      }
                     }}
                     placeholder="0"
                     className="py-4 px-4 rounded-md placeholder-white placeholder-inherit bg-transparent border border-[#4E4E4E80] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full"
