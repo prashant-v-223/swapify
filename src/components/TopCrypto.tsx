@@ -51,13 +51,13 @@ const TopCrypto = () => {
                     To
                   </th>
                   <th scope="col" className="p-6">
-                    Price
+                    Price $
                   </th>
                 </tr>
               </thead>
               <tbody>
                 { isLoading ?  <p className="text-center my-4 text-xl">Loading ...</p>  : data?.map((crypto:any) => (
-                  <tr key={crypto.id} className="bg-transparent text-white ">
+                  <tr key={crypto.id} className="bg-transparent text-white items-center ">
                     <td className="px-6 py-4 flex items-center gap-4 w-full">
                       <img
                         width={40}
@@ -68,7 +68,7 @@ const TopCrypto = () => {
                       <span>{crypto.name}</span>
                     </td>
                     <td className="px-6 py-4">USDT</td>
-                    {isLoading ? 0 : crypto.rate} $
+                    <td className="px-6 py-4"> {isLoading ? 0 : Number(crypto.rate).toFixed(2)}</td>
                   </tr>
                 ))}
               </tbody>
