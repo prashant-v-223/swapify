@@ -2,7 +2,6 @@ import { Coinlist } from "./fakedata";
 import axios from "axios";
 import { ConvertedCoin } from "@/types";
 import { useQuery } from "react-query";
-import Loader from "./Loader";
 const TopCrypto = () => {
   const fetchRate = async (
     coinFrom: string,
@@ -69,7 +68,7 @@ const TopCrypto = () => {
                       <span>{crypto.name}</span>
                     </td>
                     <td className="px-6 py-4">USDT</td>
-                    <td className="px-6 py-4">{isLoading ? 0 : crypto.rate} $</td>
+                    {isLoading ? 0 : crypto.rate} $
                   </tr>
                 ))}
               </tbody>
