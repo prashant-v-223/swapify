@@ -7,14 +7,17 @@ import { useMutation } from "react-query";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Loader from "@/components/Loader";
 const Signup = () => {
   const navigate = useNavigate();
+  const [showLoader, setShowLoader] = useState(false);
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [otp, setOtp] = useState("");
   const login = async (
     data: RegisterForm
   ): Promise<AxiosResponse<{ result: string }>> => {
     try {
+      setShowLoader(true);
       const res = await axios.post(
         `${process.env.VITE_SERVER_URL}/users`,
         data
@@ -22,6 +25,9 @@ const Signup = () => {
       return res;
     } catch (error) {
       throw error;
+    }
+    finally{
+      setShowLoader(false);
     }
   };
   const verifyOtp = async (data: { otp: string; email: string }) => {
@@ -259,6 +265,9 @@ const Signup = () => {
           </div>
         </div>
       </div>
+      {
+        showLoader && <Loader />
+      }
     </section>
   );
 };

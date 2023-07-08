@@ -4,11 +4,15 @@ import { Formik } from "formik";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useMutation } from "react-query";
+import Loader from "@/components/Loader";
+import { useState } from "react";
 const Login = () => {
+  const [showLoader, setShowLoader] = useState(false);
   const login = async (
     data: LoginForm
   ): Promise<AxiosResponse<{ authToken: string }>> => {
     try {
+      setShowLoader(true);
       const res = await axios.post(
         `${process.env.VITE_SERVER_URL}/users/login`,
         data
@@ -16,6 +20,9 @@ const Login = () => {
       return res;
     } catch (error) {
       throw error;
+    }
+    finally{
+      setShowLoader(false);
     }
   };
 
@@ -160,6 +167,9 @@ const Login = () => {
           </div>
         </div>
       </div>
+      {
+        showLoader && <Loader />
+      }
     </section>
   );
 };
