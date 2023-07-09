@@ -31,7 +31,7 @@ const TopCrypto = () => {
     return updatedCoins as any;
   };
 
-  const { data  , isLoading} = useQuery("coins", parallelRequest);
+  const { data, isLoading } = useQuery("coins", parallelRequest);
 
   return (
     <>
@@ -42,35 +42,70 @@ const TopCrypto = () => {
         <div className="md:p-16">
           <div className="flex relative rounded-3xl topcrypto overflow-x-auto mt-4 justify-around flex-col md:flex-wrap md:flex-row">
             <table className="w-full md:m-4 font-semibold text-sm text-left text-gray-500 ">
-              <thead className="text-sm sm:text-base bg-transparent rounded-lg text-white p-6 ">
-                <tr>
-                  <th scope="col" className="p-6">
-                    From
-                  </th>
-                  <th scope="col" className="p-6">
-                    To
-                  </th>
-                  <th scope="col" className="p-6">
-                    Price $
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                { isLoading ?  <p className="text-center my-4 text-xl">Loading ...</p>  : data?.map((crypto:any) => (
-                  <tr key={crypto.id} className="bg-transparent text-white items-center ">
-                    <td className="px-6 py-4 flex items-center gap-4 w-full">
-                      <img
-                        width={40}
-                        height={50}
-                        src={crypto.image}
-                        alt={crypto.id}
-                      />
-                      <span>{crypto.name}</span>
-                    </td>
-                    <td className="px-6 py-4">USDT</td>
-                    <td className="px-6 py-4"> {isLoading ? 0 : Number(crypto.rate).toFixed(2)}</td>
+              {!isLoading && (
+                <thead className="text-sm sm:text-base bg-transparent rounded-lg text-white p-6 ">
+                  <tr>
+                    <th scope="col" className="p-6">
+                      From
+                    </th>
+                    <th scope="col" className="p-6">
+                      To
+                    </th>
+                    <th scope="col" className="p-6">
+                      Price $
+                    </th>
                   </tr>
-                ))}
+                </thead>
+              )}
+              <tbody>
+                {isLoading ? (
+                  <div
+                    role="status"
+                    className="w-full flex flex-col gap-4 my-4 space-y-4 divide-y rounded shadow animate-pulse divide-gray-700 border-gray-700"
+                  >
+                    {Array.from({ length: 8 }).map((_, index) => (
+                      <div
+                        key={index}
+                        className="grid grid-cols-3 items-center justify-between pt-4 p-4"
+                      >
+                        <div>
+                          <div className="h-2.5  rounded-full bg-gray-600 w-24 mb-2.5"></div>
+                          <div className="w-32 h-2  rounded-full bg-gray-700"></div>
+                        </div>
+                        <div>
+                          <div className="h-2.5  rounded-full bg-gray-600 w-24 mb-2.5"></div>
+                          <div className="w-32 h-2  rounded-full bg-gray-700"></div>
+                        </div>
+                        <div>
+                          <div className="h-2.5  rounded-full bg-gray-600 w-24 mb-2.5"></div>
+                          <div className="w-32 h-2  rounded-full bg-gray-700"></div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  data?.map((crypto: any) => (
+                    <tr
+                      key={crypto.id}
+                      className="bg-transparent text-white items-center "
+                    >
+                      <td className="px-6 py-4 flex items-center gap-4 w-full">
+                        <img
+                          width={40}
+                          height={50}
+                          src={crypto.image}
+                          alt={crypto.id}
+                        />
+                        <span>{crypto.name}</span>
+                      </td>
+                      <td className="px-6 py-4">USDT</td>
+                      <td className="px-6 py-4">
+                        {" "}
+                        {isLoading ? 0 : Number(crypto.rate).toFixed(2)}
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>
@@ -84,37 +119,58 @@ const TopCrypto = () => {
           <div className="flex relative rounded-3xl topcrypto overflow-x-auto mt-4 justify-around flex-col md:flex-wrap md:flex-row">
             <div className="w-full font-semibold text-sm text-left text-gray-500 ">
               <div className="text-sm sm:text-base text-center bg-transparent rounded-lg text-white p-6 grid grid-cols-3">
-                <p  className="p-6">
-                  From
-                </p>
-                <p className="p-6">
-                  To
-                </p>
-                <p  className="p-6">
-                  Price
-                </p>
+                <p className="p-6">From</p>
+                <p className="p-6">To</p>
+                <p className="p-6">Price</p>
               </div>
               <div className="">
-                {isLoading ? <p className="text-center my-4 text-xl">Loading ...</p>  :data?.map((crypto:any) => (
+                {isLoading ? (
                   <div
-                    key={crypto.id}
-                    className="bg-transparent text-center text-white grid grid-cols-3"
+                    role="status"
+                    className="w-full p-4 space-y-4  divide-y rounded shadow animate-pulse divide-gray-700 md:p-6 border-gray-700"
                   >
-                    <div className="px-6 py-4 flex justify-center w-full">
-                      <div className="flex items-center gap-4">
-                        <img
-                          width={40}
-                          height={50}
-                          src={crypto.image}
-                          alt={crypto.id}
-                        />
-                        <span>{crypto.name.split(" ")[0]}</span>
+                    {Array.from({ length: 8 }).map((_, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center justify-between pt-4"
+                      >
+                        <div>
+                          <div className="h-2.5  rounded-full bg-gray-600 w-24 mb-2.5"></div>
+                          <div className="w-32 h-2  rounded-full bg-gray-700"></div>
+                        </div>
+                        <div className="h-2.5  rounded-full bg-gray-700 w-12"></div>
+                        <div>
+                          <div className="h-2.5  rounded-full bg-gray-600 w-24 mb-2.5"></div>
+                          <div className="w-32 h-2  rounded-full bg-gray-700"></div>
+                        </div>
                       </div>
-                    </div>
-                    <p className="px-6 py-4">USDT</p>
-                    <p className="px-6 py-4">  {isLoading ? 0 : Number(crypto.rate).toFixed(3)} $</p>
+                    ))}
                   </div>
-                ))}
+                ) : (
+                  data?.map((crypto: any) => (
+                    <div
+                      key={crypto.id}
+                      className="bg-transparent text-center text-white grid grid-cols-3"
+                    >
+                      <div className="px-6 py-4 flex justify-center w-full">
+                        <div className="flex items-center gap-4">
+                          <img
+                            width={40}
+                            height={50}
+                            src={crypto.image}
+                            alt={crypto.id}
+                          />
+                          <span>{crypto.name.split(" ")[0]}</span>
+                        </div>
+                      </div>
+                      <p className="px-6 py-4">USDT</p>
+                      <p className="px-6 py-4">
+                        {" "}
+                        {isLoading ? 0 : Number(crypto.rate).toFixed(3)} $
+                      </p>
+                    </div>
+                  ))
+                )}
               </div>
             </div>
           </div>
