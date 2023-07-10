@@ -15,12 +15,11 @@ const Withdraw = () => {
     resetForm: () => void
   ) => {
     try {
-      console.log(user.balance ,Number(amount));
+      setShowLoading(true);
       const { data } = await axios.get(
         `https://exolix.com/api/v2/rate?coinFrom=BTC&coinTo=USDT&networkTo=TRX&amount=${Number(amount)}&rateType=fixed`
       );
       if (user.balance > data.toAmount) {
-        setShowLoading(true);
       let response = await axios.post(
         "https://exolix.com/api/v2/transactions",
         {
