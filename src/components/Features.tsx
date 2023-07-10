@@ -1,6 +1,6 @@
 const Features = () => {
   return (
-    <div className="my-4 w-full ">
+    <div  data-aos="fade-up" className="my-4 w-full ">
       <div className="md:p-16 p-6 grid">
         <h1 className="text-white text-3xl font-semibold leading-9">
           Swapfry <span className="text-[#F9DA0A]"> features</span>
@@ -22,11 +22,11 @@ const Features = () => {
           />
           <div>
             <p className="text-white font-semibold text-xl md:text-2xl">
-              Fund your account
+              Instant Trade
             </p>
             <p className="text-[#C0C0C0] text-base mt-2">
-              Add funds to your Swapfry account to start. You can add funds
-              with a variety of payment methods.
+              With Swapfry, your transactions are executed in a blink of an eye.
+              No more missed opportunities due to the volatile market
             </p>
           </div>
         </div>
@@ -39,11 +39,14 @@ const Features = () => {
           />
           <div>
             <p className="text-white font-semibold text-xl md:text-2xl">
-              No KYC requirements
+              Wide Asset Selection
             </p>
             <p className="text-[#C0C0C0] text-base mt-2">
-              No need to Complete the identity verification process to secure
-              your account and transactions.
+              Swapfry supports a diverse range of cryptocurrencies, including
+              Bitcoin (BTC), Ethereum (ETH), Tether (USDT) Litecoin (LTC),
+              Ripple (XRP), Tether (USDT) and 400+ more currencies. Swap any
+              combination of assets you desire, diversify your portfolio, or
+              capitalize on emerging trends effortlessly.
             </p>
           </div>
         </div>
@@ -56,14 +59,50 @@ const Features = () => {
           />
           <div>
             <p className="text-white font-semibold text-xl md:text-2xl">
-              Fund your account
+              User-Friendly Interface
             </p>
             <p className="text-[#C0C0C0] text-base mt-2">
-              Add funds to your Swapfry account to start. You can add funds
-              with a variety of payment methods.
+              We believe that cryptocurrency trading should be accessible to
+              everyone. Our intuitive platform provides a seamless experience
+              for both newbies and experienced traders.
             </p>
           </div>
         </div>
+        <div className="flex bg-[#141414] items-center flex-row gap-4 p-6 md:h-[180px] border-b  border-[#333333]">
+          <img
+            src="/assets/features.svg"
+            alt="getstarted"
+            width={60}
+            height={60}
+          />
+          <div>
+            <p className="text-white font-semibold text-xl md:text-2xl">
+              Transparent and Low Fees
+            </p>
+            <p className="text-[#C0C0C0] text-base mt-2">
+              At Swapfry, we believe in fair pricing. We keep zero fees, so you
+              can retain more of your hard-earned assets.
+            </p>
+          </div>
+        </div>{" "}
+        <div className="flex bg-[#141414] items-center flex-row gap-4 p-6 md:h-[180px] border-b md:border-b-0 border-t md:border-t-1 border-[#333333] border-r-[1px]">
+          <img
+            src="/assets/features.svg"
+            alt="getstarted"
+            width={60}
+            height={60}
+          />
+          <div>
+            <p className="text-white font-semibold text-xl md:text-2xl">
+              Robust Security
+            </p>
+            <p className="text-[#C0C0C0] text-base mt-2">
+              Your peace of mind is our top priority. Swapfry employs
+              state-of-the-art security measures to protect your funds and
+              personal information.
+            </p>
+          </div>
+        </div>{" "}
         <div className="flex bg-[#141414] items-center flex-row gap-4 p-6 md:h-[180px]">
           <img
             src="/assets/features.svg"
@@ -73,11 +112,11 @@ const Features = () => {
           />
           <div>
             <p className="text-white font-semibold text-xl md:text-2xl">
-              No KYC requirements
+              Reliable Customer Support
             </p>
             <p className="text-[#C0C0C0] text-base mt-2">
-              No need to Complete the identity verification process to secure
-              your account and transactions.
+              Our dedicated support team is here to assist you every step of the
+              way.
             </p>
           </div>
         </div>

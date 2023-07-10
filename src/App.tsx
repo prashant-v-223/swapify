@@ -18,8 +18,16 @@ import {
   ProtectedPages,
 } from "./components/ProtectedPages";
 import { fetchAndStoreUserInfo } from "./store";
+import FaqPage from "./pages/Faq";
+import { useEffect } from "react";
+import Aos from "aos";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import RiskDisclaimer from "./pages/RiskDisclaimer";
 const queryClient = new QueryClient();
 const Root = () => {
+  useEffect(() => {
+    Aos.init();
+  }, []);
   return (
     <QueryClientProvider client={queryClient}>
       <Navbar />
@@ -37,6 +45,9 @@ const router = createBrowserRouter(
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgot" element={<Forgot />} />
+        <Route path="/faq" element={<FaqPage/>} />
+        <Route path="/privacy" element={<PrivacyPolicy/>} />
+        <Route path="/risk" element={<RiskDisclaimer/>} />
       </Route>
       <Route element={<ProtectedPages />}>
         <Route

@@ -1,7 +1,7 @@
 
 const GetStarted = () => {
   return (
-    <div className="mt-4">
+    <div  data-aos="fade-up" className="mt-4">
      <div className="flex justify-center">
      <h1 className="text-[#CCC9C7] text-center mb-12 font-semibold text-3xl border-b-2 border-[#393838] inline-block justify-center pb-4">
         How to get started ?
@@ -19,7 +19,7 @@ const GetStarted = () => {
             <p className="text-white font-semibold text-xl md:text-2xl">Sign up</p>
             <p className="text-[#C0C0C0] text-base mt-2">
               Create your Esco Swap account in a few simple steps. Provide the
-              required info{" "}
+              required info
             </p>
           </div>
         </div>
@@ -34,10 +34,10 @@ const GetStarted = () => {
             <p className="text-white font-semibold text-xl md:text-2xl">Fund account</p>
             <p className="text-[#C0C0C0] text-base mt-2">
               Create your Esco Swap account in a few simple steps. Provide the
-              required info{" "}
+              required info
             </p>
           </div>
-        </div>{" "}
+        </div>
         <div className="flex bg-[#141414] items-center flex-row gap-4 rounded-lg p-4 md:h-[180px]">
           <img
             src="/assets/getstarted.svg"
@@ -49,7 +49,7 @@ const GetStarted = () => {
             <p className="text-white font-semibold text-xl md:text-2xl">Place order</p>
             <p className="text-[#C0C0C0] text-base mt-2">
               Create your Esco Swap account in a few simple steps. Provide the
-              required info{" "}
+              required info
             </p>
           </div>
         </div>
@@ -64,7 +64,7 @@ const GetStarted = () => {
             <p className="text-white font-semibold text-xl  md:text-2xl">Place order</p>
             <p className="text-[#C0C0C0] text-base mt-2">
               Create your Esco Swap account in a few simple steps. Provide the
-              required info{" "}
+              required info
             </p>
           </div>
         </div>
@@ -79,7 +79,7 @@ const GetStarted = () => {
             <p className="text-white font-semibold text-xl md:text-2xl">Withdraw funds</p>
             <p className="text-[#C0C0C0] text-base mt-2">
               Create your Esco Swap account in a few simple steps. Provide the
-              required info{" "}
+              required info
             </p>
           </div>
         </div>
@@ -94,7 +94,7 @@ const GetStarted = () => {
             <p className="text-white font-semibold text-xl md:text-2xl">100% Secure</p>
             <p className="text-[#C0C0C0] text-base mt-2">
               Create your Esco Swap account in a few simple steps. Provide the
-              required info{" "}
+              required info
             </p>
           </div>
         </div>

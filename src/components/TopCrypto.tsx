@@ -35,7 +35,7 @@ const TopCrypto = () => {
 
   return (
     <>
-      <div className="md:p-16 p-4 md:hidden">
+      <div  data-aos="fade-up" className="md:p-16 p-4 md:hidden">
         <p className="text-white font-semibold text-3xl">
           Top cryptocurrencies
         </p>

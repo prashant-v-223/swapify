@@ -1,6 +1,6 @@
 const LookingHelp = () => {
   return (
-    <div className="md:p-16 p-4">
+    <div  data-aos="fade-up" className="md:p-16 p-4">
       <p className="text-white mb-8 font-semibold text-3xl">
         Looking for a help?
       </p>

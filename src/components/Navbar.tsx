@@ -1,6 +1,6 @@
 import { Disclosure } from "@headlessui/react";
 import React from "react";
-import {  Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const menu = [
   {
@@ -17,11 +17,11 @@ const menu = [
   },
   {
     label: "FAQ",
-    href: "/",
+    href: "/faq",
   },
   {
     label: "Contact",
-    href: "/",
+    href: "/contact",
   },
   {
     label: "Affiliate",
@@ -121,28 +121,28 @@ export default function Navbar() {
                   </Disclosure.Button>
                 </div>
               </div>
-              <Disclosure.Panel>
+              <Disclosure.Panel data-aos="fade-up">
                 <div className="flex flex-col z-20 items-center justify-start order-2 w-full md:hidden bg-black h-full">
                   {menu.map((item, index) => (
                     <React.Fragment key={index}>
                       <Link
                         to={item.href}
-                        className="p-3 text-sm font-medium text-[#798DA3] hover:text-white"
+                        className="p-3 text-sm font-medium text-white"
                       >
                         {item.label}
                       </Link>
                     </React.Fragment>
                   ))}
-                  <div className="flex gap-4 flex-col w-fit">
-                    <Link
+                  <div className="flex gap-4 flex-row my-4 w-full px-10">
+                    <Link data-aos="zoom-in-right"
                       to={"/login"}
-                      className="leading-3 p-3 bg-[#F9DA0A] rounded-md text-[#000000] font-semibold"
+                      className="leading-3 p-3 text-center bg-[#F9DA0A] rounded-md text-[#000000] font-semibold w-full"
                     >
                       Login
                     </Link>
-                    <Link
+                    <Link data-aos="zoom-in-left"
                       to={"/signup"}
-                      className="leading-3 p-3 rounded-md bg-[#8484848A] text-white font-semibold"
+                      className="leading-3 p-3 rounded-md bg-[#8484848A] text-white font-semibold w-full text-center"
                     >
                       Sign up
                     </Link>

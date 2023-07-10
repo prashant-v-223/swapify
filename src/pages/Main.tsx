@@ -5,10 +5,9 @@ import Hero from "@/components/Hero";
 import LookingHelp from "@/components/LookingHelp";
 import Partners from "@/components/Partners";
 import TopCrypto from "@/components/TopCrypto";
-
 const Main = () => {
   return (
-    <div className=" main h-full">
+    <div className=" main h-full gap-10 flex flex-col">
       <Hero />
       <div className="p-4 my-4 md:p-12">
         <GetStarted />
