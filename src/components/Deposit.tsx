@@ -60,6 +60,7 @@ const Deposit = () => {
   const [error, setError] = useState(false);
   const [minAmount, setMinAmount] = useState(0);
   const [TradingPairError, setSetTradingPairError] = useState(false);
+  const [address, setAddress] = useState("");
   const [transactionCoin, setTransactionCoin] = useState({
     coinFrom: "BTC",
     coinTo: "USDT",
@@ -116,9 +117,11 @@ const Deposit = () => {
           : "BTT",
     });
   }, [selected, selected2, selectedNetwork, selectedNetwork2]);
+  console.log(address, "address ::::");
 
   const handleKeyDown = async (amount: string) => {
     try {
+      setSetTradingPairError(false);
       setMinAmount(0);
       const { data, status } = await axios.get(
         `https://exolix.com/api/v2/rate?coinFrom=${
@@ -152,22 +155,27 @@ const Deposit = () => {
           amount: amount,
           coinFrom: transactionCoin.coinFrom,
           coinTo: transactionCoin.coinTo,
-          withdrawalAddress: "TKfmEKAy9Yz361CKXS5ivSvDzd3KFnhaH6",
+          withdrawalAddress: address,
           withdrawalExtraId: user._id,
+          networkFrom: transactionCoin.networkFrom ? transactionCoin.networkFrom : "TRX",
+          networkTO: transactionCoin.networkTo ? transactionCoin.networkTo : "BTT",
         }
       );
       if (response.status === 201) {
+        console.log(selectedNetwork2.network);
         const { data } = await axios.get(
-          `https://exolix.com/api/v2/rate?coinFrom=USDT&coinTo=${selected2.code}&networkTo=${
-            selectedNetwork2.network
-          }&amount=${Number(amount)}&rateType=fixed`
+          `https://exolix.com/api/v2/rate?coinFrom=${
+            transactionCoin.coinFrom
+          }&coinTo=USDT&networkTo=${selectedNetwork2.network}&amount=${Number(
+            amount
+          )}&rateType=fixed`
         );
-        console.log(data,"data ::::::::");
-        
+        console.log(data, "data ::::::::");
+
         await axios.post(`${process.env.VITE_SERVER_URL}/users/transactions`, {
           transaction: {
             id: response.data.id,
-            amount: response.data.amountTo,
+            amount: data.toAmount,
             coinFrom: transactionCoin.coinFrom,
             coinTo: transactionCoin.coinTo,
             status: "pending",
@@ -187,45 +195,54 @@ const Deposit = () => {
       resetForm();
     }
   };
+  console.log(transactionCoin, "transactionCoin");
+
   // console.log(selectedNetwork, "selectedNetwork");
-  const [address, setAddress] = useState("");
   useEffect(() => {
-    switch (transactionCoin.coinTo ){
+    switch (transactionCoin.networkFrom) {
       case "USDT":
-        setAddress("TKfmEKAy9Yz361CKXS5ivSvDzd3KFnhaH6");
+        setAddress("TQr7CQvFk3RhLXZHiNoEy6sx4ZGJSFokCz");
         break;
       case "BTC":
-        setAddress("bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq");
+        setAddress("1MmYaftVEfW8o67sDRUnNhgHRuyiV9RJYd");
         break;
       case "ETH":
-        setAddress("0x8A1B8bA9fB1A9b1f1EeCf5B5eBb2aAaBfFfFfFfF");
+        setAddress("0x8244adac2673177898fb4eca394c8eb655db255a");
         break;
       case "BTT":
-        setAddress("TKfmEKAy9Yz361CKXS5ivSvDzd3KFnhaH6");
+        setAddress("TQr7CQvFk3RhLXZHiNoEy6sx4ZGJSFokCz");
         break;
       case "TRX":
-        setAddress("TKfmEKAy9Yz361CKXS5ivSvDzd3KFnhaH6");
-        break;
-      case "LTC":
-        setAddress("TKfmEKAy9Yz361CKXS5ivSvDzd3KFnhaH6");
+        setAddress("TQr7CQvFk3RhLXZHiNoEy6sx4ZGJSFokCz");
         break;
       case "XRP":
-        setAddress("TKfmEKAy9Yz361CKXS5ivSvDzd3KFnhaH6");
+        setAddress("rNxp4h8apvRis6mJf9Sh8C6iRxfrDWN7AV");
         break;
-      case "DOGE":
-        setAddress("TKfmEKAy9Yz361CKXS5ivSvDzd3KFnhaH6");
+      case "XTZ":
+        setAddress("tz2WGj1Ua26FaqnEiCing6q2wsg38ZtexhwM");
         break;
-      case "DASH":
-        setAddress("TKfmEKAy9Yz361CKXS5ivSvDzd3KFnhaH6");
-    setAddress("");
+      case "BNB":
+        setAddress("0x8244adac2673177898fb4eca394c8eb655db255a");
+        break;
+      case "AVAXC":
+        setAddress("X-avax1yypqyh0vw90ffd8a79dmuwmz9jyq4sfkldakfn");
+        break;
+      case "AVAX":
+        setAddress("0x8244adac2673177898fb4eca394c8eb655db255a");
+        break;
+      case "HECO":
+        setAddress("0x8244adac2673177898fb4eca394c8eb655db255a");
+        break;
+      case "SOL":
+        setAddress("ToxDYZw8LaaWnDrAfMm8TM88UdFzxC71V4ZMJo4rsex");
+        break;
       default:
-        setAddress("");
+        setAddress("TQr7CQvFk3RhLXZHiNoEy6sx4ZGJSFokCz");
         break;
     }
-  }
-  , [transactionCoin]);
-  console.log(address,"address :::",transactionCoin);
-  
+  }, [transactionCoin.networkFrom]);
+  console.log(address, "address :::", transactionCoin.networkFrom);
+
   function closeModal(): void {
     setIsOpen(false);
   }
@@ -314,7 +331,7 @@ const Deposit = () => {
                 )}
                 {TradingPairError && (
                   <p className="text-red-700">
-                    Such exchange pair is not available"
+                    Such exchange pair is not available
                   </p>
                 )}
                 <button
