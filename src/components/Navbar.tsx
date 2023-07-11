@@ -133,8 +133,8 @@ export default function Navbar() {
                       </Link>
                     </React.Fragment>
                   ))}
-                  <div className="flex gap-4 flex-row my-4 w-full px-10">
-                    {!localStorage.getItem("token") ? (
+                  <div className="flex gap-4 flex-row my-4 w-full px-10 justify-center">
+                    {localStorage.getItem("token") ? (
                       <>
                         <Link
                           data-aos="zoom-in-right"
@@ -153,11 +153,12 @@ export default function Navbar() {
                       </>
                     ) : (
                       <button
+                      data-aos="fade-up"
                         onClick={() => {
                           localStorage.clear();
                           window.location.reload();
                         }}
-                        className="leading-3 p-3 rounded-md bg-[#8484848A] text-white font-semibold"
+                        className="leading-3 p-3 rounded-md bg-[#8484848A] text-white font-semibold w-full"
                       >
                         Logout
                       </button>
