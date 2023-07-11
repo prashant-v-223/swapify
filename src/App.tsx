@@ -23,6 +23,7 @@ import { useEffect } from "react";
 import Aos from "aos";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RiskDisclaimer from "./pages/RiskDisclaimer";
+import ContactUsPage from "./components/Contact";
 const queryClient = new QueryClient();
 const Root = () => {
   useEffect(() => {
@@ -45,9 +46,6 @@ const router = createBrowserRouter(
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgot" element={<Forgot />} />
-        <Route path="/faq" element={<FaqPage/>} />
-        <Route path="/privacy" element={<PrivacyPolicy/>} />
-        <Route path="/risk" element={<RiskDisclaimer/>} />
       </Route>
       <Route element={<ProtectedPages />}>
         <Route
@@ -59,6 +57,10 @@ const router = createBrowserRouter(
           element={<Home />}
         />
       </Route>
+      <Route path="/faq" element={<FaqPage />} />
+      <Route path="/risk" element={<RiskDisclaimer />} />
+      <Route path="/privacy" element={<PrivacyPolicy />} />
+      <Route path="/contact" element={<ContactUsPage />} />
     </Route>
   )
 );

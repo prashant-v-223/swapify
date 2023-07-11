@@ -3,6 +3,7 @@ import { Formik } from "formik";
 import { useState } from "react";
 import * as Yup from "yup";
 import Loader from "./Loader";
+import { Link } from "react-router-dom";
 const Hero = () => {
   const [showLoader, setShowLoader] = useState(false);
   const fetchPrice = async (
@@ -38,9 +39,9 @@ const Hero = () => {
         <div className="text-white text-base font-medium leading-9">
           You can instantly swap your cryptocurrency assets on Swapfry with minimal fees.
         </div>
-        <button className="p-2 w-full bg-gradient-to-r from-[#F9DA0A] to-[#F9DA0A] text-[#000000] font-semibold rounded-xl text-base ">
+        <Link  to={'/login'} className="p-2 w-full text-center bg-gradient-to-r from-[#F9DA0A] to-[#F9DA0A] text-[#000000] font-semibold rounded-xl text-base ">
           Get started
-        </button>
+        </Link>
       </div>
       <div className="md:flex flex-col gap-4  justify-center hidden">
         <span className="text-white md:my-1 text-2xl md:text-[48px] font-bold leading-10">
@@ -56,9 +57,9 @@ const Hero = () => {
           You can instantly swap your cryptocurrency <br />
           assets on Swapfry with minimal fees.
         </div>
-        <button className="p-3 md:p-4 md:w-52 w-full bg-gradient-to-r from-[#F9DA0A] to-[#F9DA0A] text-[#000000] font-semibold rounded-xl text-base ">
+        <Link to={'/login'} className="p-3  text-center  md:p-4 md:w-52 w-full bg-gradient-to-r from-[#F9DA0A] to-[#F9DA0A] text-[#000000] font-semibold rounded-xl text-base ">
           Get started
-        </button>
+        </Link>
       </div>
       <Formik
         initialValues={{ send: "", receive: "" }}

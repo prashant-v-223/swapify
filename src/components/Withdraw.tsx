@@ -4,11 +4,25 @@ import { Formik } from "formik";
 import toast from "react-hot-toast";
 import TransactionTable from "./TransactionTable";
 import * as Yup from "yup";
-import { useState } from "react";
+import {  useState } from "react";
 import Loader from "./Loader";
+import data from "./data.json";
+import DropDown from "./Dropdown";
 const Withdraw = () => {
   const { user } = useUserInfo((state) => state.data);
   const [showLoading, setShowLoading] = useState<boolean>(false);
+  const [selected, setSelected] = useState(data?.[0]);
+const [selectedValues, setSelectedValues] = useState({});
+const [minimumNetworkAmount, setminimumNetworkAmount] = useState(0);
+  const [selectedNetwork, setSelectedNetwork] = useState({
+    name: "Tron",
+    network: "TRX",
+    shortName: "BTT",
+  });
+console.log(selected.name,"----",selectedNetwork.network);
+  const handleSelect = (value: any) => {
+    setSelected(value); // Set the selected value in the parent component
+  };
   const createTransactiom = async (
     amount: string,
     address: string,
@@ -16,50 +30,47 @@ const Withdraw = () => {
   ) => {
     try {
       setShowLoading(true);
+      setminimumNetworkAmount(0);
       const { data } = await axios.get(
-        `https://exolix.com/api/v2/rate?coinFrom=BTC&coinTo=USDT&networkTo=TRX&amount=${Number(amount)}&rateType=fixed`
+        `https://exolix.com/api/v2/rate?coinFrom=USDT&coinTo=${selected.code}&networkTo=${
+          selectedNetwork.network
+        }&amount=${Number(amount)}&rateType=fixed`
       );
+     
       if (user.balance > data.toAmount) {
-      let response = await axios.post(
-        "https://exolix.com/api/v2/transactions",
-        {
-          amount: amount,
-          coinFrom: "BTC",
-          coinTo: "USDT",
-          withdrawalAddress: address,
-          withdrawalExtraId: user._id,
-        }
-      );
-     if (response.status === 201) {
-      await axios.post(`${process.env.VITE_SERVER_URL}/users/transactions`, {
-        transaction: {
-          id: response.data.id,
-          amount: response.data.amountTo,
-          coin: "BTC",
-          status: "pending",
-          time: response.data.createdAt,
-          user_id: user._id,
-          transactionType: "withdraw",
-        },
-        userId: user._id,
-      });
-      toast.success("Withdrawal request sent successfully");
-     }
-     else{
-      toast.error("Error while requesting withdrawal...");
-     }
+        await axios.post(`${process.env.VITE_SERVER_URL}/users/transactions`, {
+          transaction: {
+            id: new Date().toDateString(),
+            amount:amount,
+            coin: selected.name,
+            status: "pending",
+            user_id: user._id,
+            transactionType: "withdraw",
+            address: address,
+            network: selectedNetwork.network,
+          },
+          userId: user._id,
+        });
+        toast.success("Withdrawal request sent successfully");
       }
       else{
         toast.error("Please make sure you have enough balance...");
       }
     } catch (error) {
       console.log(error);
-      toast.error("Please make sure you have enough balance...");
+      // @ts-ignore
+      if (error?.response.status === 422&&error?.response.data?.minAmount) {
+        // @ts-ignore
+        setminimumNetworkAmount(error?.response.data?.minAmount);
+        return toast.error("Amount to exchange is below the possible min amount to exchange");
+      }
+      toast.error("Such exchange pair is not available ");
     } finally {
       resetForm();
       setShowLoading(false);
     }
   };
+// console.log(selectedNetwork,"selectedNetwork");
 
   return (
     <div className="p-4">
@@ -70,9 +81,7 @@ const Withdraw = () => {
             withdrawAddress: "",
           }}
           validationSchema={Yup.object({
-            amount: Yup.number()
-              .required("Required")
-              .min(0.0035, "Amount must be greater than or equal to 0.0035"),
+            amount: Yup.number().required("Required"),
             withdrawAddress: Yup.string().required("Required"),
           })}
           onSubmit={(values, { resetForm }) => {
@@ -82,34 +91,34 @@ const Withdraw = () => {
           {({ values, handleChange, handleSubmit, errors }) => (
             <form onSubmit={handleSubmit}>
               <div className="flex flex-col justify-center items-start gap-4 p-4">
-                <div className="flex w-full rounded-lg border-2 border-[#454545] items-center  bg-[#242424]">
+                <div className="flex w-full rounded-lg flex-col md:flex-row justify-center border-1 md:border-2 border-[#454545] items-center  bg-[#242424]">
                   <input
+                    onChange={handleChange}
                     id="amount"
                     name="amount"
-                    onChange={handleChange}
                     value={values.amount}
                     type="number"
-                    inputMode="numeric"
-                    placeholder="Select amount to withdraw"
                     autoComplete="off"
-                    className="text-white appearance-none bg-[#242424] outline-none disabled:cursor-not-allowed w-full h-full p-4 "
+                    inputMode="numeric"
+                    placeholder="Enter amount"
+                    className="text-white  appearance-none bg-[#242424] outline-none  rounded-lg disabled:cursor-not-allowed w-full h-full p-4 "
                   />
-                  <div className="w-fit pl-4 flex gap-4 justify-center items-center placeholder-white bg-[#090807]  h-full border-transparent bg-transparent text-white px-4 py-2 rounded-md appearance-none">
-                    <img
-                      src="/assets/btc.svg"
-                      width={20}
-                      height={20}
-                      alt="bitcoin"
+                  <div className="w-fit pl-4 flex gap-4 justify-center items-center placeholder-white  h-full border-transparent bg-transparent text-white px-4 py-2 rounded-md appearance-none">
+                    <DropDown
+                      selectedValues={selectedValues}
+                      items={data}
+                      selected={selected}
+                      handleSelect={handleSelect}
+                      setSelectedNetwork={setSelectedNetwork}
                     />
-                    <div className="flex flex-col">
-                      <p className="text-white text-sm font-semibold">BTC</p>
-                      <p className="text-[#7E6044] text-sm font-semibold">
-                        Bitcoin
-                      </p>
-                    </div>
                   </div>
                 </div>
                 <p className="text-sm text-red-700">{errors?.amount}</p>
+                {
+                  minimumNetworkAmount > 0 && ( 
+                    <p className="text-sm text-red-700">Minimum amount to exchange is {minimumNetworkAmount}</p>
+                  )
+                }
                 <input
                   id="withdrawAddress"
                   onChange={handleChange}
@@ -117,13 +126,12 @@ const Withdraw = () => {
                   name="withdrawAddress"
                   type="text"
                   autoComplete="off"
-                  placeholder="Enter your USDT TRC20 wallet address"
+                  placeholder="Enter your wallet address"
                   className="text-white bg-transparent bg-[#090807] w-full h-full p-4 border-2 rounded-lg border-[#454545]"
                 />
                 <p className="text-sm text-red-700">
                   {errors?.withdrawAddress}
                 </p>
-
                 <button
                   type="submit"
                   className={
@@ -154,7 +162,7 @@ const Withdraw = () => {
           </div>
         </div>
       </div>
-      <TransactionTable /> 
+      <TransactionTable />
       {showLoading && <Loader />}
     </div>
   );

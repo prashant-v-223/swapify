@@ -50,7 +50,8 @@ export interface User {
 export interface UserTransaction {
   amount: number;
   id: string;
-  coin: string;
+  coinFrom: string;
+  coinTo: string;
   time: string;
   status: string;
   transactionType: string;
@@ -102,3 +103,31 @@ export interface ConvertedCoin {
   minAmount: number;
   withdrawMin: number;
 }
+
+export type Network = {
+  network: string;
+  name: string;
+  shortName: string;
+  notes: string;
+  addressRegex: string;
+  isDefault: boolean;
+  blockExplorer: string;
+  depositMinAmount: number | null;
+  memoNeeded: boolean;
+  memoName: string;
+  memoRegex: string;
+  precision: number;
+};
+
+export type Currency = {
+  code: string;
+  name: string;
+  icon: string;
+  notes: string;
+  networks: Network[];
+};
+
+export type ApiResponse = {
+  data: Currency[];
+  count: number;
+};

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TransactionTable from "./TransactionTable";
 import axios from "axios";
 import { Formik } from "formik";
@@ -8,6 +8,8 @@ import { Transaction } from "@/types";
 import { useUserInfo } from "@/store";
 import * as Yup from "yup";
 import Loader from "./Loader";
+import DropDown from "./Dropdown";
+import data from "./data.json";
 const Deposit = () => {
   const { user } = useUserInfo((state) => state.data);
   let [isOpen, setIsOpen] = useState<boolean>(false);
@@ -50,28 +52,124 @@ const Deposit = () => {
     email: null,
   });
   const [showLoading, setShowLoading] = useState<boolean>(false);
-  function closeModal(): void {
-    setIsOpen(false);
-  }
+  const [selected, setSelected] = useState(data?.[0]);
+  const [selected2, setSelected2] = useState(data?.[2]);
+  const [selectedValues, setSelectedValues] = useState({});
+  const [selectedValues2, setSelectedValues2] = useState({});
+  const [rate, setRate] = useState(0);
+  const [error, setError] = useState(false);
+  const [minAmount, setMinAmount] = useState(0);
+  const [TradingPairError, setSetTradingPairError] = useState(false);
+  const [transactionCoin, setTransactionCoin] = useState({
+    coinFrom: "BTC",
+    coinTo: "USDT",
+    networkFrom: "TRX",
+    networkTo: "BTT",
+  });
+
+  const [selectedNetwork, setSelectedNetwork] = useState({
+    name: "",
+    network: "",
+    shortName: "",
+  });
+  const [selectedNetwork2, setSelectedNetwork2] = useState({
+    name: "",
+    network: "",
+    shortName: "",
+  });
+
+  const handleSelect = (value: any) => {
+    setSelected(value); // Set the selected value in the parent component
+    const selectedObject = data.find((item) => item.name === value) || {};
+    setSelectedValues(selectedObject);
+    setTransactionCoin({
+      coinFrom: selected.code,
+      coinTo: selected2.code,
+      networkFrom: selectedNetwork.network,
+      networkTo: selectedNetwork2.network,
+    });
+    setError(false);
+    setRate(0);
+    setMinAmount(0);
+  };
+
+  const handleSelect2 = (value: any) => {
+    setSelected2(value); // Set the selected value in the parent component
+    const selectedObject = data.find((item) => item.name === value) || {};
+    setSelectedValues2(selectedObject);
+    setError(false);
+    setRate(0);
+    setMinAmount(0);
+  };
+  useEffect(() => {
+    setTransactionCoin({
+      coinFrom: selected.code,
+      coinTo: selected2.code,
+      networkFrom:
+        selectedNetwork.network !== "" || selectedNetwork.network !== undefined
+          ? selectedNetwork.network
+          : "TRX",
+      networkTo:
+        selectedNetwork2.network !== "" ||
+        selectedNetwork2.network !== undefined
+          ? selectedNetwork2.network
+          : "BTT",
+    });
+  }, [selected, selected2, selectedNetwork, selectedNetwork2]);
+
+  const handleKeyDown = async (amount: string) => {
+    try {
+      setMinAmount(0);
+      const { data, status } = await axios.get(
+        `https://exolix.com/api/v2/rate?coinFrom=${
+          transactionCoin.coinFrom
+        }&coinTo=${transactionCoin.coinTo}&networkTo=${
+          transactionCoin.networkTo
+        }&amount=${Number(amount)}&rateType=fixed`
+      );
+      setRate(data?.toAmount);
+      if (status === 422) {
+        setError(true);
+      }
+      setError(false);
+    } catch (error) {
+      console.log(error);
+      // @ts-ignore
+      setMinAmount(error?.response?.data?.minAmount);
+      setError(true);
+      // @ts-ignore
+      if (error?.response?.data.error) {
+        setSetTradingPairError(true);
+      }
+    }
+  };
   const createTransactiom = async (amount: string, resetForm: () => void) => {
     setShowLoading(true);
     try {
       let response = await axios.post(
-        " https://exolix.com/api/v2/transactions",
+        "https://exolix.com/api/v2/transactions",
         {
           amount: amount,
-          coinFrom: "BTC",
-          coinTo: "USDT",
+          coinFrom: transactionCoin.coinFrom,
+          coinTo: transactionCoin.coinTo,
           withdrawalAddress: "TKfmEKAy9Yz361CKXS5ivSvDzd3KFnhaH6",
           withdrawalExtraId: user._id,
         }
       );
       if (response.status === 201) {
+        const { data } = await axios.get(
+          `https://exolix.com/api/v2/rate?coinFrom=USDT&coinTo=${selected2.code}&networkTo=${
+            selectedNetwork2.network
+          }&amount=${Number(amount)}&rateType=fixed`
+        );
+        console.log(data,"data ::::::::");
+        
         await axios.post(`${process.env.VITE_SERVER_URL}/users/transactions`, {
           transaction: {
             id: response.data.id,
             amount: response.data.amountTo,
-            coin: "BTC",
+            coinFrom: transactionCoin.coinFrom,
+            coinTo: transactionCoin.coinTo,
             status: "pending",
             time: response.data.createdAt,
             user_id: user._id,
@@ -89,6 +187,48 @@ const Deposit = () => {
       resetForm();
     }
   };
+  // console.log(selectedNetwork, "selectedNetwork");
+  const [address, setAddress] = useState("");
+  useEffect(() => {
+    switch (transactionCoin.coinTo ){
+      case "USDT":
+        setAddress("TKfmEKAy9Yz361CKXS5ivSvDzd3KFnhaH6");
+        break;
+      case "BTC":
+        setAddress("bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq");
+        break;
+      case "ETH":
+        setAddress("0x8A1B8bA9fB1A9b1f1EeCf5B5eBb2aAaBfFfFfFfF");
+        break;
+      case "BTT":
+        setAddress("TKfmEKAy9Yz361CKXS5ivSvDzd3KFnhaH6");
+        break;
+      case "TRX":
+        setAddress("TKfmEKAy9Yz361CKXS5ivSvDzd3KFnhaH6");
+        break;
+      case "LTC":
+        setAddress("TKfmEKAy9Yz361CKXS5ivSvDzd3KFnhaH6");
+        break;
+      case "XRP":
+        setAddress("TKfmEKAy9Yz361CKXS5ivSvDzd3KFnhaH6");
+        break;
+      case "DOGE":
+        setAddress("TKfmEKAy9Yz361CKXS5ivSvDzd3KFnhaH6");
+        break;
+      case "DASH":
+        setAddress("TKfmEKAy9Yz361CKXS5ivSvDzd3KFnhaH6");
+    setAddress("");
+      default:
+        setAddress("");
+        break;
+    }
+  }
+  , [transactionCoin]);
+  console.log(address,"address :::",transactionCoin);
+  
+  function closeModal(): void {
+    setIsOpen(false);
+  }
 
   return (
     <div className="p-4">
@@ -96,22 +236,21 @@ const Deposit = () => {
         <Formik
           initialValues={{
             amount: "",
-            currencyToDeposit: "null",
           }}
           validationSchema={Yup.object({
-            amount: Yup.number()
-              .required("Required")
-              .min(0.0035, "Amount must be greater than or equal to 0.0035"),
-            currencyToDeposit: Yup.string().required("Required"),
+            amount: Yup.number().required("Required"),
           })}
           onSubmit={(values, { resetForm }) => {
             createTransactiom(values.amount, resetForm);
           }}
         >
-          {({ values, handleChange, handleBlur, handleSubmit, errors }) => (
+          {({ values, handleChange, handleBlur, handleSubmit }) => (
             <form onSubmit={handleSubmit}>
-              <div className="flex flex-col justify-center items-start gap-4 p-4">
-                <div className="flex w-full rounded-lg border-2 border-[#454545] items-center  bg-[#242424]">
+              <div className="flex flex-col justify-center items-start gap-2 p-4">
+                <label htmlFor="currencyToSend" className="text-white">
+                  You Send
+                </label>
+                <div className="flex w-full rounded-lg flex-col md:flex-row justify-center border-1 md:border-2 border-[#454545] items-center  bg-[#242424]">
                   <input
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -121,41 +260,63 @@ const Deposit = () => {
                     type="number"
                     autoComplete="off"
                     inputMode="numeric"
-                    placeholder="Enter amount to deposit"
-                    className="text-white appearance-none bg-[#242424] outline-none disabled:cursor-not-allowed w-full h-full p-4 "
+                    onKeyUp={() => handleKeyDown(values.amount)}
+                    placeholder="Enter amount"
+                    className="text-white  appearance-none bg-[#242424] outline-none  rounded-lg disabled:cursor-not-allowed w-full h-full p-4 "
                   />
                   <div className="w-fit pl-4 flex gap-4 justify-center items-center placeholder-white  h-full border-transparent bg-transparent text-white px-4 py-2 rounded-md appearance-none">
-                    <img
-                      src="/assets/btc.svg"
-                      width={20}
-                      height={20}
-                      alt="bitcoin"
+                    <DropDown
+                      selectedValues={selectedValues}
+                      items={data}
+                      selected={selected}
+                      handleSelect={handleSelect}
+                      setSelectedNetwork={setSelectedNetwork}
                     />
-                    <div className="flex flex-col">
-                      <p className="text-white text-sm font-semibold">BTC</p>
-                      <p className="text-[#7E6044] text-sm font-semibold">
-                        Bitcoin
-                      </p>
-                    </div>
                   </div>
                 </div>
-                <p className="text-sm text-red-700">{errors?.amount}</p>
-                <select
-                  id="currencyToDeposit"
-                  name="currencyToDeposit"
-                  value={values.currencyToDeposit}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className="text-white bg-[#242424] w-full h-full p-3.5 appearance-none rounded-lg border-2 border-[#454545]"
-                >
-                  <option value="" disabled>
-                    Select currency to withdraw
-                  </option>
-                  <option value="BTC">Bitcoin</option>
-                </select>
-                <p className="text-sm text-red-700">
-                  {errors?.currencyToDeposit}
-                </p>
+                {/* <p className="text-sm text-red-700">{errors?.amount}</p> */}
+                {/* <p className="text-sm text-red-700">{errors?.currencyToSend}</p> */}
+                <label htmlFor="currencyToSend" className="text-white">
+                  You Get
+                </label>
+                <div className="flex w-full flex-col md:flex-row rounded-lg border-1 md:border-2 border-[#454545] items-center  bg-[#242424]">
+                  <input
+                    id="amount"
+                    name="amount"
+                    value={rate}
+                    type="number"
+                    disabled
+                    autoComplete="off"
+                    inputMode="numeric"
+                    placeholder="Enter amount"
+                    className="text-white appearance-none bg-[#242424] rounded-lg outline-none disabled:cursor-not-allowed w-full h-full p-4 "
+                  />
+                  <div className="w-fit pl-4  flex gap-4 justify-center items-center placeholder-white  h-full border-transparent bg-transparent text-white px-4 py-2 rounded-md appearance-none">
+                    <DropDown
+                      selectedValues={selectedValues2}
+                      items={data}
+                      selected={selected2}
+                      handleSelect={handleSelect2}
+                      setSelectedNetwork={setSelectedNetwork2}
+                    />
+                  </div>
+                </div>
+                {error && (
+                  <p className="text-sm text-red-700">
+                    Amount to exchange is below the possible min amount to
+                    exchange
+                  </p>
+                )}
+                {!!minAmount && (
+                  <p className="text-sm text-red-700">
+                    The min amount to exchange is {minAmount}
+                  </p>
+                )}
+                {TradingPairError && (
+                  <p className="text-red-700">
+                    Such exchange pair is not available"
+                  </p>
+                )}
                 <button
                   type="submit"
                   className={
@@ -169,7 +330,7 @@ const Deposit = () => {
           )}
         </Formik>
         <div className="flex items-start text-left flex-col justify-start gap-4 p-4">
-          <h1 className="text-2xl text-[#F3DE1B] font-medium">
+          <h1 className="text-2xl cursor-pointer text-[#F3DE1B] font-medium">
             Please make sure
           </h1>
           <div className="flex gap-4">

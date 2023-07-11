@@ -36,7 +36,6 @@ export const useUserInfo = create<IuseUserInfo>((set) => ({
   setUserInfo: (data) => set(() => ({ data })),
 }));
 
-console.log(localStorage.getItem("token"));
 
 // Call this function to fetch and store user info
 export const fetchAndStoreUserInfo = async () => {

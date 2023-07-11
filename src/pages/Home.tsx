@@ -4,9 +4,10 @@ import Withdraw from "@/components/Withdraw";
 import { useUserInfo } from "@/store";
 import { useEffect, useRef, useState } from "react";
 const Home = () => {
-  const [openTab, setOpenTab] = useState(1);
+  const [openTab, setOpenTab] = useState(2);
   const [showProfile, setShowProfile] = useState(false);
   const profileRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if(profileRef.current === null) return;
