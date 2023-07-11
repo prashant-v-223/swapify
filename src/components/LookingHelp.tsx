@@ -1,11 +1,11 @@
 const LookingHelp = () => {
   return (
-    <div  data-aos="fade-up" className="md:p-16 p-4">
+    <div className="md:p-16 p-4 overflow-hidden">
       <p className="text-white mb-8 font-semibold text-3xl">
         Looking for a help?
       </p>
       <div className="flex gap-4 justify-around flex-col md:flex-row">
-        <div className="flex bg-[#141414] items-center  flex-row gap-10 rounded-lg p-4 md:p-6 md:h-[180px]">
+        <div  data-aos="fade-left" className="flex bg-[#141414] items-center  flex-row gap-10 rounded-lg p-4 md:p-6 md:h-[180px]">
           <img
             src="/assets/support.svg"
             alt="getstarted"
@@ -22,7 +22,7 @@ const LookingHelp = () => {
             </p>
           </div>
         </div>
-        <div className="flex bg-[#141414] items-center  flex-row gap-10 rounded-lg  p-4 md:p-6 md:h-[180px]">
+        <div  data-aos="fade-right" className="flex bg-[#141414] items-center  flex-row gap-10 rounded-lg  p-4 md:p-6 md:h-[180px]">
           <img
             src="/assets/support.svg"
             alt="getstarted"

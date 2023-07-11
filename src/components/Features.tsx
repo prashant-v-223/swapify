@@ -1,6 +1,6 @@
 const Features = () => {
   return (
-    <div  data-aos="fade-up" className="my-4 w-full ">
+    <div className="my-4 w-full overflow-hidden">
       <div className="md:p-16 p-6 grid">
         <h1 className="text-white text-3xl font-semibold leading-9">
           Swapfry <span className="text-[#F9DA0A]"> features</span>
@@ -12,7 +12,7 @@ const Features = () => {
           Start your first swap with these easy steps.
         </p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:p-10">
+      <div data-aos="fade-left" className="grid grid-cols-1 sm:grid-cols-2 md:p-10">
         <div className="flex bg-[#141414] items-center flex-row gap-4 p-6 md:h-[180px] border-[#333333] border-b-[1px] border-r-[1px]">
           <img
             src="/assets/features.svg"
@@ -30,7 +30,7 @@ const Features = () => {
             </p>
           </div>
         </div>
-        <div className="flex bg-[#141414] items-center flex-row gap-4  p-6 md:h-[180px] border-b-[1px] border-[#333333]">
+        <div data-aos="fade-right" className="flex bg-[#141414] items-center flex-row gap-4  p-6 md:h-[180px] border-b-[1px] border-[#333333]">
           <img
             src="/assets/features.svg"
             alt="getstarted"
@@ -50,7 +50,7 @@ const Features = () => {
             </p>
           </div>
         </div>
-        <div className="flex bg-[#141414] items-center flex-row gap-4 p-6 md:h-[180px] border-b md:border-b-0 border-[#333333] border-r-[1px]">
+        <div data-aos="fade-left" className="flex bg-[#141414] items-center flex-row gap-4 p-6 md:h-[180px] border-b md:border-b-0 border-[#333333] border-r-[1px]">
           <img
             src="/assets/features.svg"
             alt="getstarted"
@@ -68,7 +68,7 @@ const Features = () => {
             </p>
           </div>
         </div>
-        <div className="flex bg-[#141414] items-center flex-row gap-4 p-6 md:h-[180px] border-b  border-[#333333]">
+        <div data-aos="fade-right" className="flex bg-[#141414] items-center flex-row gap-4 p-6 md:h-[180px] border-b  border-[#333333]">
           <img
             src="/assets/features.svg"
             alt="getstarted"
@@ -85,7 +85,7 @@ const Features = () => {
             </p>
           </div>
         </div>{" "}
-        <div className="flex bg-[#141414] items-center flex-row gap-4 p-6 md:h-[180px] border-b md:border-b-0 border-t md:border-t-1 border-[#333333] border-r-[1px]">
+        <div data-aos="fade-left" className="flex bg-[#141414] items-center flex-row gap-4 p-6 md:h-[180px] border-b md:border-b-0 border-t md:border-t-1 border-[#333333] border-r-[1px]">
           <img
             src="/assets/features.svg"
             alt="getstarted"
@@ -103,7 +103,7 @@ const Features = () => {
             </p>
           </div>
         </div>{" "}
-        <div className="flex bg-[#141414] items-center flex-row gap-4 p-6 md:h-[180px]">
+        <div data-aos="fade-right" className="flex bg-[#141414] items-center flex-row gap-4 p-6 md:h-[180px]">
           <img
             src="/assets/features.svg"
             alt="getstarted"

@@ -7,7 +7,7 @@ import Partners from "@/components/Partners";
 import TopCrypto from "@/components/TopCrypto";
 const Main = () => {
   return (
-    <div className=" main h-full gap-10 flex flex-col">
+    <div className=" main h-full gap-10 flex flex-col relative">
       <Hero />
       <div className="p-4 my-4 md:p-12">
         <GetStarted />
