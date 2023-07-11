@@ -134,7 +134,7 @@ export default function Navbar() {
                     </React.Fragment>
                   ))}
                   <div className="flex gap-4 flex-row my-4 w-full px-10 justify-center">
-                    {localStorage.getItem("token") ? (
+                    {!localStorage.getItem("token") ? (
                       <>
                         <Link
                           data-aos="zoom-in-right"
