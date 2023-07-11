@@ -1,6 +1,5 @@
 import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { ChevronUpDownIcon } from "@heroicons/react/20/solid";
 
 export default function DropDown({
   selected,

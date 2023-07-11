@@ -4,7 +4,7 @@ import { Formik } from "formik";
 import toast from "react-hot-toast";
 import TransactionTable from "./TransactionTable";
 import * as Yup from "yup";
-import {  useState } from "react";
+import { useState } from "react";
 import Loader from "./Loader";
 import data from "./data.json";
 import DropDown from "./Dropdown";
@@ -12,6 +12,7 @@ const Withdraw = () => {
   const { user } = useUserInfo((state) => state.data);
   const [showLoading, setShowLoading] = useState<boolean>(false);
   const [selected, setSelected] = useState(data?.[0]);
+  // @ts-ignore
 const [selectedValues, setSelectedValues] = useState({});
 const [minimumNetworkAmount, setminimumNetworkAmount] = useState(0);
   const [selectedNetwork, setSelectedNetwork] = useState({

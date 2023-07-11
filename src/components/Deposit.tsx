@@ -144,6 +144,7 @@ const Deposit = () => {
       if (error?.response?.data.error) {
         setSetTradingPairError(true);
       }
+      setRate(0);
     }
   };
   const createTransactiom = async (amount: string, resetForm: () => void) => {
@@ -199,7 +200,7 @@ const Deposit = () => {
 
   // console.log(selectedNetwork, "selectedNetwork");
   useEffect(() => {
-    switch (transactionCoin.networkFrom) {
+    switch (transactionCoin.networkTo) {
       case "USDT":
         setAddress("TQr7CQvFk3RhLXZHiNoEy6sx4ZGJSFokCz");
         break;
@@ -237,10 +238,10 @@ const Deposit = () => {
         setAddress("ToxDYZw8LaaWnDrAfMm8TM88UdFzxC71V4ZMJo4rsex");
         break;
       default:
-        setAddress("TQr7CQvFk3RhLXZHiNoEy6sx4ZGJSFokCz");
+        setAddress("");
         break;
     }
-  }, [transactionCoin.networkFrom]);
+  }, [transactionCoin.networkTo]);
   console.log(address, "address :::", transactionCoin.networkFrom);
 
   function closeModal(): void {
