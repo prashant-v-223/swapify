@@ -134,18 +134,34 @@ export default function Navbar() {
                     </React.Fragment>
                   ))}
                   <div className="flex gap-4 flex-row my-4 w-full px-10">
-                    <Link data-aos="zoom-in-right"
-                      to={"/login"}
-                      className="leading-3 p-3 text-center bg-[#F9DA0A] rounded-md text-[#000000] font-semibold w-full"
-                    >
-                      Login
-                    </Link>
-                    <Link data-aos="zoom-in-left"
-                      to={"/signup"}
-                      className="leading-3 p-3 rounded-md bg-[#8484848A] text-white font-semibold w-full text-center"
-                    >
-                      Sign up
-                    </Link>
+                    {!localStorage.getItem("token") ? (
+                      <>
+                        <Link
+                          data-aos="zoom-in-right"
+                          to={"/login"}
+                          className="leading-3 p-3 text-center bg-[#F9DA0A] rounded-md text-[#000000] font-semibold w-full"
+                        >
+                          Login
+                        </Link>
+                        <Link
+                          data-aos="zoom-in-left"
+                          to={"/signup"}
+                          className="leading-3 p-3 rounded-md bg-[#8484848A] text-white font-semibold w-full text-center"
+                        >
+                          Sign up
+                        </Link>
+                      </>
+                    ) : (
+                      <button
+                        onClick={() => {
+                          localStorage.clear();
+                          window.location.reload();
+                        }}
+                        className="leading-3 p-3 rounded-md bg-[#8484848A] text-white font-semibold"
+                      >
+                        Logout
+                      </button>
+                    )}
                   </div>
                 </div>
               </Disclosure.Panel>
