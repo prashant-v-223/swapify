@@ -29,17 +29,16 @@ const Hero = () => {
       className="grid md:flex md:justify-around grid-col-1 gap-10 p-4 md:p-0 w-full"
     >
       <div className="flex flex-col gap-4 justify-center md:hidden ">
-        <span className="text-white md:my-1 text-2xl  font-bold leading-10">
+        <span className="text-white md:my-1 text-2xl font-bold leading-10">
           Exchange your crypto assets instantly on {" "}
-          <span className="text-3xl  font-bold leading-10 text-yellow-400">
+          <span className="text-3xl font-bold leading-10 text-yellow-400">
             Swapfry
           </span>
         </span>
         <div className="text-white text-base font-medium leading-9">
-          You can instantly swap your cryptocurrency <br />
-          assets on Swapfry with minimal fees.
+          You can instantly swap your cryptocurrency assets on Swapfry with minimal fees.
         </div>
-        <button className="p-3 md:p-4 md:w-52 w-full bg-gradient-to-r from-[#F9DA0A] to-[#F9DA0A] text-[#000000] font-semibold rounded-xl text-base ">
+        <button className="p-2 w-full bg-gradient-to-r from-[#F9DA0A] to-[#F9DA0A] text-[#000000] font-semibold rounded-xl text-base ">
           Get started
         </button>
       </div>
