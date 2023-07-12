@@ -33,7 +33,7 @@ const Withdraw = () => {
       setShowLoading(true);
       setminimumNetworkAmount(0);
       const { data } = await axios.get(
-        `https://exolix.com/api/v2/rate?coinFrom=USDT&coinTo=${selected.code}&networkTo=${selectedNetwork.network
+        `https://exolix.com/api/v2/rate?coinFrom=${selected.code}&coinTo=USDT&networkTo=${selectedNetwork.network
         }&amount=${Number(amount)}&rateType=fixed`
       );
 
@@ -41,7 +41,7 @@ const Withdraw = () => {
         await axios.post(`${process.env.VITE_SERVER_URL}/users/transactions`, {
           transaction: {
             id: new Date(),
-            amount: amount,
+            amount:  data.toAmount,
           coin: selected.name,
             status: "pending",
             user_id: user._id,
