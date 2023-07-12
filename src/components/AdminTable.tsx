@@ -185,10 +185,7 @@ const AdminTable = () => {
                 <td className="px-6 py-4">{data.id}</td>
                 {data.transactionType == "deposit" ? <td className="px-6 py-4"> {data?.coinFrom} </td> : data.coin}
                 <td className="px-6 py-4">{data.transactionType}</td>
-                {
-                  data.transactionType == "deposit" ? <td className="px-6 py-4">{convertDate(data?.time)}</td> : <td className="px-6 py-4">{convertDate(data?.id as any)}</td>
-                }
-
+                <td className="px-6 py-4">{convertDate(data?.time)}</td>
                 <td className="px-6 py-4">{data.status}</td>
                 <td className="px-6 py-4">{data.amount.toFixed(3)} $</td>
 
@@ -196,7 +193,7 @@ const AdminTable = () => {
                   data.transactionType == "deposit" ?
                     <td className="flex items-center px-6 py-4 space-x-3">
                       <button
-                        disabled={data.status === "approved"}
+                        disabled={data.status === "rejected" || data.status === "approved"}
                         onClick={() => {
                           updateTransaction(
                             data.user_id,
@@ -210,7 +207,7 @@ const AdminTable = () => {
                         Approve
                       </button>
                       <button
-                        disabled={data.status === "rejected"}
+                        disabled={data.status === "rejected" || data.status === "approved"}
                         onClick={() => {
                           updateTransaction(
                             data.user_id,
@@ -225,14 +222,14 @@ const AdminTable = () => {
                       </button>
                     </td> : <td className="flex items-center px-6 py-4 space-x-3">
                       <button
-                        disabled={data.status === "approved"}
+                        disabled={data.status === "rejected" || data.status === "approved"}
                         onClick={() => approveWithdrawal()}
                         className="font-medium text-blue-600 dark:text-blue-500 hover:underline disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         Approve
                       </button>
                       <button
-                        disabled={data.status === "rejected"}
+                        disabled={data.status === "rejected" || data.status === "approved"}
                         onClick={() => {
                           updateTransaction(
                             data.user_id,

@@ -41,7 +41,7 @@ const TransactionTable = () => {
                   >
                     {index + 1}
                   </th>
-                  {transactionId.transactionType == "deposit" ? <td > {transactionId?.coinFrom} </td> : <td className="px-6 py-4" > {transactionId?.coin} </td>}
+                  {transactionId.transactionType == "deposit" ? <td className="px-6 py-4"> {transactionId?.coinFrom} </td> : <td className="px-6 py-4" > {transactionId?.coin} </td>}
                   <td className="px-6 py-4">
                     {new Date(transactionId?.time).toDateString()}
                   </td>

@@ -1,7 +1,9 @@
 import { Coinlist } from "./fakedata";
 import axios from "axios";
 import { ConvertedCoin } from "@/types";
+import { useState } from 'react'
 import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
 const TopCrypto = () => {
   const fetchRate = async (
     coinFrom: string,
@@ -14,28 +16,41 @@ const TopCrypto = () => {
     return data;
   };
   const parallelRequest = async () => {
-    const Coins = await Promise.all<ConvertedCoin[]>([
-      fetchRate("BTC", "USDT"),
-      fetchRate("ETH", "USDT"),
-      fetchRate("BNB", "USDT"),
-      fetchRate("XRP", "USDT"),
-      fetchRate("ADA", "USDT"),
-      fetchRate("DOGE", "USDT"),
-      fetchRate("LTC", "USDT"),
-    ]);
-    // @ts-ignore
-    const updatedCoins = Coins.map((data, index) => {
-      const { image, name, id } = Coinlist[index];
-      return { ...data, image, name, id };
-    });
-    return updatedCoins as any;
+    try {
+      const coinPromises = [
+        fetchRate("BTC", "USDT"),
+        fetchRate("ETH", "USDT"),
+        fetchRate("BNB", "USDT"),
+        fetchRate("XRP", "USDT"),
+        fetchRate("ADA", "USDT"),
+        fetchRate("DOGE", "USDT"),
+        fetchRate("LTC", "USDT"),
+      ];
+
+      const coins = await Promise.allSettled(coinPromises);
+
+      const updatedCoins = coins.map((result, index) => {
+        if (result.status === "fulfilled") {
+          const { image, name, id } = Coinlist[index];
+          return { ...result.value, image, name, id };
+        } else {
+          // Handle rejected promise (optional)
+          console.log(`Promise at index ${index} rejected: ${result.reason}`);
+          return null; // or any other fallback value
+        }
+      });
+
+      return updatedCoins.filter((coin) => coin !== null) as any;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const { data, isLoading } = useQuery("coins", parallelRequest);
-
+  const [hoveredIndex, setHoveredIndex] = useState(-1);
   return (
     <>
-      <div  data-aos="fade-up" className="md:p-16 p-4 md:hidden">
+      <div data-aos="fade-up" className="md:p-16 p-4 md:hidden">
         <p className="text-white font-semibold text-3xl">
           Top cryptocurrencies
         </p>
@@ -118,10 +133,11 @@ const TopCrypto = () => {
         <div className="md:p-16">
           <div className="flex relative rounded-3xl topcrypto overflow-x-auto mt-4 justify-around flex-col md:flex-wrap md:flex-row">
             <div className="w-full font-semibold text-sm text-left text-gray-500 ">
-              <div className="text-sm sm:text-base text-center bg-transparent rounded-lg text-white p-6 grid grid-cols-3">
+              <div className="text-sm sm:text-base text-center bg-transparent rounded-lg text-white p-6 grid grid-cols-4">
                 <p className="p-6">From</p>
                 <p className="p-6">To</p>
                 <p className="p-6">Price</p>
+                <p className="p-6 text-transparent">Price</p>
               </div>
               <div className="">
                 {isLoading ? (
@@ -147,10 +163,12 @@ const TopCrypto = () => {
                     ))}
                   </div>
                 ) : (
-                  data?.map((crypto: any) => (
+                  data?.map((crypto: any, index: number) => (
                     <div
                       key={crypto.id}
-                      className="bg-transparent text-center text-white grid grid-cols-3"
+                      onMouseEnter={() => setHoveredIndex(index)}
+                      onMouseLeave={() => setHoveredIndex(-1)}
+                      className="bg-transparent text-center text-white grid grid-cols-4 hover:bg-[#35353770] cursor-pointer items-center"
                     >
                       <div className="px-6 py-4 flex justify-center w-full">
                         <div className="flex items-center gap-4">
@@ -165,9 +183,13 @@ const TopCrypto = () => {
                       </div>
                       <p className="px-6 py-4">USDT</p>
                       <p className="px-6 py-4">
-                        {" "}
                         {isLoading ? 0 : Number(crypto.rate).toFixed(3)} $
                       </p>
+                      {
+                        hoveredIndex === index ? <Link to={'/login'} data-aos="flip-left" className="bg-[#cb9b27] w-fit h-fit py-2 rounded-md px-4"> Exchange </Link> : <img src="/assets/eswap.svg" alt="swap" onMouseOver={() => setHoveredIndex(index)}
+                        />
+
+                      }
                     </div>
                   ))
                 )}

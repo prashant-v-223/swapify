@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const LookingHelp = () => {
   return (
     <div className="md:p-16 p-4 overflow-hidden">
@@ -13,9 +15,9 @@ const LookingHelp = () => {
             height={30}
           />
           <div>
-            <p className="text-white font-semibold text-xl md:text-2xl">
+            <Link to="/login" className="text-white font-semibold text-xl md:text-2xl">
               24/7 Chat support
-            </p>
+            </Link>
             <p className="text-[#C0C0C0] text-base mt-2">
               Get 24/7 chat support with our friendly customer service agents at
               your service.
@@ -30,7 +32,7 @@ const LookingHelp = () => {
             height={30}
           />
           <div>
-            <p className="text-white font-semibold text-xl md:text-2xl">FAQ’s</p>
+            <Link to="/faq" className="text-white font-semibold text-xl md:text-2xl">FAQ’s</Link>
             <p className="text-[#C0C0C0] text-base mt-2">
               Get answers of all your questions from frequently asked questions
               on Rijex

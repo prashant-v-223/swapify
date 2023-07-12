@@ -150,13 +150,13 @@ const Hero = () => {
                   Swapfry exchange
                 </span>
               </div>
-              <button
-                type="submit"
+              <Link
+                to="/login"
                 className="p-3 md:p-3.5 flex items-center gap-2 justify-center w-full bg-[#F5D815E5] text-[#000000] font-semibold rounded-xl text-base"
               >
                 <img src="/assets/swap.svg" alt="swap" />
                 Swap assets
-              </button>
+              </Link>
             </div>
           </form>
         )}

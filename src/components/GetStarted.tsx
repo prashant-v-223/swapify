@@ -61,7 +61,7 @@ const GetStarted = () => {
             height={30}
           />
           <div>
-            <p className="text-white font-semibold text-xl  md:text-2xl">Place order</p>
+            <p className="text-white font-semibold text-xl  md:text-2xl">Kyc above 1 BTC</p>
             <p className="text-[#C0C0C0] text-base mt-2">
               Create your Swapfry account in a few simple steps. Provide the
               required info
