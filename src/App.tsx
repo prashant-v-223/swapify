@@ -24,10 +24,14 @@ import Aos from "aos";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RiskDisclaimer from "./pages/RiskDisclaimer";
 import ContactUsPage from "./components/Contact";
+import AboutUs from "./pages/About";
 const queryClient = new QueryClient();
 const Root = () => {
   useEffect(() => {
-    Aos.init();
+    Aos.init({
+      duration: 800,
+      once: true,
+    });
   }, []);
   return (
     <QueryClientProvider client={queryClient}>
@@ -61,6 +65,7 @@ const router = createBrowserRouter(
       <Route path="/risk" element={<RiskDisclaimer />} />
       <Route path="/privacy" element={<PrivacyPolicy />} />
       <Route path="/contact" element={<ContactUsPage />} />
+      <Route path="/aboutus" element={<AboutUs />} />
     </Route>
   )
 );

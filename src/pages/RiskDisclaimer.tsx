@@ -2,7 +2,6 @@ const RiskDisclaimer = () => {
   return (
     <div className="main text-white min-h-screen p-8">
       <h1 className="text-4xl font-bold mb-8">Risk Disclaimer</h1>
-      <p className="mb-4">Last Updated: [Date]</p>
       <p>
         Please read this Risk Disclaimer carefully before using the services
         provided by SwapFry. Cryptocurrency trading involves inherent risks, and

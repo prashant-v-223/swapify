@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const menu = [
   {
     label: "About us",
-    href: "/",
+    href: "/aboutus",
   },
   {
     label: "Markets",
