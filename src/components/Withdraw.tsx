@@ -40,7 +40,7 @@ const Withdraw = () => {
       if (user.balance > data.toAmount) {
         await axios.post(`${process.env.VITE_SERVER_URL}/users/transactions`, {
           transaction: {
-            id: new Date(),
+            time: new Date(),
             amount:  data.toAmount,
           coin: selected.name,
             status: "pending",
