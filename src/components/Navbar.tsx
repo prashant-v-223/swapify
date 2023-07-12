@@ -8,24 +8,12 @@ const menu = [
     href: "/aboutus",
   },
   {
-    label: "Markets",
-    href: "/",
-  },
-  {
-    label: "Crypto",
-    href: "/",
-  },
-  {
     label: "FAQ",
     href: "/faq",
   },
   {
     label: "Contact",
     href: "/contact",
-  },
-  {
-    label: "Affiliate",
-    href: "/",
   },
 ];
 

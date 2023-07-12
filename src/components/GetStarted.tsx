@@ -18,7 +18,7 @@ const GetStarted = () => {
           <div>
             <p className="text-white font-semibold text-xl md:text-2xl">Sign up</p>
             <p className="text-[#C0C0C0] text-base mt-2">
-              Create your Esco Swap account in a few simple steps. Provide the
+              Create your Swapfry account in a few simple steps. Provide the
               required info
             </p>
           </div>
@@ -33,7 +33,7 @@ const GetStarted = () => {
           <div>
             <p className="text-white font-semibold text-xl md:text-2xl">Fund account</p>
             <p className="text-[#C0C0C0] text-base mt-2">
-              Create your Esco Swap account in a few simple steps. Provide the
+              Create your Swapfry account in a few simple steps. Provide the
               required info
             </p>
           </div>
@@ -48,7 +48,7 @@ const GetStarted = () => {
           <div>
             <p className="text-white font-semibold text-xl md:text-2xl">Place order</p>
             <p className="text-[#C0C0C0] text-base mt-2">
-              Create your Esco Swap account in a few simple steps. Provide the
+              Create your Swapfry account in a few simple steps. Provide the
               required info
             </p>
           </div>
@@ -63,7 +63,7 @@ const GetStarted = () => {
           <div>
             <p className="text-white font-semibold text-xl  md:text-2xl">Place order</p>
             <p className="text-[#C0C0C0] text-base mt-2">
-              Create your Esco Swap account in a few simple steps. Provide the
+              Create your Swapfry account in a few simple steps. Provide the
               required info
             </p>
           </div>
@@ -78,7 +78,7 @@ const GetStarted = () => {
           <div>
             <p className="text-white font-semibold text-xl md:text-2xl">Withdraw funds</p>
             <p className="text-[#C0C0C0] text-base mt-2">
-              Create your Esco Swap account in a few simple steps. Provide the
+              Create your Swapfry account in a few simple steps. Provide the
               required info
             </p>
           </div>
@@ -93,7 +93,7 @@ const GetStarted = () => {
           <div>
             <p className="text-white font-semibold text-xl md:text-2xl">100% Secure</p>
             <p className="text-[#C0C0C0] text-base mt-2">
-              Create your Esco Swap account in a few simple steps. Provide the
+              Create your Swapfry account in a few simple steps. Provide the
               required info
             </p>
           </div>
