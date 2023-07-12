@@ -97,7 +97,7 @@ const Withdraw = () => {
                     id="amount"
                     name="amount"
                     value={values.amount}
-                    type="number"
+                    type="tel"
                     autoComplete="off"
                     inputMode="numeric"
                     placeholder="Enter amount"

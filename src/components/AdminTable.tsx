@@ -147,7 +147,7 @@ const AdminTable = () => {
     return <div>Loading...</div>;
   }
   return (
-    <div className="relative overflow-x-auto shadow-md sm:rounded-lg mt-10">
+    <div className="relative overflow-x-auto sm:rounded-lg mt-10">
       {showLoader && <Loader />}
       {data?.transactionIds.length ? (
         <table className="w-full text-sm text-left text-gray-500 md:border border-[#606060]">

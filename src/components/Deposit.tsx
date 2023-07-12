@@ -270,7 +270,7 @@ const Deposit = () => {
                     id="amount"
                     name="amount"
                     value={values.amount}
-                    type="number"
+                    type="tel"
                     autoComplete="off"
                     inputMode="numeric"
                     onKeyUp={() => handleKeyDown(values.amount)}
@@ -295,7 +295,7 @@ const Deposit = () => {
                     id="amount"
                     name="amount"
                     value={rate}
-                    type="number"
+                    type="tel"
                     disabled
                     autoComplete="off"
                     inputMode="numeric"

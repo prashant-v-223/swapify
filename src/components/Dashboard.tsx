@@ -1,5 +1,6 @@
 import AdminTable from "./AdminTable";
 import { useUserInfo } from "@/store";
+import UsersTable from "./UsersTable";
 
 const Dashboard = ({
   setOpenTab,
@@ -33,6 +34,9 @@ const Dashboard = ({
       {
         user.role === "admin" && 
         <AdminTable />
+      }
+      {
+        user.role === "admin" && <UsersTable />
       }
     </div>
   );
