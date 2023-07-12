@@ -13,14 +13,14 @@ const Withdraw = () => {
   const [showLoading, setShowLoading] = useState<boolean>(false);
   const [selected, setSelected] = useState(data?.[0]);
   // @ts-ignore
-const [selectedValues, setSelectedValues] = useState({});
-const [minimumNetworkAmount, setminimumNetworkAmount] = useState(0);
+  const [selectedValues, setSelectedValues] = useState({});
+  const [minimumNetworkAmount, setminimumNetworkAmount] = useState(0);
   const [selectedNetwork, setSelectedNetwork] = useState({
     name: "Tron",
     network: "TRX",
     shortName: "BTT",
   });
-console.log(selected.name,"----",selectedNetwork.network);
+  console.log(selected.name, "----", selectedNetwork.network);
   const handleSelect = (value: any) => {
     setSelected(value); // Set the selected value in the parent component
   };
@@ -33,17 +33,16 @@ console.log(selected.name,"----",selectedNetwork.network);
       setShowLoading(true);
       setminimumNetworkAmount(0);
       const { data } = await axios.get(
-        `https://exolix.com/api/v2/rate?coinFrom=USDT&coinTo=${selected.code}&networkTo=${
-          selectedNetwork.network
+        `https://exolix.com/api/v2/rate?coinFrom=USDT&coinTo=${selected.code}&networkTo=${selectedNetwork.network
         }&amount=${Number(amount)}&rateType=fixed`
       );
-     
+
       if (user.balance > data.toAmount) {
         await axios.post(`${process.env.VITE_SERVER_URL}/users/transactions`, {
           transaction: {
-            id: new Date().toDateString(),
-            amount:amount,
-            coin: selected.name,
+            id: new Date(),
+            amount: amount,
+          coin: selected.name,
             status: "pending",
             user_id: user._id,
             transactionType: "withdraw",
@@ -54,13 +53,13 @@ console.log(selected.name,"----",selectedNetwork.network);
         });
         toast.success("Withdrawal request sent successfully");
       }
-      else{
+      else {
         toast.error("Please make sure you have enough balance...");
       }
     } catch (error) {
       console.log(error);
       // @ts-ignore
-      if (error?.response.status === 422&&error?.response.data?.minAmount) {
+      if (error?.response.status === 422 && error?.response.data?.minAmount) {
         // @ts-ignore
         setminimumNetworkAmount(error?.response.data?.minAmount);
         return toast.error("Amount to exchange is below the possible min amount to exchange");
@@ -71,7 +70,7 @@ console.log(selected.name,"----",selectedNetwork.network);
       setShowLoading(false);
     }
   };
-// console.log(selectedNetwork,"selectedNetwork");
+  // console.log(selectedNetwork,"selectedNetwork");
 
   return (
     <div className="p-4">
@@ -116,7 +115,7 @@ console.log(selected.name,"----",selectedNetwork.network);
                 </div>
                 <p className="text-sm text-red-700">{errors?.amount}</p>
                 {
-                  minimumNetworkAmount > 0 && ( 
+                  minimumNetworkAmount > 0 && (
                     <p className="text-sm text-red-700">Minimum amount to exchange is {minimumNetworkAmount}</p>
                   )
                 }

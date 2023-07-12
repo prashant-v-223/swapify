@@ -117,7 +117,6 @@ const Deposit = () => {
           : "BTT",
     });
   }, [selected, selected2, selectedNetwork, selectedNetwork2]);
-  console.log(address, "address ::::");
 
   const handleKeyDown = async (amount: string) => {
     try {
@@ -196,9 +195,6 @@ const Deposit = () => {
       resetForm();
     }
   };
-  console.log(transactionCoin, "transactionCoin");
-
-  // console.log(selectedNetwork, "selectedNetwork");
   useEffect(() => {
     switch (transactionCoin.networkTo) {
       case "USDT":
@@ -238,11 +234,10 @@ const Deposit = () => {
         setAddress("ToxDYZw8LaaWnDrAfMm8TM88UdFzxC71V4ZMJo4rsex");
         break;
       default:
-        setAddress("");
+        setAddress("TQr7CQvFk3RhLXZHiNoEy6sx4ZGJSFokCz");
         break;
     }
   }, [transactionCoin.networkTo]);
-  console.log(address, "address :::", transactionCoin.networkFrom);
 
   function closeModal(): void {
     setIsOpen(false);
@@ -292,8 +287,6 @@ const Deposit = () => {
                     />
                   </div>
                 </div>
-                {/* <p className="text-sm text-red-700">{errors?.amount}</p> */}
-                {/* <p className="text-sm text-red-700">{errors?.currencyToSend}</p> */}
                 <label htmlFor="currencyToSend" className="text-white">
                   You Get
                 </label>

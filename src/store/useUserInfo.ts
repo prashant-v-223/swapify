@@ -29,6 +29,7 @@ export const useUserInfo = create<IuseUserInfo>((set) => ({
       coinTo: "",
       time: "",
       status: "",
+     coin: 0,
       transactionType: "",
      }],
     },

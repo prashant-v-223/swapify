@@ -27,22 +27,22 @@ const ContactUsPage = () => {
                 placeholder="Your email"
               />
             </div>
-            <div className="mb-4">
+            <div className="mb-4 text-white">
               <label htmlFor="message" className="block mb-2  text-white">
                 Message
               </label>
               <textarea
                 id="message"
-                className="border-b border-gray-300 p-2 w-full h-32 resize-none bg-transparent"
+                className="border-b border-gray-300 placeholder-white p-2 w-full h-32 resize-none bg-transparent"
                 placeholder="Your message"
               ></textarea>
             </div>
-            <button
-              type="submit"
+            <a
+            href="mailto:Weberlabs.info@gmail.com"
               className="bg-[#454545] w-fit text-white py-2 px-4"
             >
               Submit
-            </button>
+            </a>
           </form>
         </div>
       </div>

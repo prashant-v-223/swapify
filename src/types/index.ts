@@ -48,6 +48,7 @@ export interface User {
 }
 
 export interface UserTransaction {
+  coin: any;
   amount: number;
   id: string;
   coinFrom: string;

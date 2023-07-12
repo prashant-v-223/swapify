@@ -106,7 +106,7 @@ const PrivacyPolicy = () => {
       <p>
         If you have any questions, concerns, or requests regarding this Privacy
         Policy or the handling of your personal information, please contact us
-        at [support@swapfry.com].
+        at support@swapfry.com.
       </p>
 
       <p className="mt-8">
