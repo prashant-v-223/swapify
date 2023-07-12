@@ -39,7 +39,7 @@ export default function Navbar() {
               <div className="flex flex-wrap justify-between md:gap-10 md:flex-nowrap">
                 <Link to={"/"}>
                   <img
-                    src="/assets/logoy.png"
+                    src="/assets/logo_ver1.png"
                     width={200}
                     height={200}
                     alt="notfound"
@@ -88,7 +88,7 @@ export default function Navbar() {
                 <div className="flex items-center justify-between w-full md:w-auto p-4 main">
                   <Link to={"/"}>
                     <img
-                      src="/assets/logoy.png"
+                      src="/assets/logo_ver1.png"
                       width={100}
                       height={100}
                       alt="notfound"
