@@ -89,7 +89,7 @@ const UsersTable = () => {
                   balance: number;
                   createdAt: Date;
                   isBlocked: Boolean;
-                  isKYC: Boolean;
+                  isKYC: any;
                 },
                 index: number
               ) => {

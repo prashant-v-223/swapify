@@ -1,5 +1,5 @@
 import { LoginForm } from "@/types";
-import axios, { AxiosError, AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 import { Formik } from "formik";
 import { Link } from "react-router-dom";
 import toast from "react-hot-toast";

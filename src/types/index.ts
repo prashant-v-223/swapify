@@ -43,6 +43,7 @@ export interface User {
   balance: number;
   createdAt: string;
   updatedAt: string;
+  isKYC: boolean;
   __v: number;
   transactionIds: UserTransaction[];
 }
