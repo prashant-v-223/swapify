@@ -29,7 +29,9 @@ const UsersTable = () => {
       toast.error("Something went wrong");
     } finally {
       setShowLoader(false);
-      fetchUsers();
+      setTimeout(() => {
+        refetch();
+      }, 2000);
     }
   };
   const KycUsers = async (id: string) => {
