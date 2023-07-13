@@ -20,8 +20,7 @@ const Login = () => {
       return res;
     } catch (error) {
       throw error;
-    }
-    finally{
+    } finally {
       setShowLoader(false);
     }
   };
@@ -41,15 +40,13 @@ const Login = () => {
         window.location.reload();
       }
     },
-    onError: (error: AxiosError) => {
-      if (error.response?.status === 403) {
-        const errorMessage =
-          (error.response.data as { message: string })?.message ||
-          "Invalid credential";
-        toast.error(errorMessage);
-      } else {
-        toast.error("Server error");
-      }
+    onError: (error: any) => {
+      const errorMessage =
+        (error?.response.data as { message: string })?.message ||
+        "Invalid credential";
+      console.log(errorMessage);
+
+      toast.error(errorMessage);
     },
   });
   return (
@@ -59,7 +56,12 @@ const Login = () => {
           to="/"
           className="flex items-center mb-6 text-2xl font-semibold text-white "
         >
-          <img width={200} height={200} src="/assets/logo_ver1.png" alt="logo" />
+          <img
+            width={200}
+            height={200}
+            src="/assets/logo_ver1.png"
+            alt="logo"
+          />
         </Link>
         <div className="w-full bg-[#303131] rounded-lg shadow text-white md:mt-0 sm:max-w-xl xl:p-0 ">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -167,9 +169,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-      {
-        showLoader && <Loader />
-      }
+      {showLoader && <Loader />}
     </section>
   );
 };

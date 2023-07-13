@@ -1,6 +1,5 @@
 import AdminTable from "./AdminTable";
 import { useUserInfo } from "@/store";
-import UsersTable from "./UsersTable";
 
 const Dashboard = ({
   setOpenTab,
@@ -16,7 +15,7 @@ const Dashboard = ({
           <div className="flex flex-col">
             <h1 className="text-xl">Amount deposited</h1>
             <h1 className="text-2xl md:text-3xl">
-              {user.balance.toFixed(2)} <span className="font-semibold">$</span>
+              <span className="font-semibold">$</span> {user.balance.toFixed(2)}
             </h1>
           </div>
         </div>
@@ -31,13 +30,7 @@ const Dashboard = ({
           </div>
         </div>
       </div>
-      {
-        user.role === "admin" && 
-        <AdminTable />
-      }
-      {
-        user.role === "admin" && <UsersTable />
-      }
+      {user.role === "admin" && <AdminTable />}
     </div>
   );
 };

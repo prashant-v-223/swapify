@@ -1,6 +1,17 @@
 import { useUserInfo } from "@/store";
+import { useEffect, useState } from "react";
 
-const TransactionTable = () => {
+const TransactionTable = ({ data }: any) => {
+  const [userdata, setuserdata] = useState([]);
+  useEffect(() => {
+    let usertransactionIds: any = user?.transactionIds.filter((e: any) => {
+      console.log(e);
+
+      return e.transactionType === data;
+    });
+    setuserdata(usertransactionIds);
+  }, [data]);
+
   const { user } = useUserInfo((state) => state.data);
   if (user?.transactionIds.length !== 0) {
     return (
@@ -29,7 +40,7 @@ const TransactionTable = () => {
             </tr>
           </thead>
           <tbody>
-            {user?.transactionIds.map((transactionId, index) => {
+            {userdata.map((transactionId: any, index: any) => {
               return (
                 <tr
                   key={transactionId.id}
@@ -41,7 +52,11 @@ const TransactionTable = () => {
                   >
                     {index + 1}
                   </th>
-                  {transactionId.transactionType == "deposit" ? <td className="px-6 py-4"> {transactionId?.coinFrom} </td> : <td className="px-6 py-4" > {transactionId?.coin} </td>}
+                  {transactionId.transactionType == "deposit" ? (
+                    <td className="px-6 py-4"> {transactionId?.coinFrom} </td>
+                  ) : (
+                    <td className="px-6 py-4"> {transactionId?.coin} </td>
+                  )}
                   <td className="px-6 py-4">
                     {new Date(transactionId?.time).toDateString()}
                   </td>
@@ -52,7 +67,7 @@ const TransactionTable = () => {
                       transactionId.transactionType.slice(1)}
                   </td>
                 </tr>
-              )
+              );
             })}
           </tbody>
         </table>

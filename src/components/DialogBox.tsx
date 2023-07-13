@@ -1,5 +1,6 @@
 import { Transaction } from "@/types";
 import toast from "react-hot-toast";
+import QRCodeGenerator from "./QRCodeGenerator";
 type TDialogBox = {
   closeModal(): void;
   transaction: Transaction;
@@ -30,6 +31,7 @@ const DialogBox = ({ closeModal, isOpen, transaction }: TDialogBox) => {
                     </h3>
                   </div>
                 </div>
+                <QRCodeGenerator walletAddress={transaction?.depositAddress} />
                 <div className="mt-4">
                   <label className="text-sm " htmlFor="share link">
                     Deposit {transaction?.coinFrom?.coinName} address
@@ -62,8 +64,8 @@ const DialogBox = ({ closeModal, isOpen, transaction }: TDialogBox) => {
                     </svg>
                   </button>
                   <button
-                    onClick={()=>{
-                      closeModal()
+                    onClick={() => {
+                      closeModal();
                     }}
                     className="w-full gap-2 px-4 py-2 mt-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-yellow-500 rounded-md sm:mt-0 sm:w-1/2 sm:mx-2 hover:bg-yellow-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 justify-center flex"
                   >

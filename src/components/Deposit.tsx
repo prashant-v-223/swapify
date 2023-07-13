@@ -152,13 +152,17 @@ const Deposit = () => {
       let response = await axios.post(
         "https://exolix.com/api/v2/transactions",
         {
-          amount: amount,
+          amount: Number(amount),
           coinFrom: transactionCoin.coinFrom,
           coinTo: transactionCoin.coinTo,
           withdrawalAddress: address,
           withdrawalExtraId: user._id,
-          networkFrom: transactionCoin.networkFrom ? transactionCoin.networkFrom : "TRX",
-          networkTO: transactionCoin.networkTo ? transactionCoin.networkTo : "BTT",
+          networkFrom: transactionCoin.networkFrom
+            ? transactionCoin.networkFrom
+            : "TRX",
+          networkTO: transactionCoin.networkTo
+            ? transactionCoin.networkTo
+            : "BTT",
         }
       );
       if (response.status === 201) {
@@ -364,7 +368,7 @@ const Deposit = () => {
           </div>
         </div>
       </div>
-      <TransactionTable />
+      <TransactionTable data="deposit" />
       <DialogBox
         isOpen={isOpen}
         closeModal={closeModal}

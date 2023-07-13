@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import { Listbox, Transition } from "@headlessui/react";
+import { BiSolidDownArrow } from "react-icons/bi";
 
 export default function DropDown({
   selected,
@@ -29,7 +30,12 @@ export default function DropDown({
                   src={selected?.icon ?? selectedValues?.icon}
                   alt="notfound"
                 />
-                {selected?.name.slice(0, 18) ?? selectedValues?.name.slice(0, 18)}
+                {selected?.name.slice(0, 18) ??
+                  selectedValues?.name.slice(0, 18)}
+
+                <BiSolidDownArrow
+                  style={{ color: "#f3de1b", fontSize: "14px" }}
+                />
               </span>
             </Listbox.Button>
             <Transition

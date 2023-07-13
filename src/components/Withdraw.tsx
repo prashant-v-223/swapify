@@ -33,36 +33,40 @@ const Withdraw = () => {
       setShowLoading(true);
       setminimumNetworkAmount(0);
       const { data } = await axios.get(
-        `https://exolix.com/api/v2/rate?coinFrom=${selected.code}&coinTo=USDT&networkTo=${selectedNetwork.network
-        }&amount=${Number(amount)}&rateType=fixed`
+        `https://exolix.com/api/v2/rate?coinFrom=${
+          selected.code
+        }&coinTo=USDT&networkTo=${selectedNetwork.network}&amount=${Number(
+          amount
+        )}&rateType=fixed`
       );
 
-      if (user.balance > data.toAmount) {
-        await axios.post(`${process.env.VITE_SERVER_URL}/users/transactions`, {
-          transaction: {
-            time: new Date(),
-            amount:  data.toAmount,
+      // if (user.balance > data.toAmount) {
+      await axios.post(`${process.env.VITE_SERVER_URL}/users/transactions`, {
+        transaction: {
+          time: new Date(),
+          amount: data.toAmount,
           coin: selected.name,
-            status: "pending",
-            user_id: user._id,
-            transactionType: "withdraw",
-            address: address,
-            network: selectedNetwork.network,
-          },
-          userId: user._id,
-        });
-        toast.success("Withdrawal request sent successfully");
-      }
-      else {
-        toast.error("Please make sure you have enough balance...");
-      }
+          status: "pending",
+          user_id: user._id,
+          transactionType: "withdraw",
+          address: address,
+          network: selectedNetwork.network,
+        },
+        userId: user._id,
+      });
+      toast.success("Withdrawal request sent successfully");
+      // } else {
+      //   toast.error("Please make sure you have enough balance...");
+      // }
     } catch (error) {
       console.log(error);
       // @ts-ignore
       if (error?.response.status === 422 && error?.response.data?.minAmount) {
         // @ts-ignore
         setminimumNetworkAmount(error?.response.data?.minAmount);
-        return toast.error("Amount to exchange is below the possible min amount to exchange");
+        return toast.error(
+          "Amount to exchange is below the possible min amount to exchange"
+        );
       }
       toast.error("Such exchange pair is not available ");
     } finally {
@@ -81,7 +85,9 @@ const Withdraw = () => {
             withdrawAddress: "",
           }}
           validationSchema={Yup.object({
-            amount: Yup.number().required("Required"),
+            amount: Yup.number()
+              .min(100, "Minimum withdraw amount $100")
+              .required("Required"),
             withdrawAddress: Yup.string().required("Required"),
           })}
           onSubmit={(values, { resetForm }) => {
@@ -114,11 +120,11 @@ const Withdraw = () => {
                   </div>
                 </div>
                 <p className="text-sm text-red-700">{errors?.amount}</p>
-                {
-                  minimumNetworkAmount > 0 && (
-                    <p className="text-sm text-red-700">Minimum amount to exchange is {minimumNetworkAmount}</p>
-                  )
-                }
+                {minimumNetworkAmount > 0 && (
+                  <p className="text-sm text-red-700">
+                    Minimum amount to exchange is {minimumNetworkAmount}
+                  </p>
+                )}
                 <input
                   id="withdrawAddress"
                   onChange={handleChange}
@@ -138,7 +144,8 @@ const Withdraw = () => {
                     "bg-[#242424] w-fit disabled:cursor-not-allowed group gap-2 flex items-center rounded-lg p-4 text-sm text-white"
                   }
                 >
-                  <img src="/assets/greentick.svg" alt="user" /> Submit request
+                  <img src="/assets/greentick.svg" alt="user" />
+                  withdraw now
                 </button>
               </div>
             </form>
@@ -162,7 +169,7 @@ const Withdraw = () => {
           </div>
         </div>
       </div>
-      <TransactionTable />
+      <TransactionTable  data="withdraw"/>
       {showLoading && <Loader />}
     </div>
   );
