@@ -23,13 +23,13 @@ const UsersTable = () => {
       ) as any;
       if (status === 200) {
         toast.success("User Blocked");
-        refetch();
       }
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");
     } finally {
       setShowLoader(false);
+      fetchUsers();
     }
   };
   const KycUsers = async (id: string) => {
@@ -47,6 +47,7 @@ const UsersTable = () => {
       toast.error("Something went wrong");
     } finally {
       setShowLoader(false);
+      fetchUsers();
     }
   };
   if (data?.users.length !== 0) {
