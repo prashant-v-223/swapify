@@ -115,6 +115,7 @@ const UsersTable = () => {
                         <button
                           className="font-medium text-light-600 dark:text-light-500 hover:underline disabled:opacity-25 disabled:cursor-not-allowed p-2  bg-red-900 w-full  rounded-lg"
                           style={{ color: "#fff", width: "100%" }}
+                          onClick={() => BlockUser(user._id)}
                         >
                           Already Blocked
                         </button>
