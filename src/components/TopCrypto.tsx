@@ -137,12 +137,12 @@ const TopCrypto = ({ view }: any) => {
           Top cryptocurrencies
         </p>
         <div className={`${view !== "deshbord" ? "m-6" : "m-0"}`}>
-          <div className="flex relative rounded-3xl topcrypto overflow-x-auto mt-4 justify-around flex-col md:flex-wrap md:flex-row">
+          <div className="flex relative rounded-3xl topcrypto overflow-x-auto mt-4 justify-around flex-col md:flex-wrap md:flex-row px-8 pb-6">
             <div className="w-full font-semibold text-sm text-left text-gray-500 ">
               <div className="text-sm sm:text-base text-center bg-transparent rounded-lg text-white p-6 grid grid-cols-4">
-                <p className="p-6">From</p>
-                <p className="p-6">To</p>
-                <p className="p-6">Price</p>
+                <p className="p-6 flex justify-flex-start items-center">From</p>
+                <p className="p-6 flex justify-flex-start items-center">To</p>
+                <p className="p-6 ">Price</p>
                 <p className="p-6 text-transparent">Price</p>
               </div>
               <div className="">
@@ -176,26 +176,37 @@ const TopCrypto = ({ view }: any) => {
                       onMouseLeave={() => setHoveredIndex(-1)}
                       className="bg-transparent text-center text-white grid grid-cols-4 hover:bg-[#35353770] cursor-pointer items-center"
                     >
-                      <div className="px-6 py-4 flex justify-center w-full">
-                        <div className="flex items-center gap-4">
+                      <div className="px-6 py-4 flex justify-flex-start">
+                        <div className="gap-4 flex justify-flex-start items-center">
                           <img
-                            width={40}
-                            height={50}
+                            width={30}
+                            height={40}
                             src={crypto.image}
                             alt={crypto.id}
                           />
                           <span>{crypto.name.split(" ")[0]}</span>
                         </div>
                       </div>
-                      <p className="px-6 py-4">USDT</p>
-                      <p className="px-6 py-4">
+                      <p className="px-6 py-4 flex justify-flex-start items-center">
+                        {" "}
+                        <img
+                          width={40}
+                          height={50}
+                          src={
+                            "https://static.openfintech.io/payment_methods/usdt/icon.png?w=278&c=v0.59.26#w100"
+                          }
+                          alt={crypto.id}
+                        />
+                        USDT
+                      </p>
+                      <p className="px-6 py-4 flex justify-center items-center">
                         {isLoading ? 0 : Number(crypto.rate).toFixed(3)} $
                       </p>
                       {hoveredIndex === index ? (
                         <Link
                           to={"/login"}
                           data-aos="flip-left"
-                          className="bg-[#cb9b27] w-fit h-fit py-2 rounded-md px-4 block m-auto" 
+                          className="bg-[#cb9b27] w-fit h-fit py-2 rounded-md px-4 block m-auto"
                         >
                           {" "}
                           Exchange{" "}
