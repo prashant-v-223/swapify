@@ -7,7 +7,7 @@ import * as Yup from "yup";
 import axios, { AxiosError } from "axios";
 import { useMutation } from "react-query";
 import toast from "react-hot-toast";
-const Forgot = () => {
+const Forgot = ({ mode }: any) => {
   const navigate = useNavigate();
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [otp, setOtp] = useState("");
@@ -61,14 +61,21 @@ const Forgot = () => {
     },
   });
   return (
-    <section className="main h-screen">
+    <section className={`${!mode ? "main h-screen" : ""} `}>
       <div className="flex flex-col items-center justify-center px-2 md:px-6 py-8 mx-auto">
-        <Link
-          to="/"
-          className="flex items-center mb-6 text-2xl font-semibold text-white "
-        >
-          <img width={200} height={200} src="/assets/logo_ver1.png" alt="logo" />
-        </Link>
+        {!mode && (
+          <Link
+            to="/"
+            className="flex items-center mb-6 text-2xl font-semibold text-white "
+          >
+            <img
+              width={200}
+              height={200}
+              src="/assets/logo_ver1.png"
+              alt="logo"
+            />
+          </Link>
+        )}
         <div className="w-full bg-[#303131] rounded-lg shadow text-white md:mt-0 sm:max-w-xl xl:p-0 ">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
             <h1 className="text-xl font-bold leading-tight tracking-tight text-white md:text-2xl ">

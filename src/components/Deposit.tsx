@@ -249,7 +249,7 @@ const Deposit = () => {
 
   return (
     <div className="p-4">
-      <div className="grid bg-[#1B1B1B] w-full p-4 md:w-11/12 rounded-xl md:grid-cols-2">
+      <div className="grid bg-[#1B1B1B] w-full p-4 rounded-xl md:grid-cols-2">
         <Formik
           initialValues={{
             amount: "",
@@ -335,7 +335,7 @@ const Deposit = () => {
                 <button
                   type="submit"
                   className={
-                    "bg-[#242424] w-fit group gap-2 flex items-center rounded-lg p-4 text-sm text-white"
+                    "bg-[#242424] mt-4 w-fit group gap-2 flex items-center rounded-lg p-4 text-sm text-white"
                   }
                 >
                   <img src="/assets/greentick.svg" alt="user" /> Deposit now

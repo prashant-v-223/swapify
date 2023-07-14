@@ -5,9 +5,11 @@ import { useUserInfo } from "@/store";
 import { AiTwotoneMail } from "react-icons/ai";
 import { VscVerified } from "react-icons/vsc";
 import { FaUserTie } from "react-icons/fa";
+import { RiLockPasswordFill } from "react-icons/ri";
 
 import { useEffect, useRef, useState } from "react";
 import UsersTable from "@/components/UsersTable";
+import Forgot from "./Forgot";
 const Home = () => {
   const { user } = useUserInfo((state) => state.data);
   console.log(user);
@@ -158,6 +160,20 @@ const Home = () => {
               />{" "}
               Kyc :{"  "}
               {user?.isKYC ? "Approved" : "Pending"}
+            </button>{" "}
+            <button
+              className={
+                "bg-transparent group gap-2 flex w-full items-center rounded-md px-2 py-2 text-sm text-white"
+              }
+              onClick={() => {
+                setOpenTab(9);
+              }}
+            >
+              <RiLockPasswordFill
+                classname="font-xl text-"
+                style={{ color: "#f3de1b", fontSize: "20px" }}
+              />{" "}
+              Change password
             </button>
           </div>
         )}
@@ -168,8 +184,10 @@ const Home = () => {
             <Deposit />
           ) : openTab === 3 ? (
             <Withdraw />
-          ) : (
+          ) : openTab === 4 ? (
             <UsersTable />
+          ) : (
+            <Forgot mode={true} />
           )}
         </div>
       </div>
