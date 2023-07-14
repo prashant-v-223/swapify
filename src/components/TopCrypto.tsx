@@ -1,9 +1,9 @@
 import { Coinlist } from "./fakedata";
 import axios from "axios";
-import { useState } from 'react'
+import { useState } from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-const TopCrypto = () => {
+const TopCrypto = ({ view }: any) => {
   const fetchRate = async (
     coinFrom: string,
     coinTo: string,
@@ -49,11 +49,14 @@ const TopCrypto = () => {
   const [hoveredIndex, setHoveredIndex] = useState(-1);
   return (
     <>
-      <div data-aos="fade-up" className="md:p-16 p-4 md:hidden">
-        <p className="text-white font-semibold text-3xl">
+      <div
+        data-aos="fade-up"
+        className={` ${view !== "deshbord" ? "px-6" : "px-0"} py-12 md:hidden`}
+      >
+        <p className="text-white font-semibold text-3xl py-10">
           Top cryptocurrencies
         </p>
-        <div className="md:p-16">
+        <div className={`${view !== "deshbord" ? "m-0" : "m-0"}`}>
           <div className="flex relative rounded-3xl topcrypto overflow-x-auto mt-4 justify-around flex-col md:flex-wrap md:flex-row">
             <table className="w-full md:m-4 font-semibold text-sm text-left text-gray-500 ">
               {!isLoading && (
@@ -125,11 +128,15 @@ const TopCrypto = () => {
           </div>
         </div>
       </div>
-      <div className="md:p-16 p-4 md:block hidden">
-        <p className="text-white font-semibold text-3xl">
+      <div
+        className={` ${
+          view !== "deshbord" ? "px-16" : "px-0"
+        } md:block hidden py-10`}
+      >
+        <p className="text-white font-semibold text-3xl py-10">
           Top cryptocurrencies
         </p>
-        <div className="md:p-16">
+        <div className={`${view !== "deshbord" ? "m-6" : "m-0"}`}>
           <div className="flex relative rounded-3xl topcrypto overflow-x-auto mt-4 justify-around flex-col md:flex-wrap md:flex-row">
             <div className="w-full font-semibold text-sm text-left text-gray-500 ">
               <div className="text-sm sm:text-base text-center bg-transparent rounded-lg text-white p-6 grid grid-cols-4">
@@ -184,11 +191,23 @@ const TopCrypto = () => {
                       <p className="px-6 py-4">
                         {isLoading ? 0 : Number(crypto.rate).toFixed(3)} $
                       </p>
-                      {
-                        hoveredIndex === index ? <Link to={'/login'} data-aos="flip-left" className="bg-[#cb9b27] w-fit h-fit py-2 rounded-md px-4"> Exchange </Link> : <img src="/assets/eswap.svg" alt="swap" onMouseOver={() => setHoveredIndex(index)}
+                      {hoveredIndex === index ? (
+                        <Link
+                          to={"/login"}
+                          data-aos="flip-left"
+                          className="bg-[#cb9b27] w-fit h-fit py-2 rounded-md px-4 block m-auto" 
+                        >
+                          {" "}
+                          Exchange{" "}
+                        </Link>
+                      ) : (
+                        <img
+                          src="/assets/eswap.svg"
+                          alt="swap"
+                          className="block m-auto"
+                          onMouseOver={() => setHoveredIndex(index)}
                         />
-
-                      }
+                      )}
                     </div>
                   ))
                 )}

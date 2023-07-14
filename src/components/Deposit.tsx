@@ -338,7 +338,7 @@ const Deposit = () => {
                     "bg-[#242424] w-fit group gap-2 flex items-center rounded-lg p-4 text-sm text-white"
                   }
                 >
-                  <img src="/assets/greentick.svg" alt="user" /> Submit request
+                  <img src="/assets/greentick.svg" alt="user" /> Deposit now
                 </button>
               </div>
             </form>

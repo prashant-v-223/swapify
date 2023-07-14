@@ -27,7 +27,7 @@ const Hero = () => {
   return (
     <div
       data-aos="fade-up"
-      className="grid md:flex md:justify-around grid-col-1 gap-10 p-4 md:p-0 w-full"
+      className="grid md:flex md:justify-around grid-col-1 gap-10 px-4 py-10 w-full"
     >
       <div className="flex flex-col gap-4 justify-center md:hidden ">
         <span className="text-white md:my-1 text-2xl font-bold leading-10">
@@ -43,7 +43,7 @@ const Hero = () => {
           Get started
         </Link>
       </div>
-      <div className="md:flex flex-col gap-4  justify-center hidden">
+      <div className="md:flex flex-col gap-4  justify-center hidden ">
         <span className="text-white md:my-1 text-2xl md:text-[48px] font-bold leading-10">
           Exchange your crypto
         </span>

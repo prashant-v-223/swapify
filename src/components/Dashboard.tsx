@@ -1,5 +1,6 @@
 import AdminTable from "./AdminTable";
 import { useUserInfo } from "@/store";
+import TopCrypto from "./TopCrypto";
 
 const Dashboard = ({
   setOpenTab,
@@ -31,6 +32,7 @@ const Dashboard = ({
         </div>
       </div>
       {user.role === "admin" && <AdminTable />}
+      <TopCrypto view="deshbord" />
     </div>
   );
 };
