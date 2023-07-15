@@ -1,3 +1,9 @@
+import { BsCassetteFill } from "react-icons/bs";
+import { FaUserShield } from "react-icons/fa";
+import { TbFreeRights } from "react-icons/tb";
+import { SiSpringsecurity } from "react-icons/si";
+import { MdOutlineSupportAgent } from "react-icons/md";
+
 const Features = () => {
   return (
     <div className="my-4 w-full overflow-hidden">
@@ -12,13 +18,16 @@ const Features = () => {
           Start your first swap with these easy steps.
         </p>
       </div>
-      <div data-aos="fade-left" className="grid grid-cols-1 sm:grid-cols-2 md:p-10">
+      <div
+        data-aos="fade-left"
+        className="grid grid-cols-1 sm:grid-cols-2 md:p-10"
+      >
         <div className="flex bg-[#141414] items-center flex-row gap-4 p-6 md:h-[180px] border-[#333333] border-b-[1px] border-r-[1px]">
           <img
             src="/assets/features.svg"
             alt="getstarted"
-            width={60}
-            height={60}
+            width={40}
+            height={40}
           />
           <div>
             <p className="text-white font-semibold text-xl md:text-2xl">
@@ -30,13 +39,13 @@ const Features = () => {
             </p>
           </div>
         </div>
-        <div data-aos="fade-right" className="flex bg-[#141414] items-center flex-row gap-4  p-6 md:h-[180px] border-b-[1px] border-[#333333]">
-          <img
-            src="/assets/features.svg"
-            alt="getstarted"
-            width={60}
-            height={60}
-          />
+        <div
+          data-aos="fade-right"
+          className="flex bg-[#141414] items-center flex-row gap-4  p-6 md:h-[180px] border-b-[1px] border-[#333333]"
+        >
+          <div className="">
+            <BsCassetteFill style={{ color: "#f9da0a", fontSize: "40px" }} />
+          </div>
           <div>
             <p className="text-white font-semibold text-xl md:text-2xl">
               Wide Asset Selection
@@ -48,13 +57,13 @@ const Features = () => {
             </p>
           </div>
         </div>
-        <div data-aos="fade-left" className="flex bg-[#141414] items-center flex-row gap-4 p-6 md:h-[180px] border-b md:border-b-0 border-[#333333] border-r-[1px]">
-          <img
-            src="/assets/features.svg"
-            alt="getstarted"
-            width={60}
-            height={60}
-          />
+        <div
+          data-aos="fade-left"
+          className="flex bg-[#141414] items-center flex-row gap-4 p-6 md:h-[180px] border-b md:border-b-0 border-[#333333] border-r-[1px]"
+        >
+          <div className="">
+            <FaUserShield style={{ color: "#f9da0a", fontSize: "40px" }} />
+          </div>
           <div>
             <p className="text-white font-semibold text-xl md:text-2xl">
               User-Friendly Interface
@@ -66,13 +75,13 @@ const Features = () => {
             </p>
           </div>
         </div>
-        <div data-aos="fade-right" className="flex bg-[#141414] items-center flex-row gap-4 p-6 md:h-[180px] border-b  border-[#333333]">
-          <img
-            src="/assets/features.svg"
-            alt="getstarted"
-            width={60}
-            height={60}
-          />
+        <div
+          data-aos="fade-right"
+          className="flex bg-[#141414] items-center flex-row gap-4 p-6 md:h-[180px] border-b  border-[#333333]"
+        >
+          <div className="">
+            <TbFreeRights style={{ color: "#f9da0a", fontSize: "40px" }} />
+          </div>
           <div>
             <p className="text-white font-semibold text-xl md:text-2xl">
               Transparent and Low Fees
@@ -83,13 +92,14 @@ const Features = () => {
             </p>
           </div>
         </div>{" "}
-        <div data-aos="fade-left" className="flex bg-[#141414] items-center flex-row gap-4 p-6 md:h-[180px] border-b md:border-b-0 border-t md:border-t-1 border-[#333333] border-r-[1px]">
-          <img
-            src="/assets/features.svg"
-            alt="getstarted"
-            width={60}
-            height={60}
-          />
+        <div
+          data-aos="fade-left"
+          className="flex bg-[#141414] items-center flex-row gap-4 p-6 md:h-[180px] border-b md:border-b-0 border-t md:border-t-1 border-[#333333] border-r-[1px]"
+        >
+          {" "}
+          <div className="">
+            <SiSpringsecurity style={{ color: "#f9da0a", fontSize: "40px" }} />
+          </div>
           <div>
             <p className="text-white font-semibold text-xl md:text-2xl">
               Robust Security
@@ -101,13 +111,15 @@ const Features = () => {
             </p>
           </div>
         </div>{" "}
-        <div data-aos="fade-right" className="flex bg-[#141414] items-center flex-row gap-4 p-6 md:h-[180px]">
-          <img
-            src="/assets/features.svg"
-            alt="getstarted"
-            width={60}
-            height={60}
-          />
+        <div
+          data-aos="fade-right"
+          className="flex bg-[#141414] items-center flex-row gap-4 p-6 md:h-[180px]"
+        >
+          <div className="">
+            <MdOutlineSupportAgent
+              style={{ color: "#f9da0a", fontSize: "40px" }}
+            />
+          </div>
           <div>
             <p className="text-white font-semibold text-xl md:text-2xl">
               Reliable Customer Support

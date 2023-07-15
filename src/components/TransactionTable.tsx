@@ -61,7 +61,11 @@ const TransactionTable = ({ data }: any) => {
                     {new Date(transactionId?.time).toDateString()}
                   </td>
                   <td className="px-6 py-4">{transactionId?.amount} $</td>
-                  <td className="px-6 py-4">{transactionId?.status}</td>
+                  <td className="px-6 py-4">
+                    {transactionId?.status === "approved"
+                      ? "completed "
+                      : transactionId?.status}
+                  </td>
                   <td className="px-6 py-4">
                     {transactionId?.transactionType.charAt(0).toUpperCase() +
                       transactionId.transactionType.slice(1)}
