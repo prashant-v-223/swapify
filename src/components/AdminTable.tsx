@@ -159,6 +159,9 @@ const AdminTable = () => {
                 Transaction Id
               </th>
               <th scope="col" className="px-6 py-3">
+                User Id
+              </th>
+              <th scope="col" className="px-6 py-3">
                 Coin
               </th>
               <th scope="col" className="px-6 py-3">
@@ -185,10 +188,11 @@ const AdminTable = () => {
                 className="bg-[#1b1b1b] border-b border-[#444242] text-white"
               >
                 <td className="px-6 py-4">{data.id}</td>
+                <td className="px-6 py-4">{data.user_id}</td>
                 {data.transactionType == "deposit" ? (
-                  <td className="px-6 py-4"> {data?.coinFrom} </td>
+                  <td className="px-6 py-4 text-left"> {data?.coinFrom} </td>
                 ) : (
-                  data.coin
+                  <td className="px-6 py-4 text-left"> data.coin </td>
                 )}
                 <td className="px-6 py-4">{data.transactionType}</td>
                 <td className="px-6 py-4">{convertDate(data?.time)}</td>
