@@ -1,14 +1,21 @@
+import { MdSwitchAccount } from "react-icons/md";
+import { BsFillBox2Fill } from "react-icons/bs";
+import { RiPassValidFill, RiSecurePaymentLine } from "react-icons/ri";
+import { BiMoneyWithdraw } from "react-icons/bi";
 
 const GetStarted = () => {
   return (
     <div className="mt-4 overflow-hidden">
-     <div className="flex justify-center">
-     <h1 className="text-[#CCC9C7] text-center mb-12 font-semibold text-3xl border-b-2 border-[#393838] inline-block justify-center pb-4">
-        How to get started ?
-      </h1>
-     </div>
+      <div className="flex justify-center">
+        <h1 className="text-[#CCC9C7] text-center mb-12 font-semibold text-3xl border-b-2 border-[#393838] inline-block justify-center pb-4">
+          How to get started ?
+        </h1>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-        <div data-aos="fade-left" className="flex bg-[#141414] items-center flex-row gap-4 rounded-lg  p-4 md:h-[180px]">
+        <div
+          data-aos="fade-left"
+          className="flex bg-[#141414] items-center flex-row gap-4 rounded-lg  p-4 md:h-[180px]"
+        >
           <img
             src="/assets/getstarted.svg"
             alt="getstarted"
@@ -16,85 +23,86 @@ const GetStarted = () => {
             height={30}
           />
           <div>
-            <p className="text-white font-semibold text-xl md:text-2xl">Sign up</p>
+            <p className="text-white font-semibold text-xl md:text-2xl">
+              Sign up
+            </p>
             <p className="text-[#C0C0C0] text-base mt-2">
-              Create your Swapfry account in a few simple steps. Provide the
-              required info
+              Register with your details on swapfry and signup with ease
             </p>
           </div>
         </div>
-        <div data-aos="fade-up" className="flex bg-[#141414] items-center flex-row gap-4 rounded-lg  p-4 md:h-[180px]">
-          <img
-            src="/assets/getstarted.svg"
-            alt="getstarted"
-            width={30}
-            height={30}
-          />
+        <div
+          data-aos="fade-up"
+          className="flex bg-[#141414] items-center flex-row gap-4 rounded-lg  p-4 md:h-[180px]"
+        >
+          <MdSwitchAccount style={{ color: "#f9da0a", fontSize: "40px" }} />
           <div>
-            <p className="text-white font-semibold text-xl md:text-2xl">Fund account</p>
+            <p className="text-white font-semibold text-xl md:text-2xl">
+              Fund account
+            </p>
             <p className="text-[#C0C0C0] text-base mt-2">
-              Create your Swapfry account in a few simple steps. Provide the
-              required info
+              Make deposit in any cryptocurrency to fund your account
             </p>
           </div>
         </div>
-        <div data-aos="fade-right" className="flex bg-[#141414] items-center flex-row gap-4 rounded-lg p-4 md:h-[180px]">
-          <img
-            src="/assets/getstarted.svg"
-            alt="getstarted"
-            width={30}
-            height={30}
-          />
+        <div
+          data-aos="fade-right"
+          className="flex bg-[#141414] items-center flex-row gap-4 rounded-lg p-4 md:h-[180px]"
+        >
+          <BsFillBox2Fill style={{ color: "#f9da0a", fontSize: "30px" }} />
+
           <div>
-            <p className="text-white font-semibold text-xl md:text-2xl">Place order</p>
+            <p className="text-white font-semibold text-xl md:text-2xl">
+              Place order
+            </p>
             <p className="text-[#C0C0C0] text-base mt-2">
-              Create your Swapfry account in a few simple steps. Provide the
-              required info
+              Place your order anytime after deposit to get the withdrawal
             </p>
           </div>
         </div>
-        <div data-aos="fade-left" className="flex bg-[#141414] items-center flex-row gap-4 rounded-lg p-4 md:h-[180px]">
-          <img
-            src="/assets/getstarted.svg"
-            alt="getstarted"
-            width={30}
-            height={30}
-          />
+        <div
+          data-aos="fade-left"
+          className="flex bg-[#141414] items-center flex-row gap-4 rounded-lg p-4 md:h-[180px]"
+        >
+          <RiPassValidFill style={{ color: "#f9da0a", fontSize: "40px" }} />
+
           <div>
-            <p className="text-white font-semibold text-xl  md:text-2xl">Kyc above 1 BTC</p>
+            <p className="text-white font-semibold text-xl  md:text-2xl">
+              Kyc above 1 BTC
+            </p>
             <p className="text-[#C0C0C0] text-base mt-2">
-              Create your Swapfry account in a few simple steps. Provide the
-              required info
+              KYC will be done for security purpose on a value above 1 BTC
             </p>
           </div>
         </div>
-        <div data-aos="fade-up" className="flex bg-[#141414] items-center flex-row gap-4 rounded-lg  p-4 md:h-[180px]">
-          <img
-            src="/assets/getstarted.svg"
-            alt="getstarted"
-            width={30}
-            height={30}
-          />
+        <div
+          data-aos="fade-up"
+          className="flex bg-[#141414] items-center flex-row gap-4 rounded-lg  p-4 md:h-[180px]"
+        >
+          <BiMoneyWithdraw style={{ color: "#f9da0a", fontSize: "40px" }} />
+
           <div>
-            <p className="text-white font-semibold text-xl md:text-2xl">Withdraw funds</p>
+            <p className="text-white font-semibold text-xl md:text-2xl">
+              Withdraw funds
+            </p>
             <p className="text-[#C0C0C0] text-base mt-2">
-              Create your Swapfry account in a few simple steps. Provide the
-              required info
+              Send a withdrawal request to admin to get a withdrawal easily
             </p>
           </div>
         </div>
-        <div data-aos="fade-right" className="flex bg-[#141414] items-center flex-row gap-4 rounded-lg p-4 md:h-[180px]">
-          <img
-            src="/assets/getstarted.svg"
-            alt="getstarted"
-            width={30}
-            height={30}
-          />
+        <div
+          data-aos="fade-right"
+          className="flex bg-[#141414] items-center flex-row gap-4 rounded-lg p-4 md:h-[180px]"
+        >
+          <RiSecurePaymentLine style={{ color: "#f9da0a", fontSize: "50px" }} />
+
           <div>
-            <p className="text-white font-semibold text-xl md:text-2xl">100% Secure</p>
+            <p className="text-white font-semibold text-xl md:text-2xl">
+              100% Secure
+            </p>
             <p className="text-[#C0C0C0] text-base mt-2">
-              Create your Swapfry account in a few simple steps. Provide the
-              required info
+              Swapfry is 100% secure platform to deposit and withdraw your
+              cryptocurrency
             </p>
           </div>
         </div>

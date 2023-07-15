@@ -44,9 +44,7 @@ const Features = () => {
             <p className="text-[#C0C0C0] text-base mt-2">
               Swapfry supports a diverse range of cryptocurrencies, including
               Bitcoin (BTC), Ethereum (ETH), Tether (USDT) Litecoin (LTC),
-              Ripple (XRP), Tether (USDT) and 400+ more currencies. Swap any
-              combination of assets you desire, diversify your portfolio, or
-              capitalize on emerging trends effortlessly.
+              Ripple (XRP), Tether (USDT) and 400+ more currencies.
             </p>
           </div>
         </div>
