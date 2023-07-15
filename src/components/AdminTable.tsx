@@ -124,6 +124,10 @@ const AdminTable = () => {
       let data1: any = data?.transactionIds.filter((truck: any) => {
         return (
           truck.amount.toString().toLowerCase().match(value) ||
+          truck.id?.toString().toLowerCase().match(value) ||
+          truck.coin?.toString().toLowerCase().match(value) ||
+          truck.coinFrom?.toString().toLowerCase().match(value) ||
+          truck.coinTo?.toString().toLowerCase().match(value) ||
           truck.user_id.toString().toLowerCase().match(value) ||
           truck.status.toString().toLowerCase().match(value) ||
           truck.time.toString().toLowerCase().match(value) ||
@@ -229,7 +233,7 @@ const AdminTable = () => {
                   {data.transactionType == "deposit" ? (
                     <td className="px-6 py-4 text-left"> {data?.coinFrom} </td>
                   ) : (
-                    <td className="px-6 py-4 text-left"> data.coin </td>
+                    <td className="px-6 py-4 text-left"> {data.coin} </td>
                   )}
                   <td className="px-6 py-4">{data.transactionType}</td>
                   <td className="px-6 py-4">{convertDate(data?.time)}</td>
