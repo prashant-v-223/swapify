@@ -31,7 +31,12 @@ const Dashboard = ({
           </div>
         </div>
       </div>
-      {user.role === "admin" && <AdminTable />}
+      {user.role === "admin" && (
+        <>
+        
+          <AdminTable />
+        </>
+      )}
       <TopCrypto view="deshbord" />
     </div>
   );

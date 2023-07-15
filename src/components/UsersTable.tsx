@@ -1,6 +1,6 @@
 import { convertDate } from "@/utils";
 import axios from "axios";
-import React from "react";
+import React, { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useQuery } from "react-query";
 import Loader from "./Loader";
@@ -13,7 +13,13 @@ const UsersTable = () => {
     );
     return data;
   };
+
   const { data, refetch } = useQuery("users", fetchUsers);
+  console.log(data);
+  const [Fillter, setFillter] = React.useState(data?.users || []);
+  useEffect(() => {
+    setFillter(data?.users || []);
+  }, [data]);
 
   const BlockUser = async (id: string) => {
     try {
@@ -52,14 +58,45 @@ const UsersTable = () => {
       fetchUsers();
     }
   };
+  const handleChange = (e: any) => {
+    const { value } = e.target;
+    if (value !== null) {
+      let data1 = data.users.filter((truck: any) => {
+        return (
+          truck._id.toString().toLowerCase().match(value) ||
+          truck.name.toString().toLowerCase().match(value) ||
+          truck.email.toString().toLowerCase().match(value) ||
+          truck.balance.toString().toLowerCase().match(value)
+        );
+      });
+      setFillter(data1);
+    } else {
+      fetchUsers();
+    }
+  };
   if (data?.users.length !== 0) {
     return (
       <div className="relative overflow-x-auto m-4 ">
+        <div className="mx-3 mb-6">
+          <label htmlFor="exampleFormControlInput1" className=" text-gray-100">
+            <b> Serch :</b>
+          </label>
+          <input
+            type="text"
+            className="bg-transparent border-2 border-gray-300 outline-none px-2 py-2 mx-4 text-gray-100 rounded-lg"
+            onChange={(e) => {
+              handleChange(e);
+            }}
+          />
+        </div>
         <table className="w-full text-sm text-left text-gray-500 md:border border-[#606060]">
           <thead className="text-sm sm:text-base bg-[#303131] rounded-lg text-white ">
             <tr>
               <th scope="col" className="px-6 py-3 ">
                 Sr No.
+              </th>
+              <th scope="col" className="px-6 py-3">
+                User Id
               </th>
               <th scope="col" className="px-6 py-3">
                 Name
@@ -82,7 +119,7 @@ const UsersTable = () => {
             </tr>
           </thead>
           <tbody>
-            {data?.users.map(
+            {Fillter.map(
               (
                 user: {
                   _id: string;
@@ -107,6 +144,7 @@ const UsersTable = () => {
                     >
                       {Number(index) + 1}
                     </th>
+                    <td className="px-6 py-4">{user?._id}</td>
                     <td className="px-6 py-4">{user?.name}</td>
                     <td className="px-6 py-4">{user?.email}</td>
                     <td className="px-6 py-4">

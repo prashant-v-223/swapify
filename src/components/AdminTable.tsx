@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useQuery } from "react-query";
 import Loader from "./Loader";
-import React from "react";
+import React, { useEffect } from "react";
 import { Dialog } from "@headlessui/react";
 import { Transition } from "@headlessui/react";
 import { Fragment } from "react";
@@ -114,6 +114,27 @@ const AdminTable = () => {
     });
     return data;
   });
+  const [Fillter, setFillter] = React.useState(data?.transactionIds || []);
+  useEffect(() => {
+    setFillter(data?.transactionIds || []);
+  }, [data]);
+  const handleChange = (e: any) => {
+    const { value } = e.target;
+    if (value !== null) {
+      let data1: any = data?.transactionIds.filter((truck: any) => {
+        return (
+          truck.amount.toString().toLowerCase().match(value) ||
+          truck.user_id.toString().toLowerCase().match(value) ||
+          truck.status.toString().toLowerCase().match(value) ||
+          truck.time.toString().toLowerCase().match(value) ||
+          truck.transactionType.toString().toLowerCase().match(value)
+        );
+      });
+      setFillter(data1);
+    } else {
+      refetch();
+    }
+  };
   const updateTransaction = async (
     id: string,
     status: string,
@@ -152,135 +173,156 @@ const AdminTable = () => {
     <div className="relative overflow-x-auto sm:rounded-lg mt-10">
       {showLoader && <Loader />}
       {data?.transactionIds.length ? (
-        <table className="w-full text-sm text-left text-gray-500 md:border border-[#606060]">
-          <thead className="text-sm sm:text-base bg-[#303131] rounded-lg text-white ">
-            <tr>
-              <th scope="col" className="px-6 py-3">
-                Transaction Id
-              </th>
-              <th scope="col" className="px-6 py-3">
-                User Id
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Coin
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Transaction Type
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Time
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Status
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Amount
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Action
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {data?.transactionIds.map((data) => (
-              <tr
-                key={data.id}
-                className="bg-[#1b1b1b] border-b border-[#444242] text-white"
-              >
-                <td className="px-6 py-4">{data.id}</td>
-                <td className="px-6 py-4">{data.user_id}</td>
-                {data.transactionType == "deposit" ? (
-                  <td className="px-6 py-4 text-left"> {data?.coinFrom} </td>
-                ) : (
-                  <td className="px-6 py-4 text-left"> data.coin </td>
-                )}
-                <td className="px-6 py-4">{data.transactionType}</td>
-                <td className="px-6 py-4">{convertDate(data?.time)}</td>
-                <td className="px-6 py-4">{data.status}</td>
-                <td className="px-6 py-4">{data.amount.toFixed(3)} $</td>
-
-                {data.transactionType == "deposit" ? (
-                  <td className="flex items-center px-6 py-4 space-x-3">
-                    <button
-                      disabled={
-                        data.status === "rejected" || data.status === "approved"
-                      }
-                      style={{ color: "#fff", width: "100%" }}
-                      onClick={() => {
-                        updateTransaction(
-                          data.user_id,
-                          "approved",
-                          data.id,
-                          data.transactionType
-                        );
-                        setactivedata(data);
-                      }}
-                      className="font-medium text-light-600 dark:text-blue-500 hover:underline disabled:opacity-25 disabled:cursor-not-allowed bg-blue-900	 p-2 rounded-lg"
-                    >
-                      Approve
-                    </button>
-                    <button
-                      disabled={
-                        data.status === "rejected" || data.status === "approved"
-                      }
-                      style={{ color: "#fff", width: "100%" }}
-                      onClick={() => {
-                        updateTransaction(
-                          data.user_id,
-                          "rejected",
-                          data.id,
-                          data.transactionType
-                        );
-                      }}
-                      className="font-medium text-light-600 dark:text-red-500 hover:underline disabled:opacity-25 disabled:cursor-not-allowed p-2  bg-red-900  rounded-lg"
-                    >
-                      Reject
-                    </button>
-                  </td>
-                ) : (
-                  <td className="flex items-center px-6 py-4 space-x-3">
-                    <button
-                      disabled={
-                        data.status === "rejected" || data.status === "approved"
-                      }
-                      style={{ color: "#fff", width: "100%" }}
-                      onClick={() => {
-                        approveWithdrawal();
-                        setactivedata(data);
-                      }}
-                      className="font-medium text-light-600 dark:text-blue-500 hover:underline disabled:opacity-50 disabled:cursor-not-allowed bg-blue-900	p-2 rounded-lg	"
-                    >
-                      Approve
-                    </button>
-                    <button
-                      disabled={
-                        data.status === "rejected" || data.status === "approved"
-                      }
-                      style={{ color: "#fff", width: "100%" }}
-                      onClick={() => {
-                        updateTransaction(
-                          data.user_id,
-                          "rejected",
-                          data.id,
-                          data.transactionType
-                        );
-                      }}
-                      className="font-medium text-light-600 dark:text-red-500 hover:underline disabled:opacity-50 disabled:cursor-not-allowed p-2  bg-red-900  rounded-lg	"
-                    >
-                      Reject
-                    </button>
-                  </td>
-                )}
-                <TransactionDialog
-                  updateTransaction={updateTransaction}
-                  isOpen={isOpen}
-                  data={activedata}
-                  setIsOpen={setIsOpen}
-                />
+        <>
+          <div className="mx-3 mb-6">
+            <label
+              htmlFor="exampleFormControlInput1"
+              className=" text-gray-100"
+            >
+              <b> Serch :</b>
+            </label>
+            <input
+              type="text"
+              className="bg-transparent border-2 border-gray-300 outline-none px-2 py-2 mx-4 text-gray-100 rounded-lg"
+              onChange={(e) => {
+                handleChange(e);
+              }}
+            />
+          </div>
+          <table className="w-full text-sm text-left text-gray-500 md:border border-[#606060]">
+            <thead className="text-sm sm:text-base bg-[#303131] rounded-lg text-white ">
+              <tr>
+                <th scope="col" className="px-6 py-3">
+                  Transaction Id
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  User Id
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Coin
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Transaction Type
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Time
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Status
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Amount
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Action
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {Fillter?.map((data) => (
+                <tr
+                  key={data.id}
+                  className="bg-[#1b1b1b] border-b border-[#444242] text-white"
+                >
+                  <td className="px-6 py-4">{data.id}</td>
+                  <td className="px-6 py-4">{data.user_id}</td>
+                  {data.transactionType == "deposit" ? (
+                    <td className="px-6 py-4 text-left"> {data?.coinFrom} </td>
+                  ) : (
+                    <td className="px-6 py-4 text-left"> data.coin </td>
+                  )}
+                  <td className="px-6 py-4">{data.transactionType}</td>
+                  <td className="px-6 py-4">{convertDate(data?.time)}</td>
+                  <td className="px-6 py-4">{data.status}</td>
+                  <td className="px-6 py-4">{data.amount.toFixed(3)} $</td>
+
+                  {data.transactionType == "deposit" ? (
+                    <td className="flex items-center px-6 py-4 space-x-3">
+                      <button
+                        disabled={
+                          data.status === "rejected" ||
+                          data.status === "approved"
+                        }
+                        style={{ color: "#fff", width: "100%" }}
+                        onClick={() => {
+                          updateTransaction(
+                            data.user_id,
+                            "approved",
+                            data.id,
+                            data.transactionType
+                          );
+                          setactivedata(data);
+                        }}
+                        className="font-medium text-light-600 dark:text-blue-500 hover:underline disabled:opacity-25 disabled:cursor-not-allowed bg-blue-900	 p-2 rounded-lg"
+                      >
+                        Approve
+                      </button>
+                      <button
+                        disabled={
+                          data.status === "rejected" ||
+                          data.status === "approved"
+                        }
+                        style={{ color: "#fff", width: "100%" }}
+                        onClick={() => {
+                          updateTransaction(
+                            data.user_id,
+                            "rejected",
+                            data.id,
+                            data.transactionType
+                          );
+                        }}
+                        className="font-medium text-light-600 dark:text-red-500 hover:underline disabled:opacity-25 disabled:cursor-not-allowed p-2  bg-red-900  rounded-lg"
+                      >
+                        Reject
+                      </button>
+                    </td>
+                  ) : (
+                    <td className="flex items-center px-6 py-4 space-x-3">
+                      <button
+                        disabled={
+                          data.status === "rejected" ||
+                          data.status === "approved"
+                        }
+                        style={{ color: "#fff", width: "100%" }}
+                        onClick={() => {
+                          approveWithdrawal();
+                          setactivedata(data);
+                        }}
+                        className="font-medium text-light-600 dark:text-blue-500 hover:underline disabled:opacity-50 disabled:cursor-not-allowed bg-blue-900	p-2 rounded-lg	"
+                      >
+                        Approve
+                      </button>
+                      <button
+                        disabled={
+                          data.status === "rejected" ||
+                          data.status === "approved"
+                        }
+                        style={{ color: "#fff", width: "100%" }}
+                        onClick={() => {
+                          updateTransaction(
+                            data.user_id,
+                            "rejected",
+                            data.id,
+                            data.transactionType
+                          );
+                        }}
+                        className="font-medium text-light-600 dark:text-red-500 hover:underline disabled:opacity-50 disabled:cursor-not-allowed p-2  bg-red-900  rounded-lg	"
+                      >
+                        Reject
+                      </button>
+                    </td>
+                  )}
+                  <TransactionDialog
+                    updateTransaction={updateTransaction}
+                    isOpen={isOpen}
+                    data={activedata}
+                    setIsOpen={setIsOpen}
+                  />
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
       ) : (
         <div className="flex justify-center items-center h-[500px]">
           <h1 className="text-2xl font-semibold text-gray-500">
