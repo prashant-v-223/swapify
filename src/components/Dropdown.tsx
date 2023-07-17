@@ -104,6 +104,7 @@ export default function DropDown({
                               shortName: network?.shortName,
                               name: network?.name,
                             });
+                            setalldata(items.slice(0, 100));
                           }}
                         >
                           {() => (
