@@ -86,7 +86,7 @@ const GetStarted = () => {
               Withdraw funds
             </p>
             <p className="text-[#C0C0C0] text-base mt-2">
-              Send a withdrawal request to admin to get a withdrawal easily
+              Send a withdrawal request to   get a withdrawal easily
             </p>
           </div>
         </div>
