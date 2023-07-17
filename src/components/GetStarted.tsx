@@ -68,10 +68,10 @@ const GetStarted = () => {
 
           <div>
             <p className="text-white font-semibold text-xl  md:text-2xl">
-              Kyc above 1 BTC
+              No KYC
             </p>
             <p className="text-[#C0C0C0] text-base mt-2">
-              KYC will be done for security purpose on a value above 1 BTC
+              No need of KYC process on swapfry to convert assets
             </p>
           </div>
         </div>
