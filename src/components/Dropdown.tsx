@@ -1,6 +1,5 @@
 import { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { BiSolidDownArrow } from "react-icons/bi";
 
 export default function DropDown({
   selected,
@@ -107,7 +106,7 @@ export default function DropDown({
                             });
                           }}
                         >
-                          {({ selected }) => (
+                          {() => (
                             <div className={`CoinWithNetwork_coin__31Gw- `}>
                               <div className="CoinWithNetwork_coinIconWrapper__c5V45">
                                 <img
