@@ -23,7 +23,7 @@ export default function DropDown({
         return (
           truck.name.toString().toLowerCase().match(value) ||
           truck.name.toString().match(value) ||
-          truck.code?.toString().match(value) ||
+          truck.code?.toString().toLowerCase().match(value) ||
           truck.code?.toString().match(value)
         );
       });
