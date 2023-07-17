@@ -3,10 +3,16 @@ import toast from "react-hot-toast";
 import QRCodeGenerator from "./QRCodeGenerator";
 type TDialogBox = {
   closeModal(): void;
+  address: any;
   transaction: Transaction;
   isOpen: boolean;
 };
-const DialogBox = ({ closeModal, isOpen, transaction }: TDialogBox) => {
+const DialogBox = ({
+  closeModal,
+  isOpen,
+  address,
+  transaction,
+}: TDialogBox) => {
   const copyToClipboard = (): void => {
     navigator.clipboard.writeText(transaction?.depositAddress);
     toast.success("Copied Successfully !");
@@ -31,7 +37,7 @@ const DialogBox = ({ closeModal, isOpen, transaction }: TDialogBox) => {
                     </h3>
                   </div>
                 </div>
-                <QRCodeGenerator walletAddress={transaction?.depositAddress} />
+                <QRCodeGenerator walletAddress={address} />
                 <div className="mt-4">
                   <label className="text-sm " htmlFor="share link">
                     Deposit {transaction?.coinFrom?.coinName} address

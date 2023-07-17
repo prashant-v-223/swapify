@@ -67,6 +67,7 @@ const Deposit = () => {
     networkFrom: "TRX",
     networkTo: "BTT",
   });
+  console.log("transactionCoin", transactionCoin);
 
   const [selectedNetwork, setSelectedNetwork] = useState({
     name: "",
@@ -205,16 +206,16 @@ const Deposit = () => {
         setAddress("TQr7CQvFk3RhLXZHiNoEy6sx4ZGJSFokCz");
         break;
       case "BTC":
-        setAddress("1MmYaftVEfW8o67sDRUnNhgHRuyiV9RJYd");
+        setAddress("bc1qf6c24nv96068hjt3krzn8eaz5eajt3f4j8lkp4");
         break;
       case "ETH":
-        setAddress("0x8244adac2673177898fb4eca394c8eb655db255a");
+        setAddress("0xac5eb20148038Ba2989A4C0b07eCf6E87D7cEca3");
         break;
       case "BTT":
         setAddress("TQr7CQvFk3RhLXZHiNoEy6sx4ZGJSFokCz");
         break;
       case "TRX":
-        setAddress("TQr7CQvFk3RhLXZHiNoEy6sx4ZGJSFokCz");
+        setAddress("TJXxDh6T1pQ4ksBbqRuAUzBHfdBS2H51Yd");
         break;
       case "XRP":
         setAddress("rNxp4h8apvRis6mJf9Sh8C6iRxfrDWN7AV");
@@ -223,7 +224,7 @@ const Deposit = () => {
         setAddress("tz2WGj1Ua26FaqnEiCing6q2wsg38ZtexhwM");
         break;
       case "BNB":
-        setAddress("0x8244adac2673177898fb4eca394c8eb655db255a");
+        setAddress("0xac5eb20148038Ba2989A4C0b07eCf6E87D7cEca3");
         break;
       case "AVAXC":
         setAddress("X-avax1yypqyh0vw90ffd8a79dmuwmz9jyq4sfkldakfn");
@@ -378,10 +379,11 @@ const Deposit = () => {
           </div>
         </div>
       </div>
-      <TransactionTable data="deposit" />
+      <TransactionTable data="deposit" user={user} />
       <DialogBox
         isOpen={isOpen}
         closeModal={closeModal}
+        address={address}
         transaction={transaction}
       />
       {showLoading && <Loader />}

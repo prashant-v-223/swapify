@@ -1,18 +1,21 @@
-import { useUserInfo } from "@/store";
+import { fetchAndStoreUserInfo, useUserInfo } from "@/store";
 import { useEffect, useState } from "react";
 
-const TransactionTable = ({ data }: any) => {
+const TransactionTable = ({ data, isOpen }: any) => {
+  console.log(isOpen);
+
+  const { user } = useUserInfo((state) => state.data);
   const [userdata, setuserdata] = useState([]);
   useEffect(() => {
+    fetchAndStoreUserInfo();
     let usertransactionIds: any = user?.transactionIds.filter((e: any) => {
       console.log(e);
 
       return e.transactionType === data;
     });
     setuserdata(usertransactionIds);
-  }, [data]);
+  }, [data, isOpen]);
 
-  const { user } = useUserInfo((state) => state.data);
   if (user?.transactionIds.length !== 0) {
     return (
       <div className="relative overflow-x-auto mt-4 ">
