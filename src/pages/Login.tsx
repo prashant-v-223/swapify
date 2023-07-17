@@ -267,7 +267,7 @@ const Login = () => {
                         Enter OTP
                       </label>
                       <input
-                        type="text"
+                        type="number"
                         name="otp"
                         id="otp"
                         placeholder="otp"
