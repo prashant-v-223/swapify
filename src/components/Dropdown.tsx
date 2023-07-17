@@ -22,7 +22,9 @@ export default function DropDown({
       let data1: any = items.filter((truck: any) => {
         return (
           truck.name.toString().toLowerCase().match(value) ||
-          truck.code?.toString().toLowerCase().match(value)
+          truck.name.toString().match(value) ||
+          truck.code?.toString().match(value) ||
+          truck.code?.toString().match(value)
         );
       });
       setalldata(data1);
