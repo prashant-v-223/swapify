@@ -132,7 +132,7 @@ const Login = () => {
                           aria-describedby="remember"
                           type="checkbox"
                           className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300"
-                          required
+                          
                         />
                       </div>
                       <div className="ml-3 text-sm">

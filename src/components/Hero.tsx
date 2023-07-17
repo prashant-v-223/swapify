@@ -31,15 +31,19 @@ const Hero = () => {
     >
       <div className="flex flex-col gap-4 justify-center md:hidden ">
         <span className="text-white md:my-1 text-2xl font-bold leading-10">
-          Exchange your crypto assets instantly on {" "}
+          Exchange your crypto assets instantly on{" "}
           <span className="text-3xl font-bold leading-10 text-yellow-400">
             Swapfry
           </span>
         </span>
         <div className="text-white text-base font-medium leading-9">
-          You can instantly swap your cryptocurrency assets on Swapfry with minimal fees.
+          You can instantly swap your cryptocurrency assets on Swapfry with
+          minimal fees.
         </div>
-        <Link  to={'/login'} className="p-2 w-full text-center bg-gradient-to-r from-[#F9DA0A] to-[#F9DA0A] text-[#000000] font-semibold rounded-xl text-base ">
+        <Link
+          to={"/login"}
+          className="p-2 w-full text-center bg-gradient-to-r from-[#F9DA0A] to-[#F9DA0A] text-[#000000] font-semibold rounded-xl text-base "
+        >
           Get started
         </Link>
       </div>
@@ -57,7 +61,10 @@ const Hero = () => {
           You can instantly swap your cryptocurrency <br />
           assets on Swapfry with minimal fees.
         </div>
-        <Link to={'/login'} className="p-3  text-center  md:p-4 md:w-52 w-full bg-gradient-to-r from-[#F9DA0A] to-[#F9DA0A] text-[#000000] font-semibold rounded-xl text-base ">
+        <Link
+          to={"/login"}
+          className="p-3  text-center  md:p-4 md:w-52 w-full bg-gradient-to-r from-[#F9DA0A] to-[#F9DA0A] text-[#000000] font-semibold rounded-xl text-base "
+        >
           Get started
         </Link>
       </div>
@@ -78,7 +85,7 @@ const Hero = () => {
                 You send
               </p>
               <div className="flex text-white">
-                <div className="relative gap-4 w-full">
+                <div className="relative gap-4 w-full h-[75px]">
                   <input
                     type="number"
                     name="send"
@@ -90,9 +97,9 @@ const Hero = () => {
                       fetchPrice(Number(values.send), setFieldValue);
                     }}
                     placeholder="0"
-                    className="py-4 px-4 rounded-md placeholder-white placeholder-inherit bg-transparent border border-[#4E4E4E80] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full"
+                    className="py-4 h-[100%] px-4 rounded-md placeholder-white placeholder-inherit bg-transparent border border-[#4E4E4E80] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full"
                   />
-                  <div className="absolute w-fit flex gap-4 justify-center items-center placeholder-white bg-[#090807] right-0 top-0 bottom-0 h-full border-transparent bg-transparent text-white py-2 pr-8 pl-4 rounded-md appearance-none">
+                  <div className="absolute flex gap-4 justify-center items-center placeholder-white bg-[#090807] right-0 top-0 bottom-0 h-full border-transparent text-white py-2 pr-8 pl-4 rounded-md appearance-none bg-[#111010]  w-[170px]   ">
                     <img src="/assets/btc.svg" alt="bitcoin" />
                     <div className="flex flex-col">
                       <p className="text-white font-semibold">BTC</p>
@@ -105,7 +112,7 @@ const Hero = () => {
                 You get
               </p>
               <div className="flex text-white">
-                <div className="relative gap-4 w-full">
+                <div className="relative gap-4 w-full h-[75px]">
                   <input
                     name="receive"
                     value={values.receive}
@@ -114,9 +121,9 @@ const Hero = () => {
                     id="receive"
                     type="number"
                     placeholder="0"
-                    className="py-4 px-4 rounded-md placeholder-white placeholder-inherit bg-transparent border border-[#4E4E4E80] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full"
+                    className="py-4 px-4 h-[100%] rounded-md placeholder-white placeholder-inherit bg-transparent border border-[#4E4E4E80] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full"
                   />
-                  <div className="absolute w-fit flex gap-4 justify-center items-center placeholder-white bg-[#090807] right-0 top-0 bottom-0 h-full border-transparent bg-transparent text-white py-2 pr-8 pl-4 rounded-md appearance-none">
+                  <div className="absolute flex gap-4 justify-center items-center placeholder-white bg-[#090807] right-0 top-0 bottom-0 h-full border-transparent  text-white py-2 pr-8 pl-4 rounded-md appearance-none bg-[#111010] w-[170px] ">
                     <img src="/assets/eth.svg" alt="bitcoin" />
                     <div className="flex flex-col">
                       <p className="text-white font-semibold">ETH</p>

@@ -267,7 +267,7 @@ const Deposit = () => {
                 <label htmlFor="currencyToSend" className="text-white">
                   You Send
                 </label>
-                <div className="flex w-full rounded-lg flex-col md:flex-row justify-center border-1 md:border-2 border-[#454545] items-center  bg-[#242424]">
+                <div className="flex relative w-full rounded-lg flex-col md:flex-row justify-center border-1 md:border-2 border-[#454545] items-center  bg-[#242424]">
                   <input
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -281,7 +281,12 @@ const Deposit = () => {
                     placeholder="Enter amount"
                     className="text-white  appearance-none bg-[#242424] outline-none  rounded-lg disabled:cursor-not-allowed w-full h-full p-4 "
                   />
-                  <div className="w-fit pl-4 flex gap-4 justify-center items-center placeholder-white  h-full border-transparent bg-transparent text-white px-4 py-2 rounded-md appearance-none">
+                  <div
+                    className="w-fit pl-4 flex gap-4 justify-center items-center placeholder-white  h-full border-transparent bg-transparent text-white px-4 py-2 rounded-md appearance-none"
+                    style={{
+                      backgroundColor: "#111010",
+                    }}
+                  >
                     <DropDown
                       selectedValues={selectedValues}
                       items={data}
@@ -294,7 +299,7 @@ const Deposit = () => {
                 <label htmlFor="currencyToSend" className="text-white">
                   You Get
                 </label>
-                <div className="flex w-full flex-col md:flex-row rounded-lg border-1 md:border-2 border-[#454545] items-center  bg-[#242424]">
+                <div className="flex relative w-full rounded-lg flex-col md:flex-row justify-center border-1 md:border-2 border-[#454545] items-center  bg-[#242424]">
                   <input
                     id="amount"
                     name="amount"
@@ -306,7 +311,12 @@ const Deposit = () => {
                     placeholder="Enter amount"
                     className="text-white appearance-none bg-[#242424] rounded-lg outline-none disabled:cursor-not-allowed w-full h-full p-4 "
                   />
-                  <div className="w-fit pl-4  flex gap-4 justify-center items-center placeholder-white  h-full border-transparent bg-transparent text-white px-4 py-2 rounded-md appearance-none">
+                  <div
+                    className="w-fit pl-4 flex gap-4 justify-center items-center placeholder-white  h-full border-transparent bg-transparent text-white px-4 py-2 rounded-md appearance-none"
+                    style={{
+                      backgroundColor: "#111010",
+                    }}
+                  >
                     <DropDown
                       selectedValues={selectedValues2}
                       items={data}

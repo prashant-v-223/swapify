@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 import { BiSolidDownArrow } from "react-icons/bi";
 
@@ -15,28 +15,58 @@ export default function DropDown({
   selectedValues: any;
   setSelectedNetwork: any;
 }) {
+  const [alldata, setalldata] = useState(items.slice(0, 100));
+  console.log(items);
+  const handleFilter = (e: any) => {
+    const { value } = e.target;
+    if (value !== null) {
+      let data1: any = items.filter((truck: any) => {
+        return (
+          truck.name.toString().toLowerCase().match(value) ||
+          truck.code?.toString().toLowerCase().match(value)
+        );
+      });
+      setalldata(data1);
+    }
+  };
   return (
-    <div className="w-56">
+    <div className="">
       <Listbox value={selected} onChange={handleSelect}>
         {({ open }) => (
-          <div className="relative mt-1 w-fit  text-white">
+          <div className=" mt-1 w-fit  text-white">
             <Listbox.Button
-              className={`relative w-64 cursor-default rounded-lg  py-2  text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm`}
+              className={` w-64 cursor-default rounded-lg  py-2  text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm`}
             >
-              <span className="flex gap-4 items-center truncate">
-                <img
-                  width={20}
-                  height={20}
-                  src={selected?.icon ?? selectedValues?.icon}
-                  alt="notfound"
-                />
-                {selected?.name.slice(0, 18) ??
-                  selectedValues?.name.slice(0, 18)}
-
-                <BiSolidDownArrow
-                  style={{ color: "#f3de1b", fontSize: "14px" }}
-                />
-              </span>
+              <div className="SelectedByNetworks_selectCoin__uBFIj">
+                <div className="SelectedByNetworks_selectCoinIconWrapp__YlQTs">
+                  <img
+                    className="SelectedByNetworks_selectCoinIcon__TkhXQ"
+                    src={selected?.icon ?? selectedValues?.icon}
+                    alt="Bitcoin"
+                    width="512"
+                    height="512"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="SelectedByNetworks_selectCoinData__Nu7ym">
+                  <span
+                    className="SelectedByNetworks_selectCoinCode__5AKfq"
+                    title={selected?.code}
+                  >
+                    {selected?.code}
+                  </span>
+                  <span
+                    className="SelectedByNetworks_selectCoinName__9ZENN"
+                    title={
+                      selected?.name.slice(0, 18) ??
+                      selectedValues?.name.slice(0, 18)
+                    }
+                  >
+                    {selected?.name.slice(0, 18) ??
+                      selectedValues?.name.slice(0, 18)}
+                  </span>
+                </div>
+              </div>
             </Listbox.Button>
             <Transition
               as={Fragment}
@@ -45,48 +75,72 @@ export default function DropDown({
               leaveTo="opacity-0"
             >
               <Listbox.Options
-                className={`absolute right-4 md:right-10 mt-2 max-h-60 w-full overflow-auto rounded-md bg-[#242424] py-1 text-base ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm  ${
+                className={`absolute right-4 md:right-10 mt-2 max-h-80 w-full overflow-auto rounded-md bg-[#242424] py-1 text-base ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm  ${
                   open ? " z-10 " : " z-0 "
                 } `}
               >
-                {items?.map((person: any) => {
-                  return person?.networks?.map(
-                    (network: any, index: number) => (
-                      <Listbox.Option
-                        key={index}
-                        className={({ active }) =>
-                          `relative cursor-default select-none py-4 p-3 ${
-                            active ? "bg-yellow-100 text-black" : "text-white"
-                          }`
-                        }
-                        value={person}
-                        onClick={() => {
-                          setSelectedNetwork({
-                            network: network?.network,
-                            shortName: network?.shortName,
-                            name: network?.name,
-                          });
-                        }}
-                      >
-                        {({ selected }) => (
-                          <span
-                            className={`flex gap-2  items-center truncate ${
-                              selected ? "font-medium" : "font-normal"
-                            } `}
-                          >
-                            <img
-                              width={20}
-                              height={20}
-                              src={person?.icon}
-                              alt="notfound"
-                            />
-                            <sup>{network?.network}</sup> {person?.name}
-                          </span>
-                        )}
-                      </Listbox.Option>
-                    )
-                  );
-                })}
+                <input
+                  type="text"
+                  style={{
+                    zIndex: 999,
+                  }}
+                  onChange={handleFilter}
+                  className="border border-gray-400 rounded-lg p-4 w-[95%] bg-[#171d21] m-[2.5%] mb-0 fixed-top-left-radius sticky top-[2.5%]"
+                />
+                {alldata.length > 0 ? (
+                  alldata?.map((person: any) => {
+                    return person?.networks?.map(
+                      (network: any, index: number) => (
+                        <Listbox.Option
+                          key={index}
+                          className={({ active }) =>
+                            ` cursor-default select-none py-1 p-3  ${
+                              active ? "text-black" : "text-white"
+                            }`
+                          }
+                          value={person}
+                          onClick={() => {
+                            setSelectedNetwork({
+                              network: network?.network,
+                              shortName: network?.shortName,
+                              name: network?.name,
+                            });
+                          }}
+                        >
+                          {({ selected }) => (
+                            <div className={`CoinWithNetwork_coin__31Gw- `}>
+                              <div className="CoinWithNetwork_coinIconWrapper__c5V45">
+                                <img
+                                  className="CoinWithNetwork_coinIcon__sGE-j"
+                                  src={person?.icon}
+                                  alt="Bitcoin"
+                                  width="512"
+                                  height="512"
+                                  loading="lazy"
+                                />
+                              </div>
+                              <div className="CoinWithNetwork_coinLeft__A0UW2">
+                                <span className="CoinWithNetwork_coinCode__WArxX">
+                                  {person?.code}
+                                </span>
+                                <span className="CoinWithNetwork_coinName__I3C9j">
+                                  {person?.name}
+                                </span>
+                              </div>
+                              <div className="CoinWithNetwork_coinRight__NtJ3L">
+                                <div className="CoinWithNetwork_coinNetworkCode__nsODW">
+                                  <sup>{network?.network}</sup>
+                                </div>{" "}
+                              </div>
+                            </div>
+                          )}
+                        </Listbox.Option>
+                      )
+                    );
+                  })
+                ) : (
+                  <h1 className="py-5 text-center text-2xl">DATA NOT FOUND</h1>
+                )}
               </Listbox.Options>
             </Transition>
           </div>
