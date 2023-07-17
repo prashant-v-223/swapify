@@ -32,7 +32,7 @@ const RiskDisclaimer = () => {
             easy and secure and we fulfil this intent with dignity.
           </p>
         </div>
-        <div className="text-white p-8 py-24 flex gap-4 flex-col w-100">
+        <div className="text-white p-8 md:py-24 flex gap-4 flex-col w-100">
           <img
             data-aos="fade-left"
             src="/assets/about-us 1.png"
