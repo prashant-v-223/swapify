@@ -5,13 +5,14 @@ import { Formik } from "formik";
 import { toast } from "react-hot-toast";
 import DialogBox from "./DialogBox";
 import { Transaction } from "@/types";
-import { useUserInfo } from "@/store";
+import { fetchAndStoreUserInfo, useUserInfo } from "@/store";
 import * as Yup from "yup";
 import Loader from "./Loader";
 import DropDown from "./Dropdown";
 import data from "./data.json";
 const Deposit = ({ selected1 }: any) => {
-  const { user } = useUserInfo((state) => state.data);
+  let { user } = useUserInfo((state) => state.data);
+  let [data1, setdata1] = useState<any>(user);
   let [isOpen, setIsOpen] = useState<boolean>(false);
   let [transaction, setTransaction] = useState<Transaction>({
     id: "",
@@ -51,12 +52,7 @@ const Deposit = ({ selected1 }: any) => {
     status: "",
     email: null,
   });
-  console.log(
-    "data",
-    data.find((e) => {
-      e.name === selected1.name;
-    })
-  );
+  
 
   const [showLoading, setShowLoading] = useState<boolean>(false);
   const [selected, setSelected] = useState(data?.[0]);
@@ -74,7 +70,6 @@ const Deposit = ({ selected1 }: any) => {
     networkFrom: "TRX",
     networkTo: "BTT",
   });
-  console.log("transactionCoin", transactionCoin);
 
   const [selectedNetwork, setSelectedNetwork] = useState({
     name: "",
@@ -251,8 +246,17 @@ const Deposit = ({ selected1 }: any) => {
     }
   };
 
-  function closeModal(): void {
+  async function closeModal() {
     setIsOpen(false);
+    const response = await axios(
+      `${process.env.VITE_SERVER_URL}/users/fetch-user`,
+      {
+        headers: {
+          "auth-token": localStorage.getItem("token"),
+        },
+      }
+    );
+    setdata1(response.data.user);
   }
 
   return (
@@ -339,12 +343,12 @@ const Deposit = ({ selected1 }: any) => {
                     />
                   </div>
                 </div>
-                {/* {error && (
+                {error && (
                   <p className="text-sm text-red-700">
                     Amount to exchange is below the possible min amount to
                     exchange
                   </p>
-                )} */}
+                )}
                 {minAmount >= Number(values.amount) && (
                   <p className="text-sm text-red-700">
                     The min amount to exchange is {minAmount}
@@ -391,7 +395,7 @@ const Deposit = ({ selected1 }: any) => {
           </div>
         </div>
       </div>
-      <TransactionTable data="deposit" user={user} />
+      <TransactionTable data="deposit" user={data1} />
       <DialogBox
         isOpen={isOpen}
         closeModal={closeModal}

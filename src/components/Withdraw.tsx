@@ -9,7 +9,8 @@ import Loader from "./Loader";
 import data from "./data.json";
 import DropDown from "./Dropdown";
 const Withdraw = () => {
-  const { user } = useUserInfo((state) => state.data);
+  let { user } = useUserInfo((state) => state.data);
+  let [data1, setdata1] = useState<any>(user);
   const [showLoading, setShowLoading] = useState<boolean>(false);
   const [selected, setSelected] = useState(data?.[0]);
   // @ts-ignore
@@ -55,6 +56,16 @@ const Withdraw = () => {
         userId: user._id,
       });
       toast.success("Withdrawal request sent successfully");
+
+      const response = await axios(
+        `${process.env.VITE_SERVER_URL}/users/fetch-user`,
+        {
+          headers: {
+            "auth-token": localStorage.getItem("token"),
+          },
+        }
+      );
+      setdata1(response.data.user);
       // } else {
       //   toast.error("Please make sure you have enough balance...");
       // }
@@ -175,7 +186,7 @@ const Withdraw = () => {
           </div>
         </div>
       </div>
-      <TransactionTable data="withdraw" />
+      <TransactionTable data="withdraw" user={data1} />
       {showLoading && <Loader />}
     </div>
   );

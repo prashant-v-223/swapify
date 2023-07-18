@@ -27,7 +27,6 @@ function TransactionDialog({
   function closeModal() {
     setIsOpen(false);
   }
-  console.log(data);
 
   return (
     <>
@@ -162,7 +161,6 @@ const AdminTable = () => {
           },
         }
       );
-      console.log(response.data);
       refetch();
     } catch (error) {
       console.log(error);

@@ -18,7 +18,6 @@ export default function DropDown({
 }) {
   const [alldata, setalldata] = useState(items);
   const [selected12, setselected12] = useState(selected);
-  console.log("selected", selected12);
 
   useEffect(() => {
     if (selected1 !== undefined) {
@@ -29,17 +28,15 @@ export default function DropDown({
         );
       });
       setselected12(data1[0]);
-      console.log("data1", data1);
-      console.log("data1", data1);
     }
   }, [selected1]);
 
-  console.log(items);
   const handleFilter = (e: any) => {
     const { value } = e.target;
     if (value !== null) {
       let data1: any = items.filter((truck: any) => {
         return (
+          truck.name.toString().toLowerCase().match(value) ||
           truck.name.toString().toLowerCase().match(value) ||
           truck.name.toString().match(value) ||
           truck.code?.toString().toLowerCase().match(value) ||
@@ -112,8 +109,11 @@ export default function DropDown({
                     return person?.networks?.map(
                       (network: any, index: number) => {
                         {
-                          return (
-                            network?.network === "TRX" && (
+                          if (
+                            network?.network === "BSC" ||
+                            network?.network === "TRX"
+                          ) {
+                            return (
                               <Listbox.Option
                                 key={index}
                                 className={({ active }) =>
@@ -158,8 +158,8 @@ export default function DropDown({
                                   </div>
                                 </div>
                               </Listbox.Option>
-                            )
-                          );
+                            );
+                          }
                         }
                       }
                     );
