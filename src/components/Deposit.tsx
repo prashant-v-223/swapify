@@ -194,51 +194,59 @@ const Deposit = ({ selected1 }: any) => {
   const createTransactiom = async (amount: string, resetForm: () => void) => {
     setShowLoading(true);
     try {
-      let response = await axios.post(
-        "https://exolix.com/api/v2/transactions",
-        {
-          amount: Number(amount),
-          coinFrom: transactionCoin.coinFrom,
-          coinTo: transactionCoin.coinTo,
-          withdrawalAddress: address,
-          withdrawalExtraId: user._id,
-          networkFrom: transactionCoin.networkFrom
-            ? transactionCoin.networkFrom
-            : "TRX",
-          networkTO: transactionCoin.networkTo
-            ? transactionCoin.networkTo
-            : "BTT",
-        }
+      const { data } = await axios.get(
+        `https://exolix.com/api/v2/rate?coinFrom=${
+          transactionCoin.coinFrom
+        }&coinTo=USDT&networkTo=${selectedNetwork2.network}&amount=${Number(
+          amount
+        )}&rateType=fixed`
       );
-      if (response.status === 201) {
-        console.log(selectedNetwork2.network);
-        const { data } = await axios.get(
-          `https://exolix.com/api/v2/rate?coinFrom=${
-            transactionCoin.coinFrom
-          }&coinTo=USDT&networkTo=${selectedNetwork2.network}&amount=${Number(
-            amount
-          )}&rateType=fixed`
-        );
-        console.log(data, "data ::::::::");
-
-        await axios.post(`${process.env.VITE_SERVER_URL}/users/transactions`, {
-          transaction: {
-            id: response.data.id,
-            amount: data.toAmount,
+      if (data) {
+        let response = await axios.post(
+          "https://exolix.com/api/v2/transactions",
+          {
+            amount: Number(amount),
             coinFrom: transactionCoin.coinFrom,
             coinTo: transactionCoin.coinTo,
-            status: "pending",
-            time: response.data.createdAt,
-            user_id: user._id,
-            transactionType: "deposit",
-          },
-          userId: user._id,
-        });
-        setTransaction(response.data);
-        setIsOpen(true);
+            withdrawalAddress: (transactionCoin.coinTo = "BTC"
+              ? "bc1qf6c24nv96068hjt3krzn8eaz5eajt3f4j8lkp4"
+              : address),
+            withdrawalExtraId: user._id,
+            networkFrom: transactionCoin.networkFrom
+              ? transactionCoin.networkFrom
+              : "TRX",
+            networkTO: transactionCoin.networkTo
+              ? transactionCoin.networkTo
+              : "BTT",
+          }
+        );
+        if (response.status === 201) {
+          console.log(selectedNetwork2.network);
+
+          console.log(data, "data ::::::::");
+
+          await axios.post(
+            `${process.env.VITE_SERVER_URL}/users/transactions`,
+            {
+              transaction: {
+                id: response.data.id,
+                amount: data.toAmount,
+                coinFrom: transactionCoin.coinFrom,
+                coinTo: transactionCoin.coinTo,
+                status: "pending",
+                time: response.data.createdAt,
+                user_id: user._id,
+                transactionType: "deposit",
+              },
+              userId: user._id,
+            }
+          );
+          setTransaction(response.data);
+          setIsOpen(true);
+        }
       }
     } catch (error) {
-      toast.error("Error while requesting deposit...");
+      toast.error("Such exchange pair is not available");
     } finally {
       setShowLoading(false);
       resetForm();
