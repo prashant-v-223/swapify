@@ -4,8 +4,10 @@ import TopCrypto from "./TopCrypto";
 
 const Dashboard = ({
   setOpenTab,
+  setSelected1,
 }: {
   setOpenTab: React.Dispatch<React.SetStateAction<number>>;
+  setSelected1: any;
 }) => {
   const { user } = useUserInfo((state) => state.data);
   return (
@@ -33,11 +35,10 @@ const Dashboard = ({
       </div>
       {user.role === "admin" && (
         <>
-        
           <AdminTable />
         </>
       )}
-      <TopCrypto view="deshbord" />
+      <TopCrypto view="deshbord" setOpenTab={setOpenTab} setSelected1={setSelected1} />
     </div>
   );
 };

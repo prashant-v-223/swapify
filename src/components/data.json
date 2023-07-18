@@ -60,20 +60,6 @@
         "memoName": "",
         "memoRegex": "",
         "precision": 8
-      },
-      {
-        "network": "OKTC",
-        "name": "OKT Chain",
-        "shortName": "",
-        "notes": "",
-        "addressRegex": "",
-        "isDefault": false,
-        "blockExplorer": "https://www.okx.com/explorer/oktc/tx/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 8
       }
     ]
   },
@@ -83,20 +69,6 @@
     "icon": "https://exolix.com/icons/coins/ETH.png",
     "notes": "",
     "networks": [
-      {
-        "network": "OKTC",
-        "name": "OKT Chain",
-        "shortName": "",
-        "notes": "",
-        "addressRegex": "",
-        "isDefault": false,
-        "blockExplorer": "https://www.okx.com/explorer/oktc/tx/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 8
-      },
       {
         "network": "BSC",
         "name": "BNB Smart Chain (BEP20)",
@@ -301,20 +273,7 @@
         "memoRegex": "",
         "precision": 6
       },
-      {
-        "network": "OKTC",
-        "name": "OKT Chain",
-        "shortName": "",
-        "notes": "",
-        "addressRegex": "",
-        "isDefault": false,
-        "blockExplorer": "https://www.okx.com/explorer/oktc/tx/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 8
-      },
+
       {
         "network": "ARBITRUM",
         "name": "Arbitrum One",
@@ -1288,20 +1247,6 @@
     "notes": "",
     "networks": [
       {
-        "network": "OKTC",
-        "name": "OKT Chain",
-        "shortName": "",
-        "notes": "",
-        "addressRegex": "",
-        "isDefault": false,
-        "blockExplorer": "https://www.okx.com/explorer/oktc/tx/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 8
-      },
-      {
         "network": "ETH",
         "name": "Ethereum",
         "shortName": "ERC20",
@@ -1483,20 +1428,7 @@
         "memoRegex": "",
         "precision": 8
       },
-      {
-        "network": "OKTC",
-        "name": "OKT Chain",
-        "shortName": "",
-        "notes": "",
-        "addressRegex": "",
-        "isDefault": false,
-        "blockExplorer": "https://www.okx.com/explorer/oktc/tx/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 8
-      },
+
       {
         "network": "ETH",
         "name": "Ethereum",
@@ -1635,20 +1567,6 @@
     "icon": "https://exolix.com/icons/coins/BCH.png",
     "notes": "",
     "networks": [
-      {
-        "network": "OKTC",
-        "name": "OKT Chain",
-        "shortName": "",
-        "notes": "",
-        "addressRegex": "",
-        "isDefault": false,
-        "blockExplorer": "https://www.okx.com/explorer/oktc/tx/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 8
-      },
       {
         "network": "BCH",
         "name": "Bitcoin Cash",
@@ -2504,22 +2422,7 @@
     "name": "CherrySwapToken",
     "icon": "https://exolix.com/icons/coins/CHE.png",
     "notes": "",
-    "networks": [
-      {
-        "network": "OKTC",
-        "name": "OKT Chain",
-        "shortName": "",
-        "notes": "",
-        "addressRegex": "",
-        "isDefault": true,
-        "blockExplorer": "https://www.okx.com/explorer/oktc/tx/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 8
-      }
-    ]
+    "networks": []
   },
   {
     "code": "CHR",
@@ -3067,20 +2970,7 @@
         "memoRegex": "",
         "precision": 8
       },
-      {
-        "network": "OKTC",
-        "name": "OKT Chain",
-        "shortName": "",
-        "notes": "",
-        "addressRegex": "",
-        "isDefault": false,
-        "blockExplorer": "https://www.okx.com/explorer/oktc/tx/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 8
-      },
+
       {
         "network": "ETH",
         "name": "Ethereum",
@@ -3535,20 +3425,6 @@
     "icon": "https://exolix.com/icons/coins/DOT.png",
     "notes": "",
     "networks": [
-      {
-        "network": "OKTC",
-        "name": "OKT Chain",
-        "shortName": "",
-        "notes": "",
-        "addressRegex": "",
-        "isDefault": false,
-        "blockExplorer": "https://www.okx.com/explorer/oktc/tx/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 8
-      },
       {
         "network": "DOT",
         "name": "Polkadot",
@@ -4008,20 +3884,6 @@
         "memoName": "",
         "memoRegex": "",
         "precision": 8
-      },
-      {
-        "network": "OKTC",
-        "name": "OKT Chain",
-        "shortName": "",
-        "notes": "",
-        "addressRegex": "",
-        "isDefault": false,
-        "blockExplorer": "https://www.okx.com/explorer/oktc/tx/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 8
       }
     ]
   },
@@ -4141,20 +4003,6 @@
     "icon": "https://exolix.com/icons/coins/FIL.png",
     "notes": "",
     "networks": [
-      {
-        "network": "OKTC",
-        "name": "OKT Chain",
-        "shortName": "",
-        "notes": "",
-        "addressRegex": "",
-        "isDefault": false,
-        "blockExplorer": "https://www.okx.com/explorer/oktc/tx/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 8
-      },
       {
         "network": "FIL",
         "name": "Filecoin",
@@ -5948,20 +5796,6 @@
     "notes": "",
     "networks": [
       {
-        "network": "OKTC",
-        "name": "OKT Chain",
-        "shortName": "",
-        "notes": "",
-        "addressRegex": "",
-        "isDefault": false,
-        "blockExplorer": "https://www.okx.com/explorer/oktc/tx/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 8
-      },
-      {
         "network": "ETH",
         "name": "Ethereum",
         "shortName": "ERC20",
@@ -6402,20 +6236,6 @@
     "notes": "",
     "networks": [
       {
-        "network": "OKTC",
-        "name": "OKT Chain",
-        "shortName": "",
-        "notes": "",
-        "addressRegex": "",
-        "isDefault": false,
-        "blockExplorer": "https://www.okx.com/explorer/oktc/tx/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 8
-      },
-      {
         "network": "ETH",
         "name": "Ethereum",
         "shortName": "ERC20",
@@ -6685,20 +6505,6 @@
     "icon": "https://exolix.com/icons/coins/LTC.png",
     "notes": "",
     "networks": [
-      {
-        "network": "OKTC",
-        "name": "OKT Chain",
-        "shortName": "",
-        "notes": "",
-        "addressRegex": "",
-        "isDefault": false,
-        "blockExplorer": "https://www.okx.com/explorer/oktc/tx/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 8
-      },
       {
         "network": "LTC",
         "name": "Litecoin",
@@ -7722,45 +7528,10 @@
         "memoName": "",
         "memoRegex": "",
         "precision": 8
-      },
-      {
-        "network": "OKTC",
-        "name": "OKT Chain",
-        "shortName": "",
-        "notes": "",
-        "addressRegex": "",
-        "isDefault": true,
-        "blockExplorer": "https://www.okx.com/explorer/oktc/tx/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 8
       }
     ]
   },
-  {
-    "code": "OKT",
-    "name": "OKTC Token",
-    "icon": "https://exolix.com/icons/coins/OKT.png",
-    "notes": "",
-    "networks": [
-      {
-        "network": "OKTC",
-        "name": "OKT Chain",
-        "shortName": "",
-        "notes": "",
-        "addressRegex": "",
-        "isDefault": true,
-        "blockExplorer": "https://www.okx.com/explorer/oktc/tx/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 8
-      }
-    ]
-  },
+
   {
     "code": "OM",
     "name": "MantraDAO",
@@ -9406,20 +9177,6 @@
     "notes": "",
     "networks": [
       {
-        "network": "OKTC",
-        "name": "OKT Chain",
-        "shortName": "",
-        "notes": "",
-        "addressRegex": "",
-        "isDefault": false,
-        "blockExplorer": "https://www.okx.com/explorer/oktc/tx/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 8
-      },
-      {
         "network": "ETH",
         "name": "Ethereum",
         "shortName": "ERC20",
@@ -10138,20 +9895,6 @@
     "notes": "",
     "networks": [
       {
-        "network": "OKTC",
-        "name": "OKT Chain",
-        "shortName": "",
-        "notes": "",
-        "addressRegex": "",
-        "isDefault": false,
-        "blockExplorer": "https://www.okx.com/explorer/oktc/tx/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 8
-      },
-      {
         "network": "ETH",
         "name": "Ethereum",
         "shortName": "ERC20",
@@ -10664,20 +10407,6 @@
     "notes": "",
     "networks": [
       {
-        "network": "OKTC",
-        "name": "OKT Chain",
-        "shortName": "",
-        "notes": "",
-        "addressRegex": "",
-        "isDefault": false,
-        "blockExplorer": "https://www.okx.com/explorer/oktc/tx/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 8
-      },
-      {
         "network": "TRX",
         "name": "Tron",
         "shortName": "TRC20",
@@ -10976,20 +10705,6 @@
     "notes": "",
     "networks": [
       {
-        "network": "OKTC",
-        "name": "OKT Chain",
-        "shortName": "",
-        "notes": "",
-        "addressRegex": "",
-        "isDefault": false,
-        "blockExplorer": "https://www.okx.com/explorer/oktc/tx/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 8
-      },
-      {
         "network": "ETH",
         "name": "Ethereum",
         "shortName": "ERC20",
@@ -11109,20 +10824,7 @@
         "memoRegex": "^[0-9A-Za-z-]{1,28}$",
         "precision": 6
       },
-      {
-        "network": "OKTC",
-        "name": "OKT Chain",
-        "shortName": "",
-        "notes": "",
-        "addressRegex": "",
-        "isDefault": false,
-        "blockExplorer": "https://www.okx.com/explorer/oktc/tx/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 8
-      },
+
       {
         "network": "ARBITRUM",
         "name": "Arbitrum One",
@@ -11567,20 +11269,6 @@
         "addressRegex": "^(0x)[0-9A-Fa-f]{40}$",
         "isDefault": true,
         "blockExplorer": "https://etherscan.io/tx/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 8
-      },
-      {
-        "network": "OKTC",
-        "name": "OKT Chain",
-        "shortName": "",
-        "notes": "",
-        "addressRegex": "",
-        "isDefault": false,
-        "blockExplorer": "https://www.okx.com/explorer/oktc/tx/",
         "depositMinAmount": null,
         "memoNeeded": false,
         "memoName": "",
@@ -12215,20 +11903,7 @@
         "memoRegex": "",
         "precision": 8
       },
-      {
-        "network": "OKTC",
-        "name": "OKT Chain",
-        "shortName": "",
-        "notes": "",
-        "addressRegex": "",
-        "isDefault": false,
-        "blockExplorer": "https://www.okx.com/explorer/oktc/tx/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 8
-      },
+
       {
         "network": "XRP",
         "name": "Ripple",
@@ -12523,20 +12198,6 @@
         "addressRegex": "^(0x)[0-9A-Fa-f]{40}$",
         "isDefault": true,
         "blockExplorer": "https://etherscan.io/tx/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 8
-      },
-      {
-        "network": "OKTC",
-        "name": "OKT Chain",
-        "shortName": "",
-        "notes": "",
-        "addressRegex": "",
-        "isDefault": false,
-        "blockExplorer": "https://www.okx.com/explorer/oktc/tx/",
         "depositMinAmount": null,
         "memoNeeded": false,
         "memoName": "",

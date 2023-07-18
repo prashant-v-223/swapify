@@ -11,12 +11,15 @@ import { useEffect, useRef, useState } from "react";
 import UsersTable from "@/components/UsersTable";
 import Forgot from "./Forgot";
 const Home = () => {
+  const [selected1, setSelected1] = useState([]);
+  console.log("selected1", selected1);
   const { user } = useUserInfo((state) => state.data);
   console.log(user);
 
   const [openTab, setOpenTab] = useState(1);
   const [showProfile, setShowProfile] = useState(false);
   const profileRef = useRef<HTMLDivElement>(null);
+  console.log(openTab);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -179,9 +182,9 @@ const Home = () => {
         )}
         <div className="h-full flex flex-col min-w-0 w-full">
           {openTab === 1 ? (
-            <Dashboard setOpenTab={setOpenTab} />
+            <Dashboard setOpenTab={setOpenTab} setSelected1={setSelected1} />
           ) : openTab === 2 ? (
-            <Deposit />
+            <Deposit selected1={selected1} />
           ) : openTab === 3 ? (
             <Withdraw />
           ) : openTab === 4 ? (

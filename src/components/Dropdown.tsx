@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
 
 export default function DropDown({
@@ -6,15 +6,34 @@ export default function DropDown({
   items,
   handleSelect,
   selectedValues,
+  selected1,
   setSelectedNetwork,
 }: {
   selected: any;
   items: any;
   handleSelect: any;
   selectedValues: any;
+  selected1: any;
   setSelectedNetwork: any;
 }) {
   const [alldata, setalldata] = useState(items.slice(0, 100));
+  const [selected12, setselected12] = useState(selected);
+  console.log("selected", selected12);
+
+  useEffect(() => {
+    if (selected1 !== undefined) {
+      let data1: any = items.filter((truck: any) => {
+        return (
+          truck.name.toString().toLowerCase().match(selected1.name) ||
+          truck.name.toString().match(selected1.name)
+        );
+      });
+      setselected12(data1[0]);
+      console.log("data1", data1);
+      console.log("data1", data1);
+    }
+  }, [selected1]);
+
   console.log(items);
   const handleFilter = (e: any) => {
     const { value } = e.target;
@@ -32,7 +51,7 @@ export default function DropDown({
   };
   return (
     <div className="">
-      <Listbox value={selected} onChange={handleSelect}>
+      <Listbox value={selected12} onChange={handleSelect}>
         {({ open }) => (
           <div className=" mt-1 w-fit  text-white">
             <Listbox.Button
@@ -42,7 +61,7 @@ export default function DropDown({
                 <div className="SelectedByNetworks_selectCoinIconWrapp__YlQTs">
                   <img
                     className="SelectedByNetworks_selectCoinIcon__TkhXQ"
-                    src={selected?.icon ?? selectedValues?.icon}
+                    src={selected12?.icon ?? selectedValues?.icon}
                     alt="Bitcoin"
                     width="512"
                     height="512"
@@ -52,18 +71,18 @@ export default function DropDown({
                 <div className="SelectedByNetworks_selectCoinData__Nu7ym">
                   <span
                     className="SelectedByNetworks_selectCoinCode__5AKfq"
-                    title={selected?.code}
+                    title={selected12?.code}
                   >
-                    {selected?.code}
+                    {selected12?.code}
                   </span>
                   <span
                     className="SelectedByNetworks_selectCoinName__9ZENN"
                     title={
-                      selected?.name.slice(0, 18) ??
+                      selected12?.name.slice(0, 18) ??
                       selectedValues?.name.slice(0, 18)
                     }
                   >
-                    {selected?.name.slice(0, 18) ??
+                    {selected12?.name.slice(0, 18) ??
                       selectedValues?.name.slice(0, 18)}
                   </span>
                 </div>
@@ -106,6 +125,7 @@ export default function DropDown({
                               shortName: network?.shortName,
                               name: network?.name,
                             });
+                            setselected12(person);
                             setalldata(items.slice(0, 100));
                           }}
                         >

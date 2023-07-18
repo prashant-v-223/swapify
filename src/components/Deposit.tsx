@@ -10,7 +10,7 @@ import * as Yup from "yup";
 import Loader from "./Loader";
 import DropDown from "./Dropdown";
 import data from "./data.json";
-const Deposit = () => {
+const Deposit = ({ selected1 }: any) => {
   const { user } = useUserInfo((state) => state.data);
   let [isOpen, setIsOpen] = useState<boolean>(false);
   let [transaction, setTransaction] = useState<Transaction>({
@@ -51,6 +51,13 @@ const Deposit = () => {
     status: "",
     email: null,
   });
+  console.log(
+    "data",
+    data.find((e) => {
+      e.name === selected1.name;
+    })
+  );
+
   const [showLoading, setShowLoading] = useState<boolean>(false);
   const [selected, setSelected] = useState(data?.[0]);
   const [selected2, setSelected2] = useState(data?.[2]);
@@ -153,13 +160,17 @@ const Deposit = () => {
       let response = await axios.post(
         "https://exolix.com/api/v2/transactions",
         {
-          amount: amount,
+          amount: Number(amount),
           coinFrom: transactionCoin.coinFrom,
           coinTo: transactionCoin.coinTo,
           withdrawalAddress: address,
           withdrawalExtraId: user._id,
-          networkFrom: transactionCoin.networkFrom ? transactionCoin.networkFrom : "TRX",
-          networkTO: transactionCoin.networkTo ? transactionCoin.networkTo : "BTT",
+          networkFrom: transactionCoin.networkFrom
+            ? transactionCoin.networkFrom
+            : "TRX",
+          networkTO: transactionCoin.networkTo
+            ? transactionCoin.networkTo
+            : "BTT",
         }
       );
       if (response.status === 201) {
@@ -288,6 +299,7 @@ const Deposit = () => {
                       selectedValues={selectedValues}
                       items={data}
                       selected={selected}
+                      selected1={selected1}
                       handleSelect={handleSelect}
                       setSelectedNetwork={setSelectedNetwork}
                     />
@@ -317,6 +329,7 @@ const Deposit = () => {
                     <DropDown
                       selectedValues={selectedValues2}
                       items={data}
+                      selected1={undefined}
                       selected={selected2}
                       handleSelect={handleSelect2}
                       setSelectedNetwork={setSelectedNetwork2}

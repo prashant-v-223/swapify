@@ -3,7 +3,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-const TopCrypto = ({ view }: any) => {
+const TopCrypto = ({ view, setOpenTab, setSelected1 }: any) => {
   const fetchRate = async (
     coinFrom: string,
     coinTo: string,
@@ -203,20 +203,25 @@ const TopCrypto = ({ view }: any) => {
                         {isLoading ? 0 : Number(crypto.rate).toFixed(3)} $
                       </p>
                       {hoveredIndex === index ? (
-                        <Link
-                          to={"/login"}
+                        <div
                           data-aos="flip-left"
+                          onClick={() => {
+                            setOpenTab(2);
+                            setSelected1(crypto);
+                          }}
                           className="bg-[#cb9b27] w-fit h-fit py-2 rounded-md px-4 block m-auto"
                         >
                           {" "}
                           Exchange{" "}
-                        </Link>
+                        </div>
                       ) : (
                         <img
                           src="/assets/eswap.svg"
                           alt="swap"
                           className="block m-auto"
-                          onMouseOver={() => setHoveredIndex(index)}
+                          onMouseOver={() => {
+                            setHoveredIndex(index);
+                          }}
                         />
                       )}
                     </div>
