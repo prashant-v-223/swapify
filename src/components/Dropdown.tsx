@@ -76,7 +76,7 @@ export default function DropDown({
                     className="SelectedByNetworks_selectCoinName__9ZENN"
                     title={
                       selected12?.name?.slice(0, 18) ??
-                      selectedValues?.name.slice(0, 18)
+                      selectedValues?.name?.slice(0, 18)
                     }
                   >
                     {selected12?.name?.slice(0, 18) ??
@@ -109,10 +109,10 @@ export default function DropDown({
                     return person?.networks?.map(
                       (network: any, index: number) => {
                         {
-                          if (
-                            network?.network === "BSC" ||
-                            network?.network === "TRX"
-                          ) {
+                          // if (
+                          //   network?.network === "BSC" ||
+                          //   network?.network === "TRX"
+                          // ) {
                             return (
                               <Listbox.Option
                                 key={index}
@@ -159,7 +159,7 @@ export default function DropDown({
                                 </div>
                               </Listbox.Option>
                             );
-                          }
+                          // }
                         }
                       }
                     );
