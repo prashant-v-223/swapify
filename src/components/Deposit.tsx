@@ -5,7 +5,7 @@ import { Formik } from "formik";
 import { toast } from "react-hot-toast";
 import DialogBox from "./DialogBox";
 import { Transaction } from "@/types";
-import { fetchAndStoreUserInfo, useUserInfo } from "@/store";
+import { useUserInfo } from "@/store";
 import * as Yup from "yup";
 import Loader from "./Loader";
 import DropDown from "./Dropdown";
@@ -52,7 +52,6 @@ const Deposit = ({ selected1 }: any) => {
     status: "",
     email: null,
   });
-  
 
   const [showLoading, setShowLoading] = useState<boolean>(false);
   const [selected, setSelected] = useState(data?.[0]);

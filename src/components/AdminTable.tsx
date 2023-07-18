@@ -146,7 +146,7 @@ const AdminTable = () => {
   ) => {
     try {
       setShowLoader(true);
-      let response = await axios.put(
+      await axios.put(
         `${process.env.VITE_SERVER_URL}/users/update-transaction`,
         {
           status: status,
