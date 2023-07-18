@@ -40,7 +40,7 @@ const DialogBox = ({
                 <QRCodeGenerator walletAddress={transaction?.depositAddress} />
                 <div className="mt-4">
                   <label className="text-sm " htmlFor="share link">
-                    Deposit {transaction?.coinTo?.coinName} address
+                    Deposit {transaction?.coinFrom?.coinName} address
                   </label>
                   <div className="flex items-center mt-2 -mx-1">
                     <p className="text-center items-center flex flex-1 h-10 px-4 mx-1 text-xs  bg-[#1B1B1B] border-2 border-[#454545] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring">
