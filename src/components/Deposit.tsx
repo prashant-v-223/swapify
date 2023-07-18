@@ -257,11 +257,15 @@ const Deposit = ({ selected1 }: any) => {
 
   return (
     <div className="p-4">
-      <div className="grid bg-[#1B1B1B] w-full md:p-4 rounded-xl md:grid-cols-2">
+      <div
+        className="grid bg-[#1B1B1B] w-full md:
+      p-4 rounded-xl md:grid-cols-2"
+      >
         <Formik
           initialValues={{
             amount: "",
           }}
+          validateOnChange={true}
           validationSchema={Yup.object({
             amount: Yup.number().required("Required"),
           })}
@@ -269,7 +273,7 @@ const Deposit = ({ selected1 }: any) => {
             createTransactiom(values.amount, resetForm);
           }}
         >
-          {({ values, handleChange, handleBlur, handleSubmit }) => (
+          {({ values, handleChange, handleSubmit }) => (
             <form onSubmit={handleSubmit}>
               <div className="flex flex-col justify-center items-start gap-2 p-4">
                 <label htmlFor="currencyToSend" className="text-white">
@@ -278,7 +282,6 @@ const Deposit = ({ selected1 }: any) => {
                 <div className="flex relative w-full rounded-lg flex-col md:flex-row justify-center border-1 md:border-2 border-[#454545] items-center  bg-[#242424]">
                   <input
                     onChange={handleChange}
-                    onBlur={handleBlur}
                     id="amount"
                     name="amount"
                     value={values.amount}
@@ -336,13 +339,13 @@ const Deposit = ({ selected1 }: any) => {
                     />
                   </div>
                 </div>
-                {error && (
+                {/* {error && (
                   <p className="text-sm text-red-700">
                     Amount to exchange is below the possible min amount to
                     exchange
                   </p>
-                )}
-                {!!minAmount && (
+                )} */}
+                {minAmount >= Number(values.amount) && (
                   <p className="text-sm text-red-700">
                     The min amount to exchange is {minAmount}
                   </p>

@@ -167,6 +167,7 @@ const AdminTable = () => {
     } catch (error) {
       console.log(error);
     } finally {
+      setIsOpen(false);
       setShowLoader(false);
     }
   };

@@ -2,7 +2,6 @@ import { Coinlist } from "./fakedata";
 import axios from "axios";
 import { useState } from "react";
 import { useQuery } from "react-query";
-import { Link } from "react-router-dom";
 const TopCrypto = ({ view, setOpenTab, setSelected1 }: any) => {
   const fetchRate = async (
     coinFrom: string,
