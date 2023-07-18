@@ -257,7 +257,7 @@ const Deposit = ({ selected1 }: any) => {
 
   return (
     <div className="p-4">
-      <div className="grid bg-[#1B1B1B] w-full p-4 rounded-xl md:grid-cols-2">
+      <div className="grid bg-[#1B1B1B] w-full md:p-4 rounded-xl md:grid-cols-2">
         <Formik
           initialValues={{
             amount: "",
