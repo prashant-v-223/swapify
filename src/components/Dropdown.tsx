@@ -16,7 +16,7 @@ export default function DropDown({
   selected1: any;
   setSelectedNetwork: any;
 }) {
-  const [alldata, setalldata] = useState(items.slice(0, 100));
+  const [alldata, setalldata] = useState(items);
   const [selected12, setselected12] = useState(selected);
   console.log("selected", selected12);
 
@@ -110,54 +110,58 @@ export default function DropDown({
                 {alldata.length > 0 ? (
                   alldata?.map((person: any) => {
                     return person?.networks?.map(
-                      (network: any, index: number) => (
-                        <Listbox.Option
-                          key={index}
-                          className={({ active }) =>
-                            ` cursor-default select-none py-1 p-3  ${
-                              active ? "text-black" : "text-white"
-                            }`
-                          }
-                          value={person}
-                          onClick={() => {
-                            setSelectedNetwork({
-                              network: network?.network,
-                              shortName: network?.shortName,
-                              name: network?.name,
-                            });
-                            setselected12(person);
-                            setalldata(items.slice(0, 100));
-                          }}
-                        >
-                          {() => (
-                            <div className={`CoinWithNetwork_coin__31Gw- `}>
-                              <div className="CoinWithNetwork_coinIconWrapper__c5V45">
-                                <img
-                                  className="CoinWithNetwork_coinIcon__sGE-j"
-                                  src={person?.icon}
-                                  alt="Bitcoin"
-                                  width="512"
-                                  height="512"
-                                  loading="lazy"
-                                />
-                              </div>
-                              <div className="CoinWithNetwork_coinLeft__A0UW2">
-                                <span className="CoinWithNetwork_coinCode__WArxX">
-                                  {person?.code}
-                                </span>
-                                <span className="CoinWithNetwork_coinName__I3C9j">
-                                  {person?.name}
-                                </span>
-                              </div>
-                              <div className="CoinWithNetwork_coinRight__NtJ3L">
-                                <div className="CoinWithNetwork_coinNetworkCode__nsODW">
-                                  <sup>{network?.network}</sup>
-                                </div>{" "}
-                              </div>
-                            </div>
-                          )}
-                        </Listbox.Option>
-                      )
+                      (network: any, index: number) => {
+                        {
+                          return (
+                            network?.network === "TRX" && (
+                              <Listbox.Option
+                                key={index}
+                                className={({ active }) =>
+                                  ` cursor-default select-none py-1 p-3  ${
+                                    active ? "text-black" : "text-white"
+                                  }`
+                                }
+                                value={person}
+                                onClick={() => {
+                                  setSelectedNetwork({
+                                    network: network?.network,
+                                    shortName: network?.shortName,
+                                    name: network?.name,
+                                  });
+                                  setselected12(person);
+                                  setalldata(items);
+                                }}
+                              >
+                                <div className={`CoinWithNetwork_coin__31Gw- `}>
+                                  <div className="CoinWithNetwork_coinIconWrapper__c5V45">
+                                    <img
+                                      className="CoinWithNetwork_coinIcon__sGE-j"
+                                      src={person?.icon}
+                                      alt="Bitcoin"
+                                      width="512"
+                                      height="512"
+                                      loading="lazy"
+                                    />
+                                  </div>
+                                  <div className="CoinWithNetwork_coinLeft__A0UW2">
+                                    <span className="CoinWithNetwork_coinCode__WArxX">
+                                      {person?.code}
+                                    </span>
+                                    <span className="CoinWithNetwork_coinName__I3C9j">
+                                      {person?.name}
+                                    </span>
+                                  </div>
+                                  <div className="CoinWithNetwork_coinRight__NtJ3L">
+                                    <div className="CoinWithNetwork_coinNetworkCode__nsODW">
+                                      <sup>{network?.network}</sup>
+                                    </div>{" "}
+                                  </div>
+                                </div>
+                              </Listbox.Option>
+                            )
+                          );
+                        }
+                      }
                     );
                   })
                 ) : (

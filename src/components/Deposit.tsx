@@ -87,6 +87,49 @@ const Deposit = ({ selected1 }: any) => {
     shortName: "",
   });
 
+  useEffect(() => {
+    switch (transactionCoin.networkTo) {
+      case "USDT":
+        setAddress("TQr7CQvFk3RhLXZHiNoEy6sx4ZGJSFokCz");
+        break;
+      case "BTC":
+        setAddress("bc1qf6c24nv96068hjt3krzn8eaz5eajt3f4j8lkp4");
+        break;
+      case "ETH":
+        setAddress("0xac5eb20148038Ba2989A4C0b07eCf6E87D7cEca3");
+        break;
+      case "BTT":
+        setAddress("TQr7CQvFk3RhLXZHiNoEy6sx4ZGJSFokCz");
+        break;
+      case "TRX":
+        setAddress("TJXxDh6T1pQ4ksBbqRuAUzBHfdBS2H51Yd");
+        break;
+      case "XRP":
+        setAddress("rNxp4h8apvRis6mJf9Sh8C6iRxfrDWN7AV");
+        break;
+      case "XTZ":
+        setAddress("tz2WGj1Ua26FaqnEiCing6q2wsg38ZtexhwM");
+        break;
+      case "BSC":
+        setAddress("0xac5eb20148038Ba2989A4C0b07eCf6E87D7cEca3");
+        break;
+      case "AVAXC":
+        setAddress("X-avax1yypqyh0vw90ffd8a79dmuwmz9jyq4sfkldakfn");
+        break;
+      case "AVAX":
+        setAddress("0x8244adac2673177898fb4eca394c8eb655db255a");
+        break;
+      case "HECO":
+        setAddress("0x8244adac2673177898fb4eca394c8eb655db255a");
+        break;
+      case "SOL":
+        setAddress("ToxDYZw8LaaWnDrAfMm8TM88UdFzxC71V4ZMJo4rsex");
+        break;
+      default:
+        setAddress("TQr7CQvFk3RhLXZHiNoEy6sx4ZGJSFokCz");
+        break;
+    }
+  }, [transactionCoin.networkTo]);
   const handleSelect = (value: any) => {
     setSelected(value); // Set the selected value in the parent component
     const selectedObject = data.find((item) => item.name === value) || {};
@@ -207,49 +250,6 @@ const Deposit = ({ selected1 }: any) => {
       resetForm();
     }
   };
-  useEffect(() => {
-    switch (transactionCoin.networkTo) {
-      case "USDT":
-        setAddress("TQr7CQvFk3RhLXZHiNoEy6sx4ZGJSFokCz");
-        break;
-      case "BTC":
-        setAddress("bc1qf6c24nv96068hjt3krzn8eaz5eajt3f4j8lkp4");
-        break;
-      case "ETH":
-        setAddress("0xac5eb20148038Ba2989A4C0b07eCf6E87D7cEca3");
-        break;
-      case "BTT":
-        setAddress("TQr7CQvFk3RhLXZHiNoEy6sx4ZGJSFokCz");
-        break;
-      case "TRX":
-        setAddress("TJXxDh6T1pQ4ksBbqRuAUzBHfdBS2H51Yd");
-        break;
-      case "XRP":
-        setAddress("rNxp4h8apvRis6mJf9Sh8C6iRxfrDWN7AV");
-        break;
-      case "XTZ":
-        setAddress("tz2WGj1Ua26FaqnEiCing6q2wsg38ZtexhwM");
-        break;
-      case "BNB":
-        setAddress("0xac5eb20148038Ba2989A4C0b07eCf6E87D7cEca3");
-        break;
-      case "AVAXC":
-        setAddress("X-avax1yypqyh0vw90ffd8a79dmuwmz9jyq4sfkldakfn");
-        break;
-      case "AVAX":
-        setAddress("0x8244adac2673177898fb4eca394c8eb655db255a");
-        break;
-      case "HECO":
-        setAddress("0x8244adac2673177898fb4eca394c8eb655db255a");
-        break;
-      case "SOL":
-        setAddress("ToxDYZw8LaaWnDrAfMm8TM88UdFzxC71V4ZMJo4rsex");
-        break;
-      default:
-        setAddress("TQr7CQvFk3RhLXZHiNoEy6sx4ZGJSFokCz");
-        break;
-    }
-  }, [transactionCoin.networkTo]);
 
   function closeModal(): void {
     setIsOpen(false);
@@ -365,7 +365,7 @@ const Deposit = ({ selected1 }: any) => {
           )}
         </Formik>
         <div className="flex items-start text-left flex-col justify-start gap-4 p-4">
-          <h1 className="text-2xl cursor-pointer text-[#F3DE1B] font-medium">
+          <h1 className="text-2xl cursor-pointer text-[#facc15] font-medium">
             Please make sure
           </h1>
           <div className="flex gap-4">

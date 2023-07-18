@@ -71,7 +71,7 @@ const Home = () => {
                 href="#link3"
                 role="tablist"
               >
-                <FaUserTie style={{ color: "#f3de1b", fontSize: "18px" }} />
+                <FaUserTie style={{ color: "#facc15", fontSize: "18px" }} />
                 {/* <img src="/assets/withdraw.svg" alt="withdraw" /> */}
                 user
               </a>
@@ -140,7 +140,7 @@ const Home = () => {
             >
               <AiTwotoneMail
                 classname="font-xl text-"
-                style={{ color: "#f3de1b", fontSize: "18px" }}
+                style={{ color: "#facc15", fontSize: "18px" }}
               />{" "}
               {user?.email}
             </button>
@@ -159,7 +159,7 @@ const Home = () => {
             >
               <VscVerified
                 classname="font-xl text-"
-                style={{ color: "#f3de1b", fontSize: "20px" }}
+                style={{ color: "#facc15", fontSize: "20px" }}
               />{" "}
               Kyc :{"  "}
               {user?.isKYC ? "Approved" : "Pending"}
@@ -174,7 +174,7 @@ const Home = () => {
             >
               <RiLockPasswordFill
                 classname="font-xl text-"
-                style={{ color: "#f3de1b", fontSize: "20px" }}
+                style={{ color: "#facc15", fontSize: "20px" }}
               />{" "}
               Change password
             </button>

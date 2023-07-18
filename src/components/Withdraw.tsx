@@ -119,6 +119,7 @@ const Withdraw = () => {
                       selectedValues={selectedValues}
                       items={data}
                       selected={selected}
+                      selected1={undefined}
                       handleSelect={handleSelect}
                       setSelectedNetwork={setSelectedNetwork}
                     />
@@ -157,7 +158,7 @@ const Withdraw = () => {
           )}
         </Formik>
         <div className="flex items-start text-left flex-col justify-start gap-4 p-4">
-          <h1 className="text-2xl text-[#F3DE1B] font-medium">
+          <h1 className="text-2xl text-[#facc15] font-medium">
             Please make sure
           </h1>
           <div className="flex gap-4">
