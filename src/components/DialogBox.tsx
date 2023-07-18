@@ -7,12 +7,7 @@ type TDialogBox = {
   transaction: Transaction;
   isOpen: boolean;
 };
-const DialogBox = ({
-  closeModal,
-  isOpen,
-  address,
-  transaction,
-}: TDialogBox) => {
+const DialogBox = ({ closeModal, isOpen, transaction }: TDialogBox) => {
   const copyToClipboard = (): void => {
     navigator.clipboard.writeText(transaction?.depositAddress);
     toast.success("Copied Successfully !");
