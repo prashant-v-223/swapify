@@ -197,7 +197,9 @@ const Deposit = ({ selected1 }: any) => {
       const { data } = await axios.get(
         `https://exolix.com/api/v2/rate?coinFrom=${
           transactionCoin.coinFrom
-        }&coinTo=USDT&networkTo=${selectedNetwork2.network}&amount=${Number(
+        }&coinTo=${
+          transactionCoin.coinTo
+        }&networkTo=${selectedNetwork2.network}&amount=${Number(
           amount
         )}&rateType=fixed`
       );
