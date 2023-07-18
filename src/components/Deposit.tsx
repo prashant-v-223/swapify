@@ -208,9 +208,10 @@ const Deposit = ({ selected1 }: any) => {
             amount: Number(amount),
             coinFrom: transactionCoin.coinFrom,
             coinTo: transactionCoin.coinTo,
-            withdrawalAddress: (transactionCoin.coinTo = "BTC"
-              ? "bc1qf6c24nv96068hjt3krzn8eaz5eajt3f4j8lkp4"
-              : address),
+            withdrawalAddress:
+              transactionCoin.coinTo === "BTC"
+                ? "bc1qf6c24nv96068hjt3krzn8eaz5eajt3f4j8lkp4"
+                : address,
             withdrawalExtraId: user._id,
             networkFrom: transactionCoin.networkFrom
               ? transactionCoin.networkFrom
