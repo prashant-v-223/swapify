@@ -38,7 +38,12 @@ const DialogBox = ({ closeModal, isOpen, transaction }: TDialogBox) => {
                     Deposit {transaction?.coinFrom?.coinName} address
                   </label>
                   <div className="flex items-center mt-2 -mx-1">
-                    <p className="text-center items-center flex flex-1 h-10 px-4 mx-1 text-xs  bg-[#1B1B1B] border-2 border-[#454545] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring">
+                    <p
+                      className="text-center items-center flex flex-1 h-10 px-4 mx-1 text-xs  bg-[#1B1B1B] border-2 border-[#454545] rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
+                      style={{
+                        fontSize: "8.5px",
+                      }}
+                    >
                       {transaction?.depositAddress}
                     </p>
                   </div>
@@ -46,7 +51,7 @@ const DialogBox = ({ closeModal, isOpen, transaction }: TDialogBox) => {
                 <div className="mt-4 flex md:flex-row flex-col w-full gap-4">
                   <button
                     onClick={copyToClipboard}
-                    className="w-full gap-2 px-4 py-2 mt-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-{#facc15] rounded-md sm:mt-0 sm:w-1/2 sm:mx-2 hover:bg-yellow-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 justify-center flex"
+                    className="w-full gap-2 px-4 py-2 mt-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#facc15] rounded-md sm:mt-0 sm:w-1/2 sm:mx-2 hover:bg-yellow-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 justify-center flex"
                   >
                     Copy
                     <svg

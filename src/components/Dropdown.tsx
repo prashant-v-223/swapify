@@ -75,12 +75,12 @@ export default function DropDown({
                   <span
                     className="SelectedByNetworks_selectCoinName__9ZENN"
                     title={
-                      selected12?.name.slice(0, 18) ??
+                      selected12?.name?.slice(0, 18) ??
                       selectedValues?.name.slice(0, 18)
                     }
                   >
-                    {selected12?.name.slice(0, 18) ??
-                      selectedValues?.name.slice(0, 18)}
+                    {selected12?.name?.slice(0, 18) ??
+                      selectedValues?.name?.slice(0, 18)}
                   </span>
                 </div>
               </div>
