@@ -13,34 +13,50 @@ const CoinChart = () => {
 
   const [error, setError] = useState(false);
 
-  const chartOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-
-    plugins: {
-      legend: {
-        display: false,
-      },
-    },
-  };
-
   useEffect(() => {
     let get = async () => {
-      const response: any = await new ChartAPI().coinInfo(id);
+      const response = await new ChartAPI().coinInfo(id);
 
+      // @ts-ignore
       if (!response.error) {
         setName(response.data.name);
         setPrice(response.data.market_data.current_price.usd);
         setHistory(response.data.market_data.sparkline_7d.price);
       } else {
+        // @ts-ignore
         setError(response.error);
       }
     };
 
     get();
   }, [id]);
+  const chartOptions: any = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+    scales: {
+      x: {
+        display: true,
+        grid: {
+          display: false,
+        },
+      },
+      y: {
+        display: true,
+        grid: {
+          display: true,
+          color: "rgba(255, 255, 255, 0.1)", // Customize the grid color if needed
+        },
+      },
+    },
+  };
 
-  const listOfLength = (length: any) => {
+  // @ts-ignore
+  const listOfLength = (length) => {
     let list = [];
 
     for (let i = 0; i < length; i++) {

@@ -268,10 +268,12 @@ const Deposit = ({ selected1 }: any) => {
       setmin(data123xx.minAmount);
       const { data } = await axios.get(
         `https://exolix.com/api/v2/rate?coinFrom=${
-          data1.length === 506 ? transactionCoin.coinFrom : data1[0].code
-        }&coinTo=${transactionCoin.coinTo}&networkTo=${
+          transactionCoin.coinTo
+        }&coinTo=${!cointo ? data1[0].code : cointo}&coinFromNetwork=${
           transactionCoin.networkTo
-        }&amount=${Number(amount)}&rateType=fixed`
+        }&coinToNetwork=${transactionCoin.networkFrom}&amount=${Number(
+          amount
+        )}&rateType=fixed`
       );
       if (data) {
         setShowLoading(true);
