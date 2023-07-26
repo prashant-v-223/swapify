@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import ChartAPI from "../services/liveChartApi";
 import { useParams } from "react-router-dom";
+// @ts-ignore
 import { Line } from "react-chartjs-2";
 
 const CoinChart = () => {
-  const [show, setShow] = useState(false);
   const { id } = useParams();
 
   const [name, setName] = useState("");
@@ -26,7 +26,7 @@ const CoinChart = () => {
 
   useEffect(() => {
     let get = async () => {
-      const response = await new ChartAPI().coinInfo(id);
+      const response: any = await new ChartAPI().coinInfo(id);
 
       if (!response.error) {
         setName(response.data.name);
@@ -40,7 +40,7 @@ const CoinChart = () => {
     get();
   }, [id]);
 
-  const listOfLength = (length) => {
+  const listOfLength = (length: any) => {
     let list = [];
 
     for (let i = 0; i < length; i++) {
