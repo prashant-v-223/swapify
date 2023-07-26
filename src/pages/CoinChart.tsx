@@ -58,6 +58,7 @@ const CoinChart = () => {
           <p className="text-gray-200 mb-10 text-4xl">${price}</p>
 
           <div className="p-4 rounded-xl bg-dark-600">
+            {/* @ts-ignore  */}
             <Line
               style={{ maxWidth: "100%", minHeight: "500px" }}
               data={{
