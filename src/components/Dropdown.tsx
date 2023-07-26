@@ -36,25 +36,22 @@ export default function DropDown({
     if (value !== null) {
       let data1: any = items.filter((truck: any) => {
         return (
-          truck.name.toString().toLowerCase().match(value) ||
-          truck.name.toString().toLowerCase().match(value) ||
-          truck.name.toString().match(value) ||
-          truck.code?.toString().toLowerCase().match(value) ||
-          truck.code?.toString().match(value)
+          truck.code.toString().toLowerCase().match(value.toLowerCase()) ||
+          truck.name.toString().toLowerCase().match(value.toLowerCase())
         );
       });
       setalldata(data1);
     }
   };
   return (
-    <div className="">
+    <div className="w-[100%]">
       <Listbox value={selected12} onChange={handleSelect}>
         {({ open }) => (
-          <div className=" mt-1 w-fit  text-white">
+          <div className=" mt-1 w-[100%]   text-white">
             <Listbox.Button
-              className={` w-64 cursor-default rounded-lg  py-2  text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm`}
+              className={`cursor-default w-[100%]  rounded-lg  py-2  text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm`}
             >
-              <div className="SelectedByNetworks_selectCoin__uBFIj">
+              <div className="SelectedByNetworks_selectCoin__uBFIj w-[100%] flex justify-between">
                 <div className="SelectedByNetworks_selectCoinIconWrapp__YlQTs">
                   <img
                     className="SelectedByNetworks_selectCoinIcon__TkhXQ"
@@ -65,7 +62,7 @@ export default function DropDown({
                     loading="lazy"
                   />
                 </div>
-                <div className="SelectedByNetworks_selectCoinData__Nu7ym">
+                <div className="SelectedByNetworks_selectCoinData__Nu7ym ">
                   <span
                     className="SelectedByNetworks_selectCoinCode__5AKfq"
                     title={selected12?.code}
@@ -109,10 +106,12 @@ export default function DropDown({
                     return person?.networks?.map(
                       (network: any, index: number) => {
                         {
-                          // if (
-                          //   network?.network === "BSC" ||
-                          //   network?.network === "TRX"
-                          // ) {
+                          if (
+                            network?.network === "BSC" ||
+                            network?.network === "TRX" ||
+                            network?.network === "ETH" ||
+                            network?.network === "BTC"
+                          ) {
                             return (
                               <Listbox.Option
                                 key={index}
@@ -159,7 +158,7 @@ export default function DropDown({
                                 </div>
                               </Listbox.Option>
                             );
-                          // }
+                          }
                         }
                       }
                     );

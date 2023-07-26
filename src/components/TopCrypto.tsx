@@ -2,7 +2,10 @@ import { Coinlist } from "./fakedata";
 import axios from "axios";
 import { useState } from "react";
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
+
 const TopCrypto = ({ view, setOpenTab, setSelected1 }: any) => {
+  const navigate = useNavigate();
   const fetchRate = async (
     coinFrom: string,
     coinTo: string,
@@ -48,11 +51,7 @@ const TopCrypto = ({ view, setOpenTab, setSelected1 }: any) => {
   const [hoveredIndex, setHoveredIndex] = useState(-1);
   return (
     <>
-      <div
-        className={` ${
-          view !== "deshbord" ? "px-16" : "px-0"
-        }  py-10`}
-      >
+      <div className={` ${view !== "deshbord" ? "px-16" : "px-0"}  py-10`}>
         <p className="text-white font-semibold text-3xl py-10">
           Top cryptocurrencies
         </p>
@@ -126,8 +125,13 @@ const TopCrypto = ({ view, setOpenTab, setSelected1 }: any) => {
                         <div
                           data-aos="flip-left"
                           onClick={() => {
-                            setOpenTab(2);
-                            setSelected1(crypto);
+                            if (localStorage.getItem("token") === null) {
+                              navigate("/login");
+                            } else {
+                              setOpenTab(2);
+                              setSelected1(crypto);
+                              console.log("localStorage.getItem(token)");
+                            }
                           }}
                           className="bg-[#cb9b27] w-fit h-fit py-2 rounded-md px-4 block m-auto"
                         >

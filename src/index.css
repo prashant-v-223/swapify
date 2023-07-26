@@ -3,6 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "FrutigerLTPro";
+  src: url("../src/font/caveat-regular.ttf") format("truetype");
+}
 body {
   font-family: "Montserrat", sans-serif;
   background-color: #212121;
@@ -245,7 +249,6 @@ body {
 
 @media (min-width: 768px) {
   .SelectedByNetworks_selectCoin__uBFIj {
-    padding: 0 24px 0 16px;
   }
 
   .SelectedByNetworks_selectCoin__uBFIj.SelectedByNetworks_selectCoin__uBFIj.SelectedByNetworks_rtl__Ht6Yr {
@@ -4062,4 +4065,20 @@ ul[aria-orientation="vertical"] {
 ul[aria-labelledby="headlessui-listbox-button-:ramr:"] li:first-child {
   margin-top: 29px;
   background-color: transparent;
+}
+.dropdown {
+  width: 100% !important;
+  max-width: 290px;
+}
+
+@media (max-width: 768px) {
+  .dropdown {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+canvas {
+  min-height: 501px !important;
+  min-width: 100% !important;
 }

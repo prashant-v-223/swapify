@@ -19,7 +19,7 @@ const Signup = () => {
     try {
       setShowLoader(true);
       const res = await axios.post(
-        `${process.env.VITE_SERVER_URL}/users`,
+        `${process.env.VITE_SERVER_URL}/users/`,
         data
       );
       return res;
@@ -225,7 +225,7 @@ const Signup = () => {
                       </div>
                       <Link
                         to="/forgot"
-                        className="text-sm font-medium text-[#F9DA0A]  hover:underline"
+                        className="text-sm font-medium text-[#f4ba2f]  hover:underline"
                       >
                         Forgot password?
                       </Link>
@@ -235,7 +235,7 @@ const Signup = () => {
                   {!isOtpSent ? (
                     <button
                       type="submit"
-                      className="w-full text-black bg-[#F9DA0A]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                      className="w-full text-black bg-[#f4ba2f]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                     >
                       Create Account
                     </button>
@@ -245,7 +245,7 @@ const Signup = () => {
                       onClick={() => {
                         verifyOtp({ otp, email: values.email });
                       }}
-                      className="w-full text-black bg-[#F9DA0A]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                      className="w-full text-black bg-[#f4ba2f]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                     >
                       Verify Otp
                     </button>
@@ -254,7 +254,7 @@ const Signup = () => {
                     Already have an account yet?{" "}
                     <Link
                       to="/login"
-                      className="font-medium text-[#F9DA0A] hover:underline"
+                      className="font-medium text-[#f4ba2f] hover:underline"
                     >
                       Login
                     </Link>

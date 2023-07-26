@@ -11,11 +11,12 @@ import DropDown from "./Dropdown";
 const Withdraw = () => {
   let { user } = useUserInfo((state) => state.data);
   let [data1, setdata1] = useState<any>(user);
+  const [youget, setyouget] = useState<any>("");
   const [showLoading, setShowLoading] = useState<boolean>(false);
   const [selected, setSelected] = useState(data?.[0]);
+  const [error1, setError1] = useState("");
   // @ts-ignore
   const [selectedValues, setSelectedValues] = useState({});
-  const [minimumNetworkAmount, setminimumNetworkAmount] = useState(0);
   const [selectedNetwork, setSelectedNetwork] = useState({
     name: "Tron",
     network: "TRX",
@@ -24,6 +25,7 @@ const Withdraw = () => {
   console.log(selected.name, "----", selectedNetwork.network);
   const handleSelect = (value: any) => {
     setSelected(value); // Set the selected value in the parent component
+    setyouget("");
   };
   const createTransactiom = async (
     amount: string,
@@ -31,8 +33,8 @@ const Withdraw = () => {
     resetForm: () => void
   ) => {
     try {
+      setError1("");
       setShowLoading(true);
-      setminimumNetworkAmount(0);
       const { data } = await axios.get(
         `https://exolix.com/api/v2/rate?coinFrom=${
           selected.code
@@ -40,7 +42,6 @@ const Withdraw = () => {
           amount
         )}&rateType=fixed`
       );
-
       // if (user.balance > data.toAmount) {
       await axios.post(`${process.env.VITE_SERVER_URL}/users/transactions`, {
         transaction: {
@@ -74,31 +75,51 @@ const Withdraw = () => {
       // @ts-ignore
       if (error?.response.status === 422 && error?.response.data?.minAmount) {
         // @ts-ignore
-        setminimumNetworkAmount(error?.response.data?.minAmount);
-        return toast.error(
-          "Amount to exchange is below the possible min amount to exchange"
-        );
+        setError1(`Minimum withdraw amount ${error?.response.data?.minAmount}`);
+      } else {
+        // @ts-ignore
+        setError1(error?.response?.data?.error);
       }
-      toast.error("Such exchange pair is not available ");
     } finally {
       resetForm();
       setShowLoading(false);
     }
   };
-  // console.log(selectedNetwork,"selectedNetwork");
+
+  const handleKeyDown = async (amount: number) => {
+    try {
+      setError1("");
+      setyouget(amount);
+      // @ts-ignore
+      const { data } = await axios.get(
+        `https://exolix.com/api/v2/rate?coinFrom=${
+          selected.code
+        }&coinTo=${"USDT"}&networkTo=${"TRX"}&amount=${Number(
+          amount
+        )}&rateType=fixed`
+      );
+    } catch (error) {
+      // @ts-ignore
+      if (error?.response.status === 422 && error?.response.data?.minAmount) {
+        // @ts-ignore
+        setError1(`Minimum withdraw amount ${error?.response.data?.minAmount}`);
+      } else {
+        // @ts-ignore
+        setError1(error?.response?.data?.error);
+      }
+    }
+  };
 
   return (
-    <div className="p-4">
-      <div className="grid bg-[#1B1B1B] w-full p-4 rounded-xl md:grid-cols-2">
+    <div className="p-2 md:p-4" data-aos="fade-up">
+      <div className="grid  bg-[#1B1B1B]  w-full p-4 rounded-xl md:grid-cols-2">
         <Formik
           initialValues={{
             amount: "",
             withdrawAddress: "",
           }}
           validationSchema={Yup.object({
-            amount: Yup.number()
-              .min(100, "Minimum withdraw amount $100")
-              .required("Required"),
+            amount: Yup.number().required("Required"),
             withdrawAddress: Yup.string().required("Required"),
           })}
           onSubmit={(values, { resetForm }) => {
@@ -107,13 +128,19 @@ const Withdraw = () => {
         >
           {({ values, handleChange, handleSubmit, errors }) => (
             <form onSubmit={handleSubmit}>
-              <div className="flex flex-col justify-center items-start gap-4 p-4">
+              <div className="flex flex-col justify-center items-start gap-4 md:p-4">
                 <div className="flex relative w-full rounded-lg flex-col md:flex-row justify-center border-1 md:border-2 border-[#454545] items-center  bg-[#242424]">
                   <input
-                    onChange={handleChange}
+                    onChange={(e: any) => {
+                      const regex: any = /^[0-9]*\.?[0-9]*$/;
+                      if (e.target.value === "" || regex.test(e.target.value)) {
+                        handleChange(e);
+                        handleKeyDown(e.target.value);
+                      }
+                    }}
                     id="amount"
                     name="amount"
-                    value={values.amount}
+                    value={youget}
                     type="tel"
                     autoComplete="off"
                     inputMode="numeric"
@@ -121,7 +148,7 @@ const Withdraw = () => {
                     className="text-white  appearance-none bg-[#242424] outline-none  rounded-lg disabled:cursor-not-allowed w-full h-full p-4 "
                   />
                   <div
-                    className="w-fit pl-4 flex gap-4 justify-center items-center placeholder-white  h-full border-transparent bg-transparent text-white px-4 py-2 rounded-md appearance-none"
+                    className="w-fit dropdown pl-4 flex gap-4 justify-center items-center placeholder-white  h-full border-transparent bg-transparent text-white px-4 py-2 rounded-md appearance-none"
                     style={{
                       backgroundColor: "#111010",
                     }}
@@ -136,12 +163,10 @@ const Withdraw = () => {
                     />
                   </div>
                 </div>
-                <p className="text-sm text-red-700">{errors?.amount}</p>
-                {minimumNetworkAmount > 0 && (
-                  <p className="text-sm text-red-700">
-                    Minimum amount to exchange is {minimumNetworkAmount}
-                  </p>
+                {error1 === "" && (
+                  <p className="text-gray-400 pt-2">{errors?.amount}</p>
                 )}
+                <p className="text-gray-400 pt-2">{error1}</p>
                 <input
                   id="withdrawAddress"
                   onChange={handleChange}
@@ -150,9 +175,9 @@ const Withdraw = () => {
                   type="text"
                   autoComplete="off"
                   placeholder="Enter your wallet address"
-                  className="text-white bg-transparent bg-[#090807] w-full h-full p-4 border-2 rounded-lg border-[#454545]"
+                  className="text-white  h-[60px] md:h-[79px]  bg-transparent bg-[#090807] w-full h-full p-4 border-2 rounded-lg border-[#454545]"
                 />
-                <p className="text-sm text-red-700">
+                <p className="text-gray-400 pt-2">
                   {errors?.withdrawAddress}
                 </p>
                 <button

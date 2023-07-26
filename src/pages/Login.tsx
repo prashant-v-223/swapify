@@ -178,14 +178,14 @@ const Login = () => {
                       </div>
                       <Link
                         to="/forgot"
-                        className="text-sm font-medium text-[#F9DA0A]  hover:underline"
+                        className="text-sm font-medium text-[#f4ba2f]  hover:underline"
                       >
                         Forgot password?
                       </Link>
                     </div>
                     <button
                       type="submit"
-                      className="w-full text-black bg-[#F9DA0A]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                      className="w-full text-black bg-[#f4ba2f]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                     >
                       Sign in
                     </button>
@@ -193,7 +193,7 @@ const Login = () => {
                       Don’t have an account yet?{" "}
                       <Link
                         to="/signup"
-                        className="font-medium text-[#F9DA0A] hover:underline"
+                        className="font-medium text-[#f4ba2f] hover:underline"
                       >
                         Sign up
                       </Link>
@@ -280,7 +280,7 @@ const Login = () => {
                     </div>
                     <button
                       type="submit"
-                      className="w-full text-black bg-[#F9DA0A]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                      className="w-full text-black bg-[#f4ba2f]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                     >
                       Sign in
                     </button>

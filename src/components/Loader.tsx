@@ -1,9 +1,13 @@
 const Loader = () => {
   return (
-    <div role="status" className="absolute top-0 flex items-center justify-center w-full left-0 right-0 bottom-0">
+    <div
+      role="status"
+      className="fixed top-0 flex items-center justify-center w-full left-0 right-0 bottom-0 h-[100vh]"
+      style={{ background: "#00000065" }}
+    >
       <svg
         aria-hidden="true"
-        className="w-20 h-20 mr-2 text-gray-200 animate-spin fill-[#F9DA0A] "
+        className="w-20 h-20 mr-2 text-gray-200 animate-spin fill-[#f4ba2f] "
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

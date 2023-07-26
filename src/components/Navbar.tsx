@@ -15,6 +15,10 @@ const menu = [
     label: "Contact",
     href: "/contact",
   },
+  {
+    label: "Blog",
+    href: "https://medium.com/",
+  },
 ];
 
 export default function Navbar() {
@@ -50,7 +54,7 @@ export default function Navbar() {
                     <div className="flex gap-4">
                       <Link
                         to={"/login"}
-                        className="leading-3 p-3 bg-[#F9DA0A] rounded-md text-[#000000] font-semibold"
+                        className="leading-3 p-3 bg-[#f4ba2f] rounded-md text-[#000000] font-semibold"
                       >
                         Login
                       </Link>
@@ -127,7 +131,7 @@ export default function Navbar() {
                         <Link
                           data-aos="zoom-in-right"
                           to={"/login"}
-                          className="leading-3 p-3 text-center bg-[#F9DA0A] rounded-md text-[#000000] font-semibold w-full"
+                          className="leading-3 p-3 text-center bg-[#f4ba2f] rounded-md text-[#000000] font-semibold w-full"
                         >
                           Login
                         </Link>
@@ -141,7 +145,7 @@ export default function Navbar() {
                       </>
                     ) : (
                       <button
-                      data-aos="fade-up"
+                        data-aos="fade-up"
                         onClick={() => {
                           localStorage.clear();
                           window.location.reload();

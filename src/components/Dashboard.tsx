@@ -11,7 +11,7 @@ const Dashboard = ({
 }) => {
   const { user } = useUserInfo((state) => state.data);
   return (
-    <div className="p-4">
+    <div className="p-4"  data-aos="fade-up">
       <div className="bg-[#303131] text-white md:max-w-md w-full md:p-6 p-4 rounded-xl">
         <div className="flex justify-around gap-4">
           <img width={20} src="/assets/dollar.svg" alt="notfound" />

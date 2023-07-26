@@ -3,7 +3,15 @@ const Partners = () => {
     <div className="overflow-hidden">
       <div className="md:p-16 p-4">
         <h1 className="text-white text-3xl font-semibold leading-9 mb-4">
-          Swapfry <span className="text-[#F9DA0A]"> partners</span>
+          <span
+            className="text-[#f4ba2f]"
+            style={{
+              fontFamily: "FrutigerLTPro, inherit auto",
+            }}
+          >
+            Swapfry
+          </span>
+          <span className=""> partners</span>
         </h1>
       </div>
       <div className="bg-[#141414] border-y-2 border-[#5C520B] grid md:p-10 gap-10 p-6 items-center md:grid-cols-4  justify-center ">

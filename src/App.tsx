@@ -25,6 +25,10 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RiskDisclaimer from "./pages/RiskDisclaimer";
 import ContactUsPage from "./components/Contact";
 import AboutUs from "./pages/About";
+import ScrollToTop from "./ScrollToTop";
+import LiveChart from "./pages/LiveChart";
+import CoinChart from "./pages/CoinChart";
+
 const queryClient = new QueryClient();
 const Root = () => {
   useEffect(() => {
@@ -35,6 +39,7 @@ const Root = () => {
   }, []);
   return (
     <QueryClientProvider client={queryClient}>
+      <ScrollToTop />
       <Navbar />
       <Outlet />
       <Toaster />
@@ -65,6 +70,8 @@ const router = createBrowserRouter(
       <Route path="/risk" element={<RiskDisclaimer />} />
       <Route path="/privacy" element={<PrivacyPolicy />} />
       <Route path="/contact" element={<ContactUsPage />} />
+      <Route path="/chart" element={<LiveChart />}></Route>
+      <Route path="/chart/:id" element={<CoinChart />}></Route>
       <Route path="/aboutus" element={<AboutUs />} />
     </Route>
   )

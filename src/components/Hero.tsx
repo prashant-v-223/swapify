@@ -32,7 +32,12 @@ const Hero = () => {
       <div className="flex flex-col gap-4 justify-center md:hidden ">
         <span className="text-white md:my-1 text-2xl font-bold leading-10">
           Exchange your crypto assets instantly on{" "}
-          <span className="text-3xl font-bold leading-10 text-yellow-400">
+          <span
+            className="text-3xl font-bold leading-10 text-[#f4ba2f]"
+            style={{
+              fontFamily: "FrutigerLTPro, inherit auto",
+            }}
+          >
             Swapfry
           </span>
         </span>
@@ -42,7 +47,7 @@ const Hero = () => {
         </div>
         <Link
           to={"/login"}
-          className="p-2 w-full text-center bg-gradient-to-r from-[#F9DA0A] to-[#F9DA0A] text-[#000000] font-semibold rounded-xl text-base "
+          className="p-2 w-full text-center bg-gradient-to-r from-[#f4ba2f] to-[#f4ba2f] text-[#000000] font-semibold rounded-xl text-base "
         >
           Get started
         </Link>
@@ -54,7 +59,12 @@ const Hero = () => {
         <span className="text-white md:my-1 text-2xl md:text-[48px] font-bold leading-10">
           assets instantly on
         </span>
-        <span className="text-3xl md:my-1 md:text-[48px] font-bold leading-10 text-yellow-400">
+        <span
+          className="text-3xl md:my-1 md:text-[48px] font-bold leading-10 text-[#f4ba2f]"
+          style={{
+            fontFamily: "FrutigerLTPro, inherit auto",
+          }}
+        >
           Swapfry
         </span>
         <div className="text-white text-base md:my-1 md:text-xl font-medium leading-9">
@@ -63,7 +73,7 @@ const Hero = () => {
         </div>
         <Link
           to={"/login"}
-          className="p-3  text-center  md:p-4 md:w-52 w-full bg-gradient-to-r from-[#F9DA0A] to-[#F9DA0A] text-[#000000] font-semibold rounded-xl text-base "
+          className="p-3  text-center  md:p-4 md:w-52 w-full bg-gradient-to-r from-[#f4ba2f] to-[#f4ba2f] text-[#000000] font-semibold rounded-xl text-base "
         >
           Get started
         </Link>
@@ -159,7 +169,7 @@ const Hero = () => {
               </div>
               <Link
                 to="/login"
-                className="p-3 md:p-3.5 flex items-center gap-2 justify-center w-full bg-[#F5D815E5] text-[#000000] font-semibold rounded-xl text-base"
+                className="p-3 md:p-3.5 flex items-center gap-2 justify-center w-full bg-[#f4ba2f] text-[#000000] font-semibold rounded-xl text-base"
               >
                 <img src="/assets/swap.svg" alt="swap" />
                 Swap assets

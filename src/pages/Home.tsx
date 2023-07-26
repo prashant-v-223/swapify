@@ -10,6 +10,7 @@ import { RiLockPasswordFill } from "react-icons/ri";
 import { useEffect, useRef, useState } from "react";
 import UsersTable from "@/components/UsersTable";
 import Forgot from "./Forgot";
+import LiveChart from "./LiveChart";
 const Home = () => {
   const [selected1, setSelected1] = useState([]);
   console.log("selected1", selected1);
@@ -108,6 +109,22 @@ const Home = () => {
               <img src="/assets/withdraw.svg" alt="withdraw" />
               Withdraw
             </a>
+            <a
+              className={
+                "text-xs font-bold text-white w-fit py-[1rem] px-[2rem]  uppercase  rounded flex gap-2 leading-normal " +
+                (openTab === 6 ? "bg-[#303131]" : "bg-transparent")
+              }
+              onClick={(e) => {
+                e.preventDefault();
+                setOpenTab(6);
+              }}
+              data-toggle="tab"
+              href="#link3"
+              role="tablist"
+            >
+              <img src="/assets/withdraw.svg" alt="withdraw" />
+              chart
+            </a>
           </div>
           <div className="md:w-1/3 justify-end flex">
             <div
@@ -184,11 +201,13 @@ const Home = () => {
           {openTab === 1 ? (
             <Dashboard setOpenTab={setOpenTab} setSelected1={setSelected1} />
           ) : openTab === 2 ? (
-            <Deposit selected1={selected1} />
+            <Deposit selected1={selected1} setSelected1={setSelected1} />
           ) : openTab === 3 ? (
             <Withdraw />
           ) : openTab === 4 ? (
             <UsersTable />
+          ) : openTab === 6 ? (
+            <LiveChart />
           ) : (
             <Forgot mode={true} />
           )}

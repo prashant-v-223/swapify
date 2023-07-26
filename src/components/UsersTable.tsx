@@ -76,7 +76,7 @@ const UsersTable = () => {
   };
   if (data?.users.length !== 0) {
     return (
-      <div className="relative overflow-x-auto m-4 ">
+      <div className="relative overflow-x-auto m-4 "  data-aos="fade-up">
         <div className="mx-3 mb-6">
           <label htmlFor="exampleFormControlInput1" className=" text-gray-100">
             <b> Serch :</b>

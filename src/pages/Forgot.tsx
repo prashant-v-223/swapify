@@ -61,7 +61,7 @@ const Forgot = ({ mode }: any) => {
     },
   });
   return (
-    <section className={`${!mode ? "main h-screen" : ""} `}>
+    <section className={`${!mode ? "main h-screen" : ""} `}  data-aos="fade-up">
       <div className="flex flex-col items-center justify-center px-2 md:px-6 py-8 mx-auto">
         {!mode && (
           <Link
