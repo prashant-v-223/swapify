@@ -21,7 +21,7 @@ const fetchRate = async (
   );
   return data;
 };
-const Deposit = ({ selected1, setSelected1 }: any) => {
+const Deposit = ({ selected1 }: any) => {
   console.log("selected1selected1selected1", selected1);
 
   let { user } = useUserInfo((state) => state.data);

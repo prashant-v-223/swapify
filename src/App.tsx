@@ -27,6 +27,7 @@ import ContactUsPage from "./components/Contact";
 import AboutUs from "./pages/About";
 import ScrollToTop from "./ScrollToTop";
 import LiveChart from "./pages/LiveChart";
+// @ts-ignore
 import CoinChart from "./pages/CoinChart";
 
 const queryClient = new QueryClient();

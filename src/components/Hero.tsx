@@ -144,7 +144,7 @@ const Hero = () => {
               </div>
               <div className="flex justify-between my-4 gap-4">
                 <span className="text-white text-sm">
-                  Min. amount 0.0035 BTC
+                  Min. amount $ 88
                 </span>
                 <span className="text-white text-sm">
                   {values.send} BTC = {Number(values?.receive).toFixed(2)}{" "}
