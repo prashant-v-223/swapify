@@ -15,8 +15,19 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       rollupOptions: {
-        external: ["chart.js"]
-      }
-    }
+        output: {
+          // Adjust the chunk size warning limit (optional)
+          chunkSizeWarningLimit: 1000, // Set the limit to 1000 kBs
+
+          // Manual chunks configuration
+          manualChunks: {
+            // Specify how to split your code
+            'vendor.js': ['chart.js', 'react', 'react-dom'],
+            'my-large-library.js': 'node_modules/my-large-library',
+            // You can add more manual chunks here based on your dependencies
+          },
+        },
+      },
+    },
   };
 });
