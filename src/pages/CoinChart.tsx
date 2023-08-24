@@ -3,6 +3,26 @@ import ChartAPI from "../services/liveChartApi";
 import { useParams } from "react-router-dom";
 // @ts-ignore
 import { Line } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const CoinChart = () => {
   const { id } = useParams();
@@ -12,6 +32,17 @@ const CoinChart = () => {
   const [history, setHistory] = useState([]);
 
   const [error, setError] = useState(false);
+
+  const chartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+  };
 
   useEffect(() => {
     let get = async () => {
@@ -30,30 +61,6 @@ const CoinChart = () => {
 
     get();
   }, [id]);
-  const chartOptions: any = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: false,
-      },
-    },
-    scales: {
-      x: {
-        display: true,
-        grid: {
-          display: false,
-        },
-      },
-      y: {
-        display: true,
-        grid: {
-          display: true,
-          color: "rgba(255, 255, 255, 0.1)", // Customize the grid color if needed
-        },
-      },
-    },
-  };
 
   // @ts-ignore
   const listOfLength = (length) => {
@@ -81,7 +88,7 @@ const CoinChart = () => {
                 labels: listOfLength(history.length),
                 datasets: [
                   {
-                    borderColor: "#f4ba2f",
+                    borderColor: "#F9DA0A",
                     borderWidth: 2,
                     pointRadius: 3,
                     data: history,

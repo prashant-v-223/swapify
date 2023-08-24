@@ -11,9 +11,10 @@ import DropDown from "./Dropdown";
 const Withdraw = () => {
   let { user } = useUserInfo((state) => state.data);
   let [data1, setdata1] = useState<any>(user);
+  const [brn, setbrn] = useState("");
   const [youget, setyouget] = useState<any>("");
   const [showLoading, setShowLoading] = useState<boolean>(false);
-  const [selected, setSelected] = useState(data?.[0]);
+  const [selected, setSelected] = useState(data?.[2]);
   const [error1, setError1] = useState("");
   // @ts-ignore
   const [selectedValues, setSelectedValues] = useState({});
@@ -22,7 +23,6 @@ const Withdraw = () => {
     network: "TRX",
     shortName: "BTT",
   });
-  console.log(selected.name, "----", selectedNetwork.network);
   const handleSelect = (value: any) => {
     setSelected(value); // Set the selected value in the parent component
     setyouget("");
@@ -71,7 +71,6 @@ const Withdraw = () => {
       //   toast.error("Please make sure you have enough balance...");
       // }
     } catch (error) {
-      console.log(error);
       // @ts-ignore
       if (error?.response.status === 422 && error?.response.data?.minAmount) {
         // @ts-ignore
@@ -98,6 +97,7 @@ const Withdraw = () => {
           amount
         )}&rateType=fixed`
       );
+      setbrn((data?.toAmount > 0).toString());
     } catch (error) {
       // @ts-ignore
       if (error?.response.status === 422 && error?.response.data?.minAmount) {
@@ -106,6 +106,7 @@ const Withdraw = () => {
       } else {
         // @ts-ignore
         setError1(error?.response?.data?.error);
+        setbrn("ture");
       }
     }
   };
@@ -177,14 +178,19 @@ const Withdraw = () => {
                   placeholder="Enter your wallet address"
                   className="text-white  h-[60px] md:h-[79px]  bg-transparent bg-[#090807] w-full h-full p-4 border-2 rounded-lg border-[#454545]"
                 />
-                <p className="text-gray-400 pt-2">
-                  {errors?.withdrawAddress}
-                </p>
+                <p className="text-gray-400 pt-2">{errors?.withdrawAddress}</p>
                 <button
                   type="submit"
-                  className={
-                    "bg-[#242424] w-fit disabled:cursor-not-allowed group gap-2 flex items-center rounded-lg p-4 text-sm text-white"
-                  }
+                  className={`${
+                    brn === "ture"
+                      ? "bg-[#242424] text-[#fff]"
+                      : brn === ""
+                      ? "bg-[#242424] text-[#fff]"
+                      : "bg-[#f9da0a] text-[#000]"
+                  } mt-4 w-fit group gap-2 flex items-center rounded-lg p-4 text-sm `}
+                  style={{
+                    fontWeight: "600",
+                  }}
                 >
                   <img src="/assets/greentick.svg" alt="user" />
                   withdraw now
@@ -194,7 +200,7 @@ const Withdraw = () => {
           )}
         </Formik>
         <div className="flex items-start text-left flex-col justify-start gap-4 p-4">
-          <h1 className="text-2xl text-[#facc15] font-medium">
+          <h1 className="text-2xl text-[#F9DA0A] font-medium">
             Please make sure
           </h1>
           <div className="flex gap-4">

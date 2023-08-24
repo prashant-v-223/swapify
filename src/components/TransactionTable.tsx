@@ -1,12 +1,11 @@
+import { convertDate } from "@/utils";
 import { useEffect, useState } from "react";
 
 const TransactionTable = ({ data, user }: any) => {
-  console.log();
-  
+
   const [userdata, setuserdata] = useState([]);
   useEffect(() => {
     let usertransactionIds: any = user?.transactionIds.filter((e: any) => {
-      console.log(e);
 
       return e.transactionType === data;
     });
@@ -15,8 +14,14 @@ const TransactionTable = ({ data, user }: any) => {
 
   if (userdata?.length !== 0) {
     return (
-      <div className="relative overflow-x-auto mt-4 ">
-        <table className="w-full text-sm text-left text-gray-500 md:border border-[#606060]">
+      <div className=" overflow-x-auto  mt-4 ">
+        <table
+          className="w-full text-sm text-left text-gray-500 md:border border-[#606060]"
+          style={{
+            minWidth: "802px",
+            overflowX: "scroll",
+          }}
+        >
           <thead className="text-sm sm:text-base bg-[#303131] rounded-lg text-white ">
             <tr>
               <th scope="col" className="px-6 py-3">
@@ -40,7 +45,7 @@ const TransactionTable = ({ data, user }: any) => {
             </tr>
           </thead>
           <tbody>
-            {userdata?.map((transactionId: any, index: any) => {
+            {userdata.reverse()?.map((transactionId: any, index: any) => {
               return (
                 <tr
                   key={transactionId.id}
@@ -58,9 +63,11 @@ const TransactionTable = ({ data, user }: any) => {
                     <td className="px-6 py-4"> {transactionId?.coin} </td>
                   )}
                   <td className="px-6 py-4">
-                    {new Date(transactionId?.time).toDateString()}
+                    {convertDate(transactionId?.time)}
                   </td>
-                  <td className="px-6 py-4">{transactionId?.amount} $</td>
+                  <td className="px-6 py-4">
+                    {data !== "deposit" ? "$" : ""} {transactionId?.amount}{" "}
+                  </td>
                   <td className="px-6 py-4">
                     {transactionId?.status === "approved"
                       ? "completed "

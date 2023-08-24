@@ -26,7 +26,7 @@ const Main = () => {
           position: "fixed",
           bottom: 20,
           right: 20,
-          background: "#f4ba2f",
+          background: "#F9DA0A",
           padding: 12,
           cursor: "pointer",
           color: "#000",

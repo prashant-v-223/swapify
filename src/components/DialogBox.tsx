@@ -51,7 +51,7 @@ const DialogBox = ({ closeModal, isOpen, transaction }: TDialogBox) => {
                 <div className="mt-4 flex md:flex-row flex-col w-full gap-4">
                   <button
                     onClick={copyToClipboard}
-                    className="w-full gap-2 px-4 py-2 mt-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#facc15] rounded-md sm:mt-0 sm:w-1/2 sm:mx-2 hover:bg-yellow-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 justify-center flex"
+                    className="w-full gap-2 px-4 py-2 mt-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-[#F9DA0A] rounded-md sm:mt-0 sm:w-1/2 sm:mx-2 hover:bg-yellow-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 justify-center flex"
                   >
                     Copy
                     <svg
@@ -73,7 +73,7 @@ const DialogBox = ({ closeModal, isOpen, transaction }: TDialogBox) => {
                     onClick={() => {
                       closeModal();
                     }}
-                    className="w-full gap-2 px-4 py-2 mt-3 text-sm tracking-wide text-white capitalize transition-colors  bg-[#facc15] duration-300 transform bg-{#facc15] rounded-md sm:mt-0 sm:w-1/2 sm:mx-2 hover:bg-yellow-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 justify-center flex"
+                    className="w-full gap-2 px-4 py-2 mt-3 text-sm tracking-wide text-white capitalize transition-colors  bg-[#F9DA0A] duration-300 transform bg-{#F9DA0A] rounded-md sm:mt-0 sm:w-1/2 sm:mx-2 hover:bg-yellow-600 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 justify-center flex"
                   >
                     Confirm
                   </button>

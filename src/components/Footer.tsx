@@ -1,53 +1,265 @@
 import { Link } from "react-router-dom";
 
-const Footer = () => {
+function Footer() {
   return (
-    <div className="grid md:grid-cols-2 grid-cols-1 md:p-16 justify-center p-8 main overflow-hidden">
-      <div data-aos="fade-left" className="flex flex-col items-start md:m-10 justify-center">
-        <img src="/assets/logo_ver1.png" width={160} alt="logo" />
-        <p className="text-white text-xl my-4 font-semibold">
-          One place for Swap.
-        </p>
-        <div className="flex gap-6 my-4">
-          <img src="/assets/instagram.svg" alt="instagram" />
-          <img src="/assets/whatsapp.svg" alt="whatsapp" />
-          <img src="/assets/twitter.svg" alt="twitter" />
+    <>
+      <footer className="text-gray-400 bg-gray-900 body-font main">
+        <div className="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
+          <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
+            <a className="flex title-font font-medium items-center md:justify-start justify-center text-white">
+              <img
+                src="/assets/logo_ver1.png"
+                width={160}
+                alt="logo"
+                style={{ height: 60 }}
+              />
+            </a>
+            <p className="mt-2 text-lg text-gray-500">One place for Swap.</p>
+          </div>
+          <div className="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center justify-end">
+            <div className="lg:w-1/4 md:w-1/2 w-full px-4">
+              <h2 className="title-font font-medium text-white tracking-widest text-md mb-3">
+                About
+              </h2>
+              <nav className="list-none mb-10">
+                <li className="py-1 md-2">
+                  {" "}
+                  <Link
+                    to={"/risk"}
+                    className="text-[#969696] font-semibold text-base"
+                  >
+                    Risk disclaimer
+                  </Link>
+                </li>
+                <li className="py-1 md-2">
+                  {" "}
+                  <Link
+                    to={"/privacy"}
+                    className="text-[#969696] font-semibold text-base"
+                  >
+                    Privacy
+                  </Link>
+                </li>
+                <li className="py-1 md-2">
+                  {" "}
+                  <Link
+                    to={"/contact"}
+                    className="text-[#969696] font-semibold text-base"
+                  >
+                    Contact us
+                  </Link>
+                </li>
+              </nav>
+            </div>
+            <div className="lg:w-1/4 md:w-1/2 w-full px-4">
+              <h2 className="title-font font-medium text-white tracking-widest text-md mb-3">
+                Exchange pairs
+              </h2>
+              <nav className="list-none mb-10">
+                <li className="py-1 md-2">
+                  <Link
+                    to={"/login"}
+                    className="text-[#969696] font-semibold text-base"
+                  >
+                    USDT to BTC{" "}
+                  </Link>
+                </li>
+                <li className="py-1 md-2">
+                  {" "}
+                  <Link
+                    to={"/login"}
+                    className="text-[#969696] font-semibold text-base"
+                  >
+                    ETH to BTC{" "}
+                  </Link>
+                </li>
+                <li className="py-1 md-2">
+                  {" "}
+                  <Link
+                    to={"/login"}
+                    className="text-[#969696] font-semibold  text-base"
+                  >
+                    ETH to USDT
+                  </Link>
+                </li>
+                <li className="py-1 md-2">
+                  {" "}
+                  <Link
+                    to={"/login"}
+                    className="text-[#969696] font-semibold text-base"
+                  >
+                    BCH to BTC{" "}
+                  </Link>
+                </li>
+                <li className="py-1 md-2">
+                  {" "}
+                  <Link
+                    to={"/login"}
+                    className="text-[#969696] font-semibold text-base"
+                  >
+                    USDT to BNB
+                  </Link>
+                </li>
+                <li className="py-1 md-2">
+                  {" "}
+                  <Link
+                    to={"/login"}
+                    className="text-[#969696] font-semibold text-base"
+                  >
+                    XMR to BTC{" "}
+                  </Link>
+                </li>
+                <li className="py-1 md-2 block  md:hidden ">
+                  {" "}
+                  <Link
+                    to={"/login"}
+                    className="text-[#969696] font-semibold text-base"
+                  >
+                    BTC to ETH
+                  </Link>
+                </li>
+                <li className="py-1 md-2 block  md:hidden">
+                  {" "}
+                  <Link
+                    to={"/login"}
+                    className="text-[#969696] font-semibold text-base"
+                  >
+                    SQL to ETH
+                  </Link>
+                </li>
+                <li className="py-1 md-2 block  md:hidden">
+                  {" "}
+                  <Link
+                    to={"/login"}
+                    className="text-[#969696] font-semibold  text-base"
+                  >
+                    USDT to ETH
+                  </Link>
+                </li>
+                <li className="py-1 md-2 block  md:hidden ">
+                  {" "}
+                  <Link
+                    to={"/login"}
+                    className="text-[#969696] font-semibold text-base"
+                  >
+                    USDT to XMR
+                  </Link>
+                </li>
+              </nav>
+            </div>
+            <div className="hidden md:block lg:w-1/4 md:w-1/2  px-4">
+              <h2 className="title-font font-medium text-white tracking-widest text-md mb-3"></h2>
+              <nav className="list-none mb-10">
+                <li className="py-1 md-2">
+                  {" "}
+                  <Link
+                    to={"/login"}
+                    className="text-[#969696] font-semibold text-base"
+                  >
+                    BTC to ETH
+                  </Link>
+                </li>
+                <li className="py-1 md-2">
+                  {" "}
+                  <Link
+                    to={"/login"}
+                    className="text-[#969696] font-semibold text-base"
+                  >
+                    SQL to ETH
+                  </Link>
+                </li>
+                <li className="py-1 md-2">
+                  {" "}
+                  <Link
+                    to={"/login"}
+                    className="text-[#969696] font-semibold  text-base"
+                  >
+                    USDT to ETH
+                  </Link>
+                </li>
+                <li className="py-1 md-2">
+                  {" "}
+                  <Link
+                    to={"/login"}
+                    className="text-[#969696] font-semibold text-base"
+                  >
+                    USDT to XMR
+                  </Link>
+                </li>
+              </nav>
+            </div>
+          </div>
         </div>
-      </div>
-      <div data-aos="fade-right" className="grid grid-cols-1 md:grid-cols-3 gap-10">
-        <div className="flex flex-col gap-2">
-        <Link to="/" className="text-white text-2xl font-bold my-2">About</Link>
-          <Link to={"/risk"} className="text-[#969696] font-semibold text-base">
-            Risk disclaimer
-          </Link>
-          <Link to={'/privacy'} className="text-[#969696] font-semibold text-base">Privacy</Link>
-          <Link to={"/contact"} className="text-[#969696] font-semibold text-base">Contact us</Link>
+        <div
+          className="bg-gray-800 bg-opacity-75"
+          style={{ background: "#1b1917" }}
+        >
+          <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
+            <p className="text-gray-400 text-sm text-center sm:text-left">
+              © 2023 swapfry
+            </p>
+            <span className="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-center sm:justify-start">
+              <a className="text-gray-400">
+                <svg
+                  fill="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  className="w-5 h-5"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                </svg>
+              </a>
+              <a className="ml-3 text-gray-400">
+                <svg
+                  fill="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  className="w-5 h-5"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                </svg>
+              </a>
+              <a className="ml-3 text-gray-400">
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  className="w-5 h-5"
+                  viewBox="0 0 24 24"
+                >
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+                </svg>
+              </a>
+              <a className="ml-3 text-gray-400">
+                <svg
+                  fill="currentColor"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="0"
+                  className="w-5 h-5"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="none"
+                    d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"
+                  ></path>
+                  <circle cx="4" cy="4" r="2" stroke="none"></circle>
+                </svg>
+              </a>
+            </span>
+          </div>
         </div>
-        <div className="flex flex-col gap-2">
-          <Link to={'/'} className="text-white text-2xl font-bold my-2">Exchange pairs  </Link>
-          <Link to={'/login'} className="text-[#969696] font-semibold text-base">USDT to BTC  </Link>
-          <Link to={'/login'} className="text-[#969696] font-semibold text-base">ETH to BTC  </Link>
-          <Link to={'/login'} className="text-[#969696] font-semibold  text-base">ETH to USDT  </Link>
-          <Link to={'/login'} className="text-[#969696] font-semibold text-base">BCH to BTC  </Link>
-          <Link to={'/login'} className="text-[#969696] font-semibold text-base">USDT to BNB  </Link>
-          <Link to={'/login'} className="text-[#969696] font-semibold text-base">XMR to BTC  </Link>
-        </div>
-        <div className="flex flex-col gap-2">
-          <Link to={'/login'} className=" text-2xl font-bold my-2 text-transparent invisible">Crypto prices  </Link>
-          <Link to={'/login'} className="text-[#969696] font-semibold text-base">
-            BTC to ETH  </Link>
-          <Link to={'/login'} className="text-[#969696] font-semibold text-base">
-
-            SOL to ETH
-          </Link>
-          <Link to={'/login'} className="text-[#969696] font-semibold text-base">
-            USDT to ETH  </Link>
-          <Link to={'/login'} className="text-[#969696] font-semibold text-base">
-            USDT to XMR  </Link>
-        </div>
-      </div>
-    </div>
+      </footer>
+    </>
   );
-};
+}
 
 export default Footer;

@@ -15,7 +15,6 @@ const UsersTable = () => {
   };
 
   const { data, refetch } = useQuery("users", fetchUsers);
-  console.log(data);
   const [Fillter, setFillter] = React.useState(data?.users || []);
   useEffect(() => {
     setFillter(data?.users || []);
@@ -31,7 +30,6 @@ const UsersTable = () => {
         toast.success("User Blocked");
       }
     } catch (error) {
-      console.log(error);
       toast.error("Something went wrong");
     } finally {
       setShowLoader(false);
@@ -51,7 +49,6 @@ const UsersTable = () => {
         refetch();
       }
     } catch (error) {
-      console.log(error);
       toast.error("Something went wrong");
     } finally {
       setShowLoader(false);

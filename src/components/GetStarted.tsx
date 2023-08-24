@@ -35,7 +35,7 @@ const GetStarted = () => {
           data-aos="fade-up"
           className="flex bg-[#141414] items-center flex-row gap-4 rounded-lg  p-4 md:h-[180px]"
         >
-          <MdSwitchAccount style={{ color: "#f4ba2f", fontSize: "40px" }} />
+          <MdSwitchAccount style={{ color: "#F9DA0A", fontSize: "40px" }} />
           <div>
             <p className="text-white font-semibold text-xl md:text-2xl">
               Fund account
@@ -49,7 +49,7 @@ const GetStarted = () => {
           data-aos="fade-right"
           className="flex bg-[#141414] items-center flex-row gap-4 rounded-lg p-4 md:h-[180px]"
         >
-          <BsFillBox2Fill style={{ color: "#f4ba2f", fontSize: "30px" }} />
+          <BsFillBox2Fill style={{ color: "#F9DA0A", fontSize: "30px" }} />
 
           <div>
             <p className="text-white font-semibold text-xl md:text-2xl">
@@ -64,7 +64,7 @@ const GetStarted = () => {
           data-aos="fade-left"
           className="flex bg-[#141414] items-center flex-row gap-4 rounded-lg p-4 md:h-[180px]"
         >
-          <RiPassValidFill style={{ color: "#f4ba2f", fontSize: "40px" }} />
+          <RiPassValidFill style={{ color: "#F9DA0A", fontSize: "40px" }} />
 
           <div>
             <p className="text-white font-semibold text-xl  md:text-2xl">
@@ -79,7 +79,7 @@ const GetStarted = () => {
           data-aos="fade-up"
           className="flex bg-[#141414] items-center flex-row gap-4 rounded-lg  p-4 md:h-[180px]"
         >
-          <BiMoneyWithdraw style={{ color: "#f4ba2f", fontSize: "40px" }} />
+          <BiMoneyWithdraw style={{ color: "#F9DA0A", fontSize: "40px" }} />
 
           <div>
             <p className="text-white font-semibold text-xl md:text-2xl">
@@ -94,7 +94,7 @@ const GetStarted = () => {
           data-aos="fade-right"
           className="flex bg-[#141414] items-center flex-row gap-4 rounded-lg p-4 md:h-[180px]"
         >
-          <RiSecurePaymentLine style={{ color: "#f4ba2f", fontSize: "50px" }} />
+          <RiSecurePaymentLine style={{ color: "#F9DA0A", fontSize: "50px" }} />
 
           <div>
             <p className="text-white font-semibold text-xl md:text-2xl">

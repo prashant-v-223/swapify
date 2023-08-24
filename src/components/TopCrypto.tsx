@@ -36,33 +36,36 @@ const TopCrypto = ({ view, setOpenTab, setSelected1 }: any) => {
           return { ...result.value, image, name, id };
         } else {
           // Handle rejected promise (optional)
-          console.log(`Promise at index ${index} rejected: ${result.reason}`);
           return null; // or any other fallback value
         }
       });
 
       return updatedCoins.filter((coin) => coin !== null) as any;
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const { data, isLoading } = useQuery("coins", parallelRequest);
   const [hoveredIndex, setHoveredIndex] = useState(-1);
   return (
     <>
-      <div className={` ${view !== "deshbord" ? "px-16" : "px-0"}  py-10`}>
+      <div
+        className={` ${view !== "deshbord" ? "px-6 md:px-16" : "px-0"}  py-10`}
+      >
         <p className="text-white font-semibold text-3xl py-10">
           Top cryptocurrencies
         </p>
-        <div className={`${view !== "deshbord" ? "m-6" : "m-0"}`}>
-          <div className="flex relative  rounded-3xl topcrypto overflow-x-auto mt-4 justify-around flex-col md:flex-wrap md:flex-row px-8 pb-6">
-            <div className="w-full overflow-x-auto min-w-[600px] font-semibold text-sm text-left text-gray-500 ">
+        <div className={`${view !== "deshbord" ? "md:m-6" : "m-0"}`}>
+          <div className="flex relative  rounded-3xl topcrypto overflow-x-auto mt-4 justify-around flex-col md:flex-wrap md:flex-row px-2 md:px-8 pb-6">
+            <div className="w-full overflow-x-auto  min-w-[350px]  font-semibold text-sm text-left text-gray-500 ">
               <div className="text-sm sm:text-base text-center bg-transparent rounded-lg text-white p-6 grid grid-cols-4">
-                <p className="p-6 flex justify-flex-start items-center">From</p>
-                <p className="p-6 flex justify-flex-start items-center">To</p>
-                <p className="p-6 ">Price</p>
-                <p className="p-6 text-transparent">Price</p>
+                <p className="md:px-6 py-2 flex justify-flex-start items-center">
+                  From
+                </p>
+                <p className="px-12 md:px-6 py-2 flex justify-flex-start items-center">
+                  To
+                </p>
+                <p className="md:px-6 py-2 hidden md:block">Price</p>
+                <p className="md:px-6 py-2 text-transparent">Price</p>
               </div>
               <div className="">
                 {isLoading ? (
@@ -93,7 +96,7 @@ const TopCrypto = ({ view, setOpenTab, setSelected1 }: any) => {
                       key={crypto.id}
                       onMouseEnter={() => setHoveredIndex(index)}
                       onMouseLeave={() => setHoveredIndex(-1)}
-                      className="bg-transparent text-center text-white grid grid-cols-4 hover:bg-[#35353770] cursor-pointer items-center"
+                      className="bg-transparent text-center text-white grid grid-cols-3 md:grid-cols-4 hover:bg-[#35353770] cursor-pointer items-center"
                     >
                       <div className="px-6 py-4 flex justify-flex-start">
                         <div className="gap-4 flex justify-flex-start items-center">
@@ -103,7 +106,9 @@ const TopCrypto = ({ view, setOpenTab, setSelected1 }: any) => {
                             src={crypto.image}
                             alt={crypto.id}
                           />
-                          <span>{crypto.name.split(" ")[0]}</span>
+                          <span className="text-xs md:text-md">
+                            {crypto.name.split(" ")[0]}
+                          </span>
                         </div>
                       </div>
                       <p className="px-6 py-4 flex justify-flex-start items-center">
@@ -116,10 +121,10 @@ const TopCrypto = ({ view, setOpenTab, setSelected1 }: any) => {
                           }
                           alt={crypto.id}
                         />
-                        USDT
+                        <span className="text-xs md:text-md">USDT</span>
                       </p>
-                      <p className="px-6 py-4 flex justify-center items-center">
-                        {isLoading ? 0 : Number(crypto.rate).toFixed(3)} $
+                      <p className="px-6 py-4 flex justify-center items-center hidden md:block ">
+                        $ {isLoading ? 0 : Number(crypto.rate).toFixed(3)}
                       </p>
                       {hoveredIndex === index ? (
                         <div
@@ -130,10 +135,12 @@ const TopCrypto = ({ view, setOpenTab, setSelected1 }: any) => {
                             } else {
                               setOpenTab(2);
                               setSelected1(crypto);
-                              console.log("localStorage.getItem(token)");
                             }
                           }}
-                          className="bg-[#cb9b27] w-fit h-fit py-2 rounded-md px-4 block m-auto"
+                          className="bg-[#F9DA0A] w-fit h-fit d-none py-2 rounded-md px-4 block m-auto"
+                          style={{
+                            color: "#000",
+                          }}
                         >
                           {" "}
                           Exchange{" "}

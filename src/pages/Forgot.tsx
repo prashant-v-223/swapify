@@ -36,7 +36,6 @@ const Forgot = ({ mode }: any) => {
         `${process.env.VITE_SERVER_URL}/users/verify-reset-otp`,
         data
       );
-      console.log(res);
       toast.success("Password changed successfully");
       navigate("/login");
     } catch (error) {
@@ -73,6 +72,7 @@ const Forgot = ({ mode }: any) => {
               height={200}
               src="/assets/logo_ver1.png"
               alt="logo"
+              style={{ height: 60 }}
             />
           </Link>
         )}

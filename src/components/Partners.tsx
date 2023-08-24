@@ -4,7 +4,7 @@ const Partners = () => {
       <div className="md:p-16 p-4">
         <h1 className="text-white text-3xl font-semibold leading-9 mb-4">
           <span
-            className="text-[#f4ba2f]"
+            className="text-[#F9DA0A]"
             style={{
               fontFamily: "FrutigerLTPro, inherit auto",
             }}

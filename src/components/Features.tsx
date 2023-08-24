@@ -9,11 +9,11 @@ const Features = () => {
     <div className="my-4 w-full overflow-hidden">
       <div className="md:p-16 p-6 grid">
         <h1 className="text-white text-3xl font-semibold leading-9">
-          {/* Swapfry <span className="text-[#f4ba2f]"> features</span> */}
+          {/* Swapfry <span className="text-[#F9DA0A]"> features</span> */}
           
         <h1 className="text-white text-3xl font-semibold leading-9 mb-4">
           <span
-            className="text-[#f4ba2f]"
+            className="text-[#F9DA0A]"
             style={{
               fontFamily: "FrutigerLTPro, inherit auto",
             }}
@@ -56,7 +56,7 @@ const Features = () => {
           className="flex bg-[#141414] items-center flex-row gap-4  p-6 md:h-[180px] border-b-[1px] border-[#333333]"
         >
           <div className="">
-            <BsCassetteFill style={{ color: "#f4ba2f", fontSize: "40px" }} />
+            <BsCassetteFill style={{ color: "#F9DA0A", fontSize: "40px" }} />
           </div>
           <div>
             <p className="text-white font-semibold text-xl md:text-2xl">
@@ -74,7 +74,7 @@ const Features = () => {
           className="flex bg-[#141414] items-center flex-row gap-4 p-6 md:h-[180px] border-b md:border-b-0 border-[#333333] border-r-[1px]"
         >
           <div className="">
-            <FaUserShield style={{ color: "#f4ba2f", fontSize: "40px" }} />
+            <FaUserShield style={{ color: "#F9DA0A", fontSize: "40px" }} />
           </div>
           <div>
             <p className="text-white font-semibold text-xl md:text-2xl">
@@ -92,7 +92,7 @@ const Features = () => {
           className="flex bg-[#141414] items-center flex-row gap-4 p-6 md:h-[180px] border-b  border-[#333333]"
         >
           <div className="">
-            <TbFreeRights style={{ color: "#f4ba2f", fontSize: "40px" }} />
+            <TbFreeRights style={{ color: "#F9DA0A", fontSize: "40px" }} />
           </div>
           <div>
             <p className="text-white font-semibold text-xl md:text-2xl">
@@ -110,7 +110,7 @@ const Features = () => {
         >
           {" "}
           <div className="">
-            <SiSpringsecurity style={{ color: "#f4ba2f", fontSize: "40px" }} />
+            <SiSpringsecurity style={{ color: "#F9DA0A", fontSize: "40px" }} />
           </div>
           <div>
             <p className="text-white font-semibold text-xl md:text-2xl">
@@ -129,7 +129,7 @@ const Features = () => {
         >
           <div className="">
             <MdOutlineSupportAgent
-              style={{ color: "#f4ba2f", fontSize: "40px" }}
+              style={{ color: "#F9DA0A", fontSize: "40px" }}
             />
           </div>
           <div>

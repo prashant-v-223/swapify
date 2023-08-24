@@ -24,18 +24,23 @@ const menu = [
 export default function Navbar() {
   return (
     <>
-      <nav className="md:px-8 md:py-4 bg-[#050505] items-center grid z-10">
+      <nav
+        className="md:px-8 md:py-4 bg-[#050505] items-center grid z-10"
+      >
         <Disclosure>
           {({ open }) => (
             <>
-              <div className="flex flex-wrap justify-between md:gap-10 md:flex-nowrap">
+              <div
+                className="flex flex-wrap justify-between md:gap-10 md:flex-nowrap"
+                style={{ height: 65 }}
+              >
                 <Link to={"/"}>
                   <img
                     src="/assets/logo_ver1.png"
-                    width={200}
-                    height={200}
+                    width={170}
                     alt="notfound"
                     className="md:flex hidden cursor-pointer"
+                    style={{ height: 60 }}
                   />{" "}
                 </Link>
                 <div className="flex-col items-center justify-start order-1 hidden w-full md:flex md:flex-row md:justify-end md:w-auto md:order-none md:flex-1">
@@ -54,7 +59,7 @@ export default function Navbar() {
                     <div className="flex gap-4">
                       <Link
                         to={"/login"}
-                        className="leading-3 p-3 bg-[#f4ba2f] rounded-md text-[#000000] font-semibold"
+                        className="leading-3 p-3 bg-[#F9DA0A] rounded-md text-[#000000] font-semibold"
                       >
                         Login
                       </Link>
@@ -81,11 +86,11 @@ export default function Navbar() {
                   <Link to={"/"}>
                     <img
                       src="/assets/logo_ver1.png"
-                      width={100}
-                      height={100}
+                      width={170}
                       alt="notfound"
-                      className="md:hidden"
-                    />
+                      className="flex md:hidden cursor-pointer"
+                      style={{ height: 60 }}
+                    />{" "}
                   </Link>
                   <Disclosure.Button
                     aria-label="Toggle Menu"
@@ -114,7 +119,10 @@ export default function Navbar() {
                 </div>
               </div>
               <Disclosure.Panel data-aos="fade-up">
-                <div className="flex flex-col z-20 items-center justify-start order-2 w-full md:hidden bg-black h-full">
+                <div
+                  className="flex flex-col z-20 items-center justify-start order-2 w-full md:hidden bg-black h-full"
+                  style={{ zIndex: 999999 }}
+                >
                   {menu.map((item, index) => (
                     <React.Fragment key={index}>
                       <Link
@@ -131,7 +139,7 @@ export default function Navbar() {
                         <Link
                           data-aos="zoom-in-right"
                           to={"/login"}
-                          className="leading-3 p-3 text-center bg-[#f4ba2f] rounded-md text-[#000000] font-semibold w-full"
+                          className="leading-3 p-3 text-center bg-[#F9DA0A] rounded-md text-[#000000] font-semibold w-full"
                         >
                           Login
                         </Link>

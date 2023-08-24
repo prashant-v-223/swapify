@@ -3,7 +3,6 @@ import Deposit from "@/components/Deposit";
 import Withdraw from "@/components/Withdraw";
 import { useUserInfo } from "@/store";
 import { AiTwotoneMail } from "react-icons/ai";
-import { VscVerified } from "react-icons/vsc";
 import { FaUserTie } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 
@@ -13,14 +12,11 @@ import Forgot from "./Forgot";
 import LiveChart from "./LiveChart";
 const Home = () => {
   const [selected1, setSelected1] = useState([]);
-  console.log("selected1", selected1);
   const { user } = useUserInfo((state) => state.data);
-  console.log(user);
 
   const [openTab, setOpenTab] = useState(1);
   const [showProfile, setShowProfile] = useState(false);
   const profileRef = useRef<HTMLDivElement>(null);
-  console.log(openTab);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -72,7 +68,7 @@ const Home = () => {
                 href="#link3"
                 role="tablist"
               >
-                <FaUserTie style={{ color: "#facc15", fontSize: "18px" }} />
+                <FaUserTie style={{ color: "#F9DA0A", fontSize: "18px" }} />
                 {/* <img src="/assets/withdraw.svg" alt="withdraw" /> */}
                 user
               </a>
@@ -157,7 +153,7 @@ const Home = () => {
             >
               <AiTwotoneMail
                 classname="font-xl text-"
-                style={{ color: "#facc15", fontSize: "18px" }}
+                style={{ color: "#F9DA0A", fontSize: "18px" }}
               />{" "}
               {user?.email}
             </button>
@@ -173,25 +169,13 @@ const Home = () => {
               className={
                 "bg-transparent group gap-2 flex w-full items-center rounded-md px-2 py-2 text-sm text-white"
               }
-            >
-              <VscVerified
-                classname="font-xl text-"
-                style={{ color: "#facc15", fontSize: "20px" }}
-              />{" "}
-              Kyc :{"  "}
-              {user?.isKYC ? "Approved" : "Pending"}
-            </button>{" "}
-            <button
-              className={
-                "bg-transparent group gap-2 flex w-full items-center rounded-md px-2 py-2 text-sm text-white"
-              }
               onClick={() => {
                 setOpenTab(9);
               }}
             >
               <RiLockPasswordFill
                 classname="font-xl text-"
-                style={{ color: "#facc15", fontSize: "20px" }}
+                style={{ color: "#F9DA0A", fontSize: "20px" }}
               />{" "}
               Change password
             </button>

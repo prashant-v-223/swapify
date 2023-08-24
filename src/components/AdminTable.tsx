@@ -163,7 +163,6 @@ const AdminTable = () => {
       );
       refetch();
     } catch (error) {
-      console.log(error);
     } finally {
       setIsOpen(false);
       setShowLoader(false);
@@ -192,31 +191,37 @@ const AdminTable = () => {
               }}
             />
           </div>
-          <table className="w-full text-sm text-left text-gray-500 md:border border-[#606060]">
+          <table
+            className="w-full text-sm text-left text-gray-500 md:border border-[#606060]"
+            style={{
+              minWidth: "1402px",
+              overflowX: "scroll",
+            }}
+          >
             <thead className="text-sm sm:text-base bg-[#303131] rounded-lg text-white ">
               <tr>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-2 md:px-6 py-3">
                   Transaction Id
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-2 md:px-6 py-3">
                   User Id
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-2 md:px-6 py-3">
                   Coin
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-2 md:px-6 py-3">
                   Transaction Type
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-2 md:px-6 py-3">
                   Time
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-2 md:px-6 py-3">
                   Status
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-2 md:px-6 py-3">
                   Amount
                 </th>
-                <th scope="col" className="px-6 py-3">
+                <th scope="col" className="px-2 md:px-6 py-3">
                   Action
                 </th>
               </tr>
@@ -227,20 +232,30 @@ const AdminTable = () => {
                   key={data.id}
                   className="bg-[#1b1b1b] border-b border-[#444242] text-white"
                 >
-                  <td className="px-6 py-4">{data.id}</td>
-                  <td className="px-6 py-4">{data.user_id}</td>
+                  <td className="px-2 md:px-6 py-4">{data.id}</td>
+                  <td className="px-2 md:px-6 py-4">{data.user_id}</td>
                   {data.transactionType == "deposit" ? (
-                    <td className="px-6 py-4 text-left"> {data?.coinFrom} </td>
+                    <td className="px-2 md:px-6 py-4 text-left">
+                      {" "}
+                      {data?.coinFrom}{" "}
+                    </td>
                   ) : (
-                    <td className="px-6 py-4 text-left"> {data.coin} </td>
+                    <td className="px-2 md:px-6 py-4 text-left">
+                      {" "}
+                      {data.coin}{" "}
+                    </td>
                   )}
-                  <td className="px-6 py-4">{data.transactionType}</td>
-                  <td className="px-6 py-4">{convertDate(data?.time)}</td>
-                  <td className="px-6 py-4">{data.status}</td>
-                  <td className="px-6 py-4">{data.amount.toFixed(3)} $</td>
+                  <td className="px-2 md:px-6 py-4">{data.transactionType}</td>
+                  <td className="px-2 md:px-6 py-4">
+                    {convertDate(data?.time)}
+                  </td>
+                  <td className="px-2 md:px-6 py-4">{data.status}</td>
+                  <td className="px-2 md:px-6 py-4">
+                    {data.amount.toFixed(3)}
+                  </td>
 
                   {data.transactionType == "deposit" ? (
-                    <td className="flex items-center px-6 py-4 space-x-3">
+                    <td className="flex items-center px-2 md:px-6 py-4 space-x-3">
                       <button
                         disabled={
                           data.status === "rejected" ||
@@ -280,7 +295,7 @@ const AdminTable = () => {
                       </button>
                     </td>
                   ) : (
-                    <td className="flex items-center px-6 py-4 space-x-3">
+                    <td className="flex items-center px-2 md:px-6 py-4 space-x-3">
                       <button
                         disabled={
                           data.status === "rejected" ||

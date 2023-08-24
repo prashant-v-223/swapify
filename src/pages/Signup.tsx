@@ -25,8 +25,7 @@ const Signup = () => {
       return res;
     } catch (error) {
       throw error;
-    }
-    finally{
+    } finally {
       setShowLoader(false);
     }
   };
@@ -36,7 +35,6 @@ const Signup = () => {
         `${process.env.VITE_SERVER_URL}/users/verify-otp`,
         data
       );
-      console.log(res);
       toast.success("Account created successfully");
       navigate("/login");
     } catch (error) {
@@ -67,7 +65,13 @@ const Signup = () => {
           to="/"
           className="flex items-center mb-6 text-2xl font-semibold text-white "
         >
-          <img width={200} height={200} src="/assets/logo_ver1.png" alt="logo" />
+          <img
+            width={200}
+            height={200}
+            src="/assets/logo_ver1.png"
+            alt="logo"
+            style={{ height: 70 }}
+          />
         </Link>
         <div className="w-full bg-[#303131] rounded-lg shadow text-white md:mt-0 sm:max-w-xl xl:p-0 ">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -139,7 +143,7 @@ const Signup = () => {
                     >
                       Email
                     </label>
-                    <input 
+                    <input
                       type="email"
                       name="email"
                       id="email"
@@ -194,7 +198,7 @@ const Signup = () => {
                         type="text"
                         inputMode="numeric"
                         name="otp"
-                        id="otp" 
+                        id="otp"
                         placeholder="Enter otp here"
                         className="bg-transparent appearance-none border-b  text-white sm:text-sm  focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 "
                         required
@@ -225,7 +229,7 @@ const Signup = () => {
                       </div>
                       <Link
                         to="/forgot"
-                        className="text-sm font-medium text-[#f4ba2f]  hover:underline"
+                        className="text-sm font-medium text-[#F9DA0A]  hover:underline"
                       >
                         Forgot password?
                       </Link>
@@ -235,7 +239,7 @@ const Signup = () => {
                   {!isOtpSent ? (
                     <button
                       type="submit"
-                      className="w-full text-black bg-[#f4ba2f]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                      className="w-full text-black bg-[#F9DA0A]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                     >
                       Create Account
                     </button>
@@ -245,7 +249,7 @@ const Signup = () => {
                       onClick={() => {
                         verifyOtp({ otp, email: values.email });
                       }}
-                      className="w-full text-black bg-[#f4ba2f]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                      className="w-full text-black bg-[#F9DA0A]  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                     >
                       Verify Otp
                     </button>
@@ -254,7 +258,7 @@ const Signup = () => {
                     Already have an account yet?{" "}
                     <Link
                       to="/login"
-                      className="font-medium text-[#f4ba2f] hover:underline"
+                      className="font-medium text-[#F9DA0A] hover:underline"
                     >
                       Login
                     </Link>
@@ -265,9 +269,7 @@ const Signup = () => {
           </div>
         </div>
       </div>
-      {
-        showLoader && <Loader />
-      }
+      {showLoader && <Loader />}
     </section>
   );
 };

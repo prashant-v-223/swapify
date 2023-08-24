@@ -6,48 +6,6 @@
     "notes": "",
     "networks": [
       {
-        "network": "TRX",
-        "name": "Tron",
-        "shortName": "TRC20",
-        "notes": "",
-        "addressRegex": "^T[1-9A-HJ-NP-Za-km-z]{33}$",
-        "isDefault": false,
-        "blockExplorer": "https://tronscan.org/#/transaction/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 6
-      },
-      {
-        "network": "BTT",
-        "name": "BitTorrent Chain",
-        "shortName": "BTT",
-        "notes": "",
-        "addressRegex": "",
-        "isDefault": false,
-        "blockExplorer": "https://bttcscan.com/tx/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 6
-      },
-      {
-        "network": "ETH",
-        "name": "Ethereum",
-        "shortName": "ERC20",
-        "notes": "",
-        "addressRegex": "^(0x)[0-9A-Fa-f]{40}$",
-        "isDefault": false,
-        "blockExplorer": "https://etherscan.io/tx/",
-        "depositMinAmount": null,
-        "memoNeeded": false,
-        "memoName": "",
-        "memoRegex": "",
-        "precision": 8
-      },
-      {
         "network": "BTC",
         "name": "Bitcoin",
         "shortName": "",

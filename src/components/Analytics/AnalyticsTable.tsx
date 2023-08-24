@@ -23,7 +23,7 @@ const AnalyticsTable = ({ coinList = [] }) => {
 
   return (
     <section className="body-font w-full">
-      <div className=" px-5 py-0 mx-auto">
+      <div className=" p-5 py-0 mx-auto">
         <div className="flex flex-col text-left w-full mb-4">
           <div className="relative text-gray-200">
             <input
@@ -39,26 +39,32 @@ const AnalyticsTable = ({ coinList = [] }) => {
           </div>
         </div>
         <div className="relative overflow-x-auto mt-4 ">
-          <table className="w-full text-sm text-left text-gray-500 md:border border-[#606060]">
+          <table
+            className="w-full text-sm text-left text-gray-500 md:border border-[#606060]"
+            style={{
+              minWidth: "840px",
+              overflowX: "scroll",
+            }}
+          >
             <thead>
               <tr>
                 <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-200 text-sm bg-dark-600 rounded-tl rounded-bl">
-                  Rank
+                  <b>Rank</b>
                 </th>
                 <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-200 text-sm bg-dark-600 l">
-                  Name
+                  <b>Name</b>
                 </th>
                 <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-200 text-sm bg-dark-600">
-                  Symbol
+                  <b>Symbol</b>
                 </th>
                 <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-200 text-sm bg-dark-600">
-                  Price
+                  <b>Price</b>
                 </th>
                 <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-200 text-sm bg-dark-600">
-                  Price(24h)%
+                  <b> Price(24h)%</b>
                 </th>
                 <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-200 text-sm bg-dark-600">
-                  Market cap
+                  <b> Market cap</b>
                 </th>
                 <th className="w-10 title-font tracking-wider font-medium text-gray-200 text-sm bg-dark-600 rounded-tr rounded-br"></th>
               </tr>

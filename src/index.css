@@ -3575,11 +3575,9 @@ body {
   box-shadow: 0 4px 33px rgba(0, 0, 0, 0.25);
   cursor: pointer;
   height: 60px;
-  left: 50%;
+  left: 270px;
   position: absolute;
-  top: 50%;
-  -webkit-transform: translate(-50%, -50%) rotate(90deg);
-  transform: translate(-50%, -50%) rotate(90deg);
+  transform: translate(-50%, -50%) rotate(270deg);
   transition: translate 0.3s linear;
   width: 60px;
   z-index: 2;
@@ -3600,11 +3598,24 @@ body {
   width: 31px;
   z-index: 3;
 }
-
+.ExchangeForm_exchangeBg__csoF9 {
+  -webkit-transform: translate(-50%, -50%) rotate(0);
+  transform: translate(-50%, -50%) rotate(270deg);
+  left: 22.5%;
+  transition: 0.5s ease-in-out;
+}
+@media (max-width: 1024px) {
+  .ExchangeForm_exchangeBg__csoF9 {
+    left: 50%;
+  }
+}
+.open {
+  transform: translate(-50%, -50%) rotate(90deg) !important;
+}
 @media (min-width: 1024px) {
   .ExchangeForm_exchangeBg__csoF9 {
     -webkit-transform: translate(-50%, -50%) rotate(0);
-    transform: translate(-50%, -50%) rotate(0);
+    transform: translate(-50%, -50%) rotate(270deg);
   }
 }
 
@@ -4081,4 +4092,7 @@ ul[aria-labelledby="headlessui-listbox-button-:ramr:"] li:first-child {
 canvas {
   min-height: 501px !important;
   min-width: 100% !important;
+}
+div[data-headlessui-state="open"] {
+  z-index: 99999 !important;
 }

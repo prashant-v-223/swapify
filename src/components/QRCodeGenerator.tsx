@@ -11,7 +11,7 @@ const QRCodeGenerator = ({
   walletAddress,
 }: QRCodeGeneratorProps): JSX.Element => {
   const qrCodeContainerRef = useRef<HTMLDivElement>(null);
-  console.log(walletAddress);
+  (walletAddress);
 
   useEffect(() => {
     // Validate the wallet address
