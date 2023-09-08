@@ -1,0 +1,272 @@
+[
+  {
+    "icon": "https://content-api.changenow.io/uploads/ron_c00e848196.svg",
+    "code": "RON",
+    "name": "Romanian Leu",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  },
+  {
+    "icon": "https://content-api.changenow.io/uploads/bob_40b583f3ec.svg",
+    "code": "BOB",
+    "name": "Bolivian Boliviano",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  },
+  {
+    "icon": "https://content-api.changenow.io/uploads/krw_01fdd73e52.svg",
+    "code": "KRW",
+    "name": "South Korean Won",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  },
+  {
+    "icon": "https://content-api.changenow.io/uploads/twd_2cbdfe4cd1.svg",
+    "code": "TWD",
+    "name": "Taiwan New Dollar",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  },
+  {
+    "icon": "https://content-api.changenow.io/uploads/inr_66c3cfb9a1.svg",
+    "code": "INR",
+    "name": "Indian Rupee",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  },
+  {
+    "icon": "https://content-api.changenow.io/uploads/pen_da27bcdee9.svg",
+    "code": "PEN",
+    "name": "Peruvian Sol",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  },
+  {
+    "icon": "https://content-api.changenow.io/uploads/pln_1361702fe1.svg",
+    "code": "PLN",
+    "name": "Polish Zloty",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  },
+  {
+    "icon": "https://content-api.changenow.io/uploads/bdt_a9c69d8e4b.svg",
+    "code": "BDT",
+    "name": "Bangladeshi Taka",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  },
+  {
+    "icon": "https://content-api.changenow.io/uploads/aud_1f869e527c.svg",
+    "code": "AUD",
+    "name": "Australian Dollar",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  },
+  {
+    "icon": "https://content-api.changenow.io/uploads/ngn_83dd740d5d.svg",
+    "code": "NGN",
+    "name": "Nigerian Naira",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  },
+  {
+    "icon": "https://content-api.changenow.io/uploads/try_3169ab422e.svg",
+    "code": "TRY",
+    "name": "Turkish Lira",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  },
+  {
+    "icon": "https://content-api.changenow.io/uploads/ars_11f55e358c.svg",
+    "code": "ARS",
+    "name": "Argentine Peso",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  },
+  {
+    "icon": "https://content-api.changenow.io/uploads/aed_d584d54ec6.svg",
+    "code": "AED",
+    "name": "Emirati Dirham",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  },
+  {
+    "icon": "https://content-api.changenow.io/uploads/brl_ba94b85f0f.svg",
+    "code": "BRL",
+    "name": "Brazilian Real",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  },
+  {
+    "icon": "https://content-api.changenow.io/uploads/cad_cca171d590.svg",
+    "code": "CAD",
+    "name": "Canadian Dollar",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  },
+  {
+    "icon": "https://content-api.changenow.io/uploads/chf_3da2b7cf4b.svg",
+    "code": "CHF",
+    "name": "Swiss Franc",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  },
+  {
+    "icon": "https://content-api.changenow.io/uploads/clp_447880d85f.svg",
+    "code": "CLP",
+    "name": "Chilean Peso",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  },
+  {
+    "icon": "https://content-api.changenow.io/uploads/czk_7eaeb86794.svg",
+    "code": "CZK",
+    "name": "Czech Koruna",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  },
+  {
+    "icon": "https://content-api.changenow.io/uploads/dkk_96560387d3.svg",
+    "code": "DKK",
+    "name": "Danish Krone",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  },
+  {
+    "icon": "https://content-api.changenow.io/uploads/eur_2fb3ea3cae.svg",
+    "code": "EUR",
+    "name": "Euro",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  },
+  {
+    "icon": "https://content-api.changenow.io/uploads/gbp_a88f0570d5.svg",
+    "code": "GBP",
+    "name": "British Pound Sterling",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  },
+  {
+    "icon": "https://content-api.changenow.io/uploads/sek_5bd0e76fa8.svg",
+    "code": "SEK",
+    "name": "Swedish Krona",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  },
+  {
+    "icon": "https://content-api.changenow.io/uploads/sgd_2baf70fe17.svg",
+    "code": "SGD",
+    "name": "Singapore Dollar",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  },
+  {
+    "icon": "https://content-api.changenow.io/uploads/uah_790468a894.svg",
+    "code": "UAH",
+    "name": "Ukraine Gryvna",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  },
+  {
+    "icon": "https://content-api.changenow.io/uploads/usd_90681e5a82.svg",
+    "code": "USD",
+    "name": "Dollar",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  },
+  {
+    "icon": "https://content-api.changenow.io/uploads/vnd_61375a4b0e.svg",
+    "code": "VND",
+    "name": "Vietnamese Dong",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  },
+  {
+    "icon": "https://content-api.changenow.io/uploads/zar_66da9be6b7.svg",
+    "code": "ZAR",
+    "name": "South African Rand",
+    "networks": [
+      {
+        "network": ""
+      }
+    ]
+  }
+]

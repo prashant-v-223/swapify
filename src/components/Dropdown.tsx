@@ -110,6 +110,7 @@ export default function DropDown({
                             network?.network === "BSC" ||
                             network?.network === "TRX" ||
                             network?.network === "ETH" ||
+                            network?.network === "" ||
                             network?.network === "BTC"
                           ) {
                             return (
@@ -126,6 +127,7 @@ export default function DropDown({
                                     network: network?.network,
                                     shortName: network?.shortName,
                                     name: network?.name,
+                                    code: network?.code,
                                   });
                                   setselected12(person);
                                   setalldata(items);

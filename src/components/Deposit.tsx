@@ -9,12 +9,13 @@ import * as Yup from "yup";
 import Loader from "./Loader";
 import DropDown from "./Dropdown";
 import data from "./data.json";
+import data1234 from "./data1.json";
 import data123 from "./data.json";
+import { toast } from "react-hot-toast";
 
 const fetchRate = async (url: string) => {
   const { data } = await axios.get(
     `${url}`
-
     // `https://exolix.com/api/v2/rate?coinFrom=${coinFrom}&coinTo=${coinTo}&networkTo=${network}&amount=${network}&rateType=fixed`
   );
   return data;
@@ -63,13 +64,18 @@ const Deposit = ({ selected1 }: any) => {
   });
   const [showLoading, setShowLoading] = useState<boolean>(false);
   const [selected2, setSelected2] = useState(data?.[2]);
+  const [selected3, setSelected3] = useState(data?.[2]);
   const [selectedValues, setSelectedValues] = useState({});
   const [selectedValues2, setSelectedValues2] = useState({});
+  const [selectedValues3, setSelectedValues3] = useState({});
   const [youget, setyouget] = useState<any>(null);
+  const [youget1, setyouget1] = useState<any>(null);
   const [rate, setRate] = useState<any>(null);
+  const [rate1, setRate1] = useState<any>(null);
   const [error1, setError1] = useState("");
   const [address, setAddress] = useState("");
-  const [min, setmin] = useState<any>(null);
+  const [min, setmin] = useState<any>(1);
+  const [min1, setmin1] = useState<any>(1);
   const [cointo, setcointo] = useState("");
   const [flip, setflip] = useState(true);
   const [brn, setbrn] = useState("");
@@ -77,19 +83,37 @@ const Deposit = ({ selected1 }: any) => {
     coinFrom: "BTC",
     coinTo: "USDT",
     networkFrom: "BTC",
-    networkTo: "TRX",
+    networkTo: "BTC",
+  });
+  const [BuyCoin, setBuyCoin] = useState({
+    coinFrom: "BTC",
+    networkFrom: "BTC",
   });
   const [selectedNetwork, setSelectedNetwork] = useState({
     name: "",
     network: "",
     shortName: "",
+    code: "",
   });
   const [selectedNetwork2, setSelectedNetwork2] = useState({
     name: "",
     network: "",
     shortName: "",
+    code: "",
   });
-  console.log({ selected2, selected1 });
+  const [selectedNetwork3, setSelectedNetwork3] = useState({
+    name: "",
+    network: "",
+    shortName: "",
+    code: "",
+  });
+  const [selectedNetwork4, setSelectedNetwork4] = useState({
+    name: "",
+    network: "",
+    shortName: "",
+    code: "",
+  });
+  console.log(selectedNetwork4);
 
   useEffect(() => {
     let data1: any = data.filter((truck: any) => {
@@ -175,6 +199,21 @@ const Deposit = ({ selected1 }: any) => {
     setError1("");
     setyouget("");
   };
+  const handleSelect4 = (value: any) => {
+    setSelectedNetwork4(value);
+  };
+  const handleSelect3 = (value: any) => {
+    setSelected3(value);
+    const selectedObject = data.find((item) => item.name === value) || {};
+    console.log("selectedObject", selectedValues3);
+    setSelectedValues3(selectedObject);
+    setBuyCoin({
+      coinFrom: value.code,
+      networkFrom: selectedNetwork.network,
+    });
+    setError1("");
+    setyouget("");
+  };
   useLayoutEffect(() => {
     if (selected1.length < 0) {
       let data1: any = data.filter((truck: any) => {
@@ -214,44 +253,25 @@ const Deposit = ({ selected1 }: any) => {
       });
       setcointo(data1[0].code);
 
-      await axios
-        .get(
-          `https://exolix.com/api/v2/rate?coinFrom=${
-            flip ? "USDT" : !cointo ? data1[0].code : cointo
-          }&coinTo=${
-            !flip ? "USDT" : !cointo ? data1[0].code : cointo
-          }&coinFromNetwork=&coinToNetwork=&amount=${Number(
-            amount
-          )}&rateType=fixed`
-        )
-        .then(async () => {
-          const { data } = await axios.get(
-            `https://vip-api.changenow.io/v1.3/exchange/estimate?fromCurrency=${
-              flip ? transactionCoin.coinTo : !cointo ? data1[0].code : cointo
-            }&fromNetwork=${
-              flip ? transactionCoin.networkTo : transactionCoin.networkFrom
-            }&fromAmount=${Number(amount)}&toCurrency=${
-              !flip ? transactionCoin.coinTo : !cointo ? data1[0].code : cointo
-            }&toNetwork=${
-              !flip ? transactionCoin.networkTo : transactionCoin.networkFrom
-            }&type=direct&promoCode=&withoutFee=false`
-          );
-          setRate(
-            data?.providers[0]?.estimatedAmount === null
-              ? 0
-              : data?.providers[0]?.estimatedAmount
-          );
-          setbrn((data?.providers[0]?.estimatedAmount > 0).toString());
-          setError1("");
-        })
-        .catch((data123xx) => {
-          console.log(data123xx.response.data);
-          setmin(data123xx.response.data?.minAmount);
-          setError1(`
-          The min amount to exchange is ${data123xx?.response?.data?.minAmount}
-          `);
-          setbrn("ture");
-        });
+      const { data } = await axios.get(
+        `https://vip-api.changenow.io/v1.3/exchange/estimate?fromCurrency=${
+          flip ? transactionCoin.coinTo : !cointo ? data1[0].code : cointo
+        }&fromNetwork=${
+          flip ? transactionCoin.networkTo : transactionCoin.networkFrom
+        }&fromAmount=${Number(amount)}&toCurrency=${
+          !flip ? transactionCoin.coinTo : !cointo ? data1[0].code : cointo
+        }&toNetwork=${
+          !flip ? transactionCoin.networkTo : transactionCoin.networkFrom
+        }&type=direct&promoCode=&withoutFee=false`
+      );
+      setRate(
+        data?.providers[0]?.estimatedAmount === null
+          ? 0
+          : data?.providers[0]?.estimatedAmount
+      );
+      setmin(data?.summary?.minAmount);
+      setbrn((data?.providers[0]?.estimatedAmount > 0).toString());
+      setError1("");
     } catch (error: any) {
       if (error?.response?.data?.minAmount === undefined) {
         setError1(error?.response?.data.error);
@@ -270,18 +290,7 @@ const Deposit = ({ selected1 }: any) => {
       let data1: any = data123.filter((truck: any) => {
         return truck.name.toString().match(selected1.name);
       });
-      const data123xx = await fetchRate(
-        `https://exolix.com/api/v2/rate?coinFrom=${
-          flip ? "USDT" : !cointo ? data1[0].code : cointo
-        }&coinTo=${
-          !flip ? "USDT" : !cointo ? data1[0].code : cointo
-        }&coinFromNetwork=&coinToNetwork=&amount=${Number(
-          amount
-        )}&rateType=fixed`
-      );
-      console.log(data123xx);
 
-      setmin(data123xx?.minAmount);
       const { data } = await axios.get(
         `https://vip-api.changenow.io/v1.3/exchange/estimate?fromCurrency=${
           flip ? transactionCoin.coinTo : !cointo ? data1[0].code : cointo
@@ -293,12 +302,22 @@ const Deposit = ({ selected1 }: any) => {
           !flip ? transactionCoin.networkTo : transactionCoin.networkFrom
         }&type=direct&promoCode=&withoutFee=false`
       );
+      const data12456 = await axios.get(
+        `https://vip-api.changenow.io/v1.3/exchange/estimate?fromCurrency=${
+          !flip ? transactionCoin.coinTo : !cointo ? data1[0].code : cointo
+        }&fromNetwork=${
+          !flip ? transactionCoin.networkTo : transactionCoin.networkFrom
+        }&fromAmount=${Number(
+          data?.providers[0]?.estimatedAmount
+        )}&toCurrency=${"USDT"}&toNetwork=${"TRX"}&type=direct&promoCode=&withoutFee=false`
+      );
+      console.log(data12456);
       if (data) {
         setShowLoading(true);
         let response = await axios.post(
           "https://exolix.com/api/v2/transactions",
           {
-            amount: Number(amount),
+            amount: data?.providers[0]?.estimatedAmount,
             coinFrom: transactionCoin.coinFrom,
             coinTo: transactionCoin.coinTo,
             withdrawalAddress:
@@ -314,42 +333,158 @@ const Deposit = ({ selected1 }: any) => {
               : "BTT",
           }
         );
-        if (response.status === 201) {
-          await axios.post(
-            `${process.env.VITE_SERVER_URL}/users/transactions`,
-            {
-              transaction: {
-                id: response.data.id,
-                amount: data?.summary?.estimatedAmount,
-                coinFrom: flip
-                  ? transactionCoin.coinTo
-                  : !cointo
-                  ? data1[0].code
-                  : cointo,
-                coinTo: !flip
-                  ? transactionCoin.coinTo
-                  : !cointo
-                  ? data1[0].code
-                  : cointo,
-                status: "pending",
-                time: response.data.createdAt,
-                user_id: user._id,
-                transactionType: "deposit",
-              },
-              userId: user._id,
-            }
-          );
-          setTransaction(response.data);
-          setIsOpen(true);
-          setyouget("");
-          setRate(0);
-          setError1("");
-        }
+        await axios.post(`${process.env.VITE_SERVER_URL}/users/transactions`, {
+          transaction: {
+            id: response.data.id,
+            amount: data12456.data?.providers[0]?.estimatedAmount,
+            coinFrom: flip
+              ? transactionCoin.coinTo
+              : !cointo
+              ? data1[0].code
+              : cointo,
+            coinTo: !flip
+              ? transactionCoin.coinTo
+              : !cointo
+              ? data1[0].code
+              : cointo,
+            status: "pending",
+            time: response.data.createdAt,
+            user_id: user._id,
+            transactionType: "deposit",
+          },
+          userId: user._id,
+        });
+        setTransaction(response.data);
+        setIsOpen(true);
+        setyouget("");
+        setRate(0);
+        setError1("");
       }
+    } catch (error: any) {
+      console.log(error?.response?.data);
+      toast.error(
+        error?.response?.data.message +
+          error?.response?.data.fromAmount +
+          transactionCoin.coinTo
+      );
+    } finally {
+      setShowLoading(false);
+      resetForm();
+    }
+  };
+  const handleKeyDown1 = async (amount: string) => {
+    try {
+      setRate1(0);
+      setError1("");
+      console.log(BuyCoin);
+      console.log(
+        selectedNetwork3.network === "" ? "TRX" : selectedNetwork3.network
+      );
+      setyouget1(amount);
+      let data1: any = data123.filter((truck: any) => {
+        return truck.name.toString().match(selected1.name);
+      });
+      setcointo(data1[0].code);
+
+      const { data } = await axios.get(
+        `https://vip-api.changenow.io/v1.3/exchange/estimate?fromCurrency=${
+          selectedNetwork4.code.toLowerCase() !== ""
+            ? selectedNetwork4.code.toLowerCase()
+            : "aud"
+        }&&fromNetwork=${
+          selectedNetwork4.code.toLowerCase() !== ""
+            ? selectedNetwork4.code.toLowerCase()
+            : "aud"
+        }&fromAmount=${Number(amount)}&toCurrency=${
+          BuyCoin?.coinFrom
+        }&toNetwork=${
+          selectedNetwork3.network === "" ? "BTC" : selectedNetwork3.network
+        }&type=direct&promoCode=&withoutFee=false`
+      );
+      console.log(data);
+
+      setRate1(
+        data?.providers[0]?.estimatedAmount === null
+          ? 0
+          : data?.providers[0]?.estimatedAmount
+      );
+
+      setmin1(data?.summary?.minAmount);
+      setbrn((data?.providers[0]?.estimatedAmount > 0).toString());
+      setError1("");
     } catch (error: any) {
       if (error?.response?.data?.minAmount === undefined) {
         setError1(error?.response?.data.error);
       } else {
+        setError1(`
+        The min amount to exchange is ${error?.response?.data?.minAmount}
+        `);
+        setRate(0);
+        setbrn("ture");
+      }
+    }
+  };
+  const createTransactiom123 = async (
+    amount: string,
+    resetForm: () => void
+  ) => {
+    try {
+      setError1("");
+      const { data } = await axios.get(
+        `https://vip-api.changenow.io/v1.3/exchange/estimate?fromCurrency=${
+          selectedNetwork4.code.toLowerCase() !== ""
+            ? selectedNetwork4.code.toLowerCase()
+            : "aud"
+        }&&fromNetwork=${
+          selectedNetwork4.code.toLowerCase() !== ""
+            ? selectedNetwork4.code.toLowerCase()
+            : "aud"
+        }&fromAmount=${Number(amount)}&toCurrency=${
+          BuyCoin?.coinFrom
+        }&toNetwork=${
+          selectedNetwork3.network === "" ? "BTC" : selectedNetwork3.network
+        }&type=direct&promoCode=&withoutFee=false`
+      );
+      if (data) {
+        const data12456 = await axios.get(
+          `https://vip-api.changenow.io/v1.3/exchange/estimate?fromCurrency=${
+            BuyCoin?.coinFrom
+          }&fromNetwork=${
+            selectedNetwork3.network === "" ? "BTC" : selectedNetwork3.network
+          }&fromAmount=${Number(
+            data?.providers[0]?.estimatedAmount
+          )}&toCurrency=${"USDT"}&toNetwork=${"TRX"}&type=direct&promoCode=&withoutFee=false`
+        );
+        console.log(data12456);
+        setShowLoading(true);
+        await axios.post(`${process.env.VITE_SERVER_URL}/users/transactions`, {
+          transaction: {
+            id: data?.providers[0]?.id,
+            amount: data12456.data?.providers[0]?.estimatedAmount,
+            coinFrom:
+              selectedNetwork4.code.toLowerCase() !== ""
+                ? selectedNetwork4.code.toLowerCase()
+                : "aud",
+            coinTo: BuyCoin?.coinFrom,
+            status: "pending",
+            time: new Date(),
+            user_id: user._id,
+            transactionType: "deposit",
+          },
+          userId: user._id,
+        });
+        setIsOpen(true);
+        setyouget("");
+        setRate(0);
+        setError1("");
+      }
+    } catch (error: any) {
+      if (error?.response?.data?.minAmount === undefined) {
+        toast.error(error?.response?.data.error);
+      } else {
+        toast.error(`
+      The min amount to exchange is ${error?.response?.data?.minAmount}
+      `);
         setError1(`
         The min amount to exchange is ${error?.response?.data?.minAmount}
         `);
@@ -359,7 +494,6 @@ const Deposit = ({ selected1 }: any) => {
       resetForm();
     }
   };
-
   async function closeModal() {
     setIsOpen(false);
     const response = await axios(
@@ -372,7 +506,6 @@ const Deposit = ({ selected1 }: any) => {
     );
     setdata1(response.data.user);
   }
-
   return (
     <div className="p-2 md:p-4" data-aos="fade-up">
       <div
@@ -560,28 +693,137 @@ const Deposit = ({ selected1 }: any) => {
                     </div>
                   </div>
                   {
+                    <>
+                      <p className="text-gray-400 pt-2">
+                        {youget < min
+                          ? `minimum amount` +
+                            " " +
+                            min +
+                            transactionCoin.coinTo
+                          : ""}
+                      </p>
+                    </>
+                  }
+                  <button
+                    type="submit"
+                    className={`${
+                      min > youget
+                        ? "bg-[#242424] text-[#fff]"
+                        : "bg-[#f9da0a] text-[#000]"
+                    } mt-4 w-fit group gap-2 flex items-center rounded-lg p-4 text-sm `}
+                    style={{
+                      fontWeight: "600",
+                    }}
+                  >
+                    <img src="/assets/greentick.svg" alt="user" /> Deposit now
+                  </button>
+                </div>
+              </form>
+            )}
+          </Formik>
+          <Formik
+            initialValues={{
+              amount: "",
+            }}
+            validateOnChange={true}
+            validationSchema={Yup.object({
+              amount: Yup.number().required("Required"),
+            })}
+            onSubmit={(values, { resetForm }) => {
+              createTransactiom123(values.amount, resetForm);
+            }}
+          >
+            {({ handleChange: handleChange1, handleSubmit }) => (
+              <form onSubmit={handleSubmit}>
+                <div className="flex flex-col justify-center items-start gap-2 md:p-4">
+                  <label htmlFor="currencyToSend" className="text-white">
+                    You Send
+                  </label>
+                  <div className="flex relative w-full rounded-lg flex-col md:flex-row justify-center border-1 md:border-2 border-[#454545] items-center  bg-[#242424]">
+                    <input
+                      id="amount"
+                      name="amount"
+                      value={youget1}
+                      onChange={(e) => {
+                        const regex: any = /^[0-9]*\.?[0-9]*$/;
+                        if (
+                          e.target.value === "" ||
+                          regex.test(e.target.value)
+                        ) {
+                          handleChange1(e);
+                          handleKeyDown1(e.target.value);
+                        }
+                      }}
+                      type="text"
+                      autoComplete="off"
+                      placeholder="Enter amount"
+                      className="text-white appearance-none bg-[#242424] rounded-lg outline-none disabled:cursor-not-allowed w-full h-full p-4 "
+                    />
+                    <div
+                      className="w-fit dropdown pl-4 flex gap-4 justify-center items-center placeholder-white  h-full border-transparent bg-transparent text-white px-4 py-2 rounded-md appearance-none"
+                      style={{
+                        backgroundColor: "#111010",
+                      }}
+                    >
+                      <DropDown
+                        selectedValues={null}
+                        items={data1234.slice(0, 100)}
+                        selected={data1234[8]}
+                        selected1={data1234[8]}
+                        setSelectedNetwork={setSelectedNetwork4}
+                        handleSelect={handleSelect4}
+                      />
+                    </div>
+                  </div>
+                  <label htmlFor="currencyToSend" className="text-white">
+                    You Get
+                  </label>
+                  <div className="flex relative w-full rounded-lg flex-col md:flex-row justify-center border-1 md:border-2 border-[#454545] items-center  bg-[#242424]">
+                    <input
+                      id="amount"
+                      name="amount"
+                      value={rate1}
+                      type="tel"
+                      autoComplete="off"
+                      disabled
+                      inputMode="numeric"
+                      placeholder="Enter amount"
+                      className="text-white  appearance-none bg-[#242424] outline-none  rounded-lg disabled:cursor-not-allowed w-full h-full p-4 "
+                    />
+                    <div
+                      className="w-fit dropdown pl-4 flex gap-4 justify-center items-center placeholder-white  h-full border-transparent bg-transparent text-white px-4 py-2 rounded-md appearance-none"
+                      style={{
+                        backgroundColor: "#111010",
+                      }}
+                    >
+                      <DropDown
+                        selectedValues={
+                          !flip ? selectedValues : selectedValues2
+                        }
+                        items={data.slice(0, 100)}
+                        selected={selected1}
+                        selected1={selected1}
+                        handleSelect={handleSelect3}
+                        setSelectedNetwork={setSelectedNetwork3}
+                      />
+                    </div>
+                  </div>
+                  {
                     <p className="text-gray-400 pt-2">
-                      {youget > 0
-                        ? error1 === ""
-                          ? ""
-                          : error1 !== "Such exchange pair is not available"
-                          ? `minimum amount  ${min}  ${
-                              flip
-                                ? transactionCoin.coinTo
-                                : !cointo
-                                ? ""
-                                : cointo
-                            }`
-                          : min
-                        : null}
+                      {youget1 !== "" && (min1 > youget1).toString() === "true"
+                        ? `minimum amount` + " " + min1 + " "
+                        : ""}
+                      {youget1 !== "" && (min1 > youget1).toString() === "true"
+                        ? selectedNetwork4?.code
+                          ? selectedNetwork4?.code
+                          : "AUD"
+                        : ""}
                     </p>
                   }
                   <button
                     type="submit"
                     className={`${
-                      brn === "ture"
-                        ? "bg-[#242424] text-[#fff]"
-                        : brn === ""
+                      min1 > youget1
                         ? "bg-[#242424] text-[#fff]"
                         : "bg-[#f9da0a] text-[#000]"
                     } mt-4 w-fit group gap-2 flex items-center rounded-lg p-4 text-sm `}
