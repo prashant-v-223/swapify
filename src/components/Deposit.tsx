@@ -265,12 +265,24 @@ const Deposit = ({ selected1 }: any) => {
           !flip ? transactionCoin.networkTo : transactionCoin.networkFrom
         }&type=direct&promoCode=&withoutFee=false`
       );
+      const { data: data133 } = await axios.get(
+        `https://exolix.com/api/v2/rate?coinFrom=${
+          flip ? transactionCoin.coinTo : !cointo ? data1[0].code : cointo
+        }&coinTo=${
+          !flip ? transactionCoin.coinTo : !cointo ? data1[0].code : cointo
+        }&coinFromNetwork=${
+          flip ? transactionCoin.networkTo : transactionCoin.networkFrom
+        }&coinToNetwork=${
+          !flip ? transactionCoin.networkTo : transactionCoin.networkFrom
+        }&amount=${Number(100)}&rateType=fixed`
+      );
       setRate(
         data?.providers[0]?.estimatedAmount === null
           ? 0
           : data?.providers[0]?.estimatedAmount
       );
-      setmin(data?.summary?.minAmount);
+      console.log(data133.minAmount);
+      setmin(data133.minAmount);
       setbrn((data?.providers[0]?.estimatedAmount > 0).toString());
       setError1("");
     } catch (error: any) {
