@@ -4,10 +4,11 @@ import QRCodeGenerator from "./QRCodeGenerator";
 type TDialogBox = {
   closeModal(): void;
   address: any;
+  type: any;
   transaction: Transaction;
   isOpen: boolean;
 };
-const DialogBox = ({ closeModal, isOpen, transaction }: TDialogBox) => {
+const DialogBox = ({ closeModal, isOpen, type, transaction }: TDialogBox) => {
   const copyToClipboard = (): void => {
     navigator.clipboard.writeText(transaction?.depositAddress);
     toast.success("Copied Successfully !");
@@ -32,10 +33,12 @@ const DialogBox = ({ closeModal, isOpen, transaction }: TDialogBox) => {
                     </h3>
                   </div>
                 </div>
-                <QRCodeGenerator walletAddress={transaction?.depositAddress} />
+                {/* <QRCodeGenerator walletAddress={transaction?.depositAddress} /> */}
                 <div className="mt-4">
                   <label className="text-sm " htmlFor="share link">
-                    Deposit {transaction?.coinFrom?.coinName} address
+                    {type !== "Buy / Sell Crypto"
+                      ? `Deposit {transaction?.coinFrom?.coinName} address`
+                      : "deposit bank details"}
                   </label>
                   <div className="flex items-center mt-2 -mx-1">
                     <p

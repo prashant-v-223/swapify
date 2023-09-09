@@ -73,6 +73,7 @@ const Deposit = ({ selected1 }: any) => {
   const [rate, setRate] = useState<any>(null);
   const [rate1, setRate1] = useState<any>(null);
   const [error1, setError1] = useState("");
+  const [type, settype] = useState<any>("Exchange Crypto");
   const [address, setAddress] = useState("");
   const [min, setmin] = useState<any>(1);
   const [min1, setmin1] = useState<any>(1);
@@ -364,8 +365,9 @@ const Deposit = ({ selected1 }: any) => {
       console.log(error?.response?.data);
       toast.error(
         error?.response?.data.message +
-          error?.response?.data.fromAmount +
-          transactionCoin.coinTo
+          "  " +
+          error?.response?.data.minAmount +
+          "  "
       );
     } finally {
       setShowLoading(false);
@@ -512,332 +514,445 @@ const Deposit = ({ selected1 }: any) => {
         className="grid bg-[#1B1B1B] w-full md:
        p-4 rounded-xl md:grid-cols-2"
       >
-        <div className="">
-          <div
-            className="ExchangeTop_advantage__baA2Y md:px-4 py-4 md:py-0"
-            style={{ color: "#fff", display: "flex" }}
-          >
+        {type === "Exchange Crypto" && (
+          <div className="pb-4">
+            <button
+              className={`px-3 py-2  mb-5 ${
+                type !== "Buy / Sell Crypto" ? "active-btn" : ""
+              }`}
+              onClick={() => {
+                settype("Exchange Crypto");
+              }}
+              style={{ color: "#fff", cursor: "pointer" }}
+            >
+              Exchange Crypto
+            </button>
+            <button
+              className={`px-3 py-2 ${
+                type === "Buy / Sell Crypto" ? "active-btn" : ""
+              }`}
+              style={{ color: "#fff", cursor: "pointer" }}
+              onClick={() => {
+                settype("Buy / Sell Crypto");
+              }}
+            >
+              Buy Crypto
+            </button>
             <div
-              className="ExchangeTop_advantageItem__5TJeU"
+              className="ExchangeTop_advantage__baA2Y md:px-4 py-4 md:py-0"
               style={{ color: "#fff", display: "flex" }}
             >
-              Excellent rating on
-            </div>
-            <div
-              className="ExchangeTop_advantageItem__5TJeU"
-              style={{ color: "#fff", display: "flex" }}
-            >
-              <div className="ExchangeTop_trust__hjLah">
-                <div
-                  className="TrustBox_trustpilotBox__i66t2"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <div style={{ display: "flex" }}>
-                    <a
-                      href="https://www.trustpilot.com/review/exolix.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <img
-                        className="TrustBox_logo__-Ngun mb-1 px-2"
-                        src="https://cdn.trustpilot.net/brand-assets/1.1.0/logo-white.svg"
-                        alt="Trustpilot logo"
-                        width="144"
-                        height="36"
-                        style={{ width: 100 }}
-                      />
-                    </a>
-                  </div>
-                  <div>
-                    <a
-                      href="https://www.trustpilot.com/review/exolix.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <img
-                        className="TrustBox_rating__qI0Fc false px-2"
-                        src="https://exolix.com/img/stars/4.5_star.svg"
-                        alt="Trustpilot rating stars"
-                        width="300"
-                        height="56"
-                        style={{ width: 100 }}
-                      />
-                    </a>
+              <div
+                className="ExchangeTop_advantageItem__5TJeU"
+                style={{ color: "#fff", display: "flex" }}
+              >
+                Excellent rating on
+              </div>
+              <div
+                className="ExchangeTop_advantageItem__5TJeU"
+                style={{ color: "#fff", display: "flex" }}
+              >
+                <div className="ExchangeTop_trust__hjLah">
+                  <div
+                    className="TrustBox_trustpilotBox__i66t2"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <div style={{ display: "flex" }}>
+                      <a
+                        href="https://www.trustpilot.com/review/exolix.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <img
+                          className="TrustBox_logo__-Ngun mb-1 px-2"
+                          src="https://cdn.trustpilot.net/brand-assets/1.1.0/logo-white.svg"
+                          alt="Trustpilot logo"
+                          width="144"
+                          height="36"
+                          style={{ width: 100 }}
+                        />
+                      </a>
+                    </div>
+                    <div>
+                      <a
+                        href="https://www.trustpilot.com/review/exolix.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <img
+                          className="TrustBox_rating__qI0Fc false px-2"
+                          src="https://exolix.com/img/stars/4.5_star.svg"
+                          alt="Trustpilot rating stars"
+                          width="300"
+                          height="56"
+                          style={{ width: 100 }}
+                        />
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <Formik
-            initialValues={{
-              amount: "",
-            }}
-            validateOnChange={true}
-            validationSchema={Yup.object({
-              amount: Yup.number().required("Required"),
-            })}
-            onSubmit={(values, { resetForm }) => {
-              createTransactiom(values.amount, resetForm);
-            }}
-          >
-            {({ handleChange, handleSubmit }) => (
-              <form onSubmit={handleSubmit}>
-                <div className="flex flex-col justify-center items-start gap-2 md:p-4">
-                  <label htmlFor="currencyToSend" className="text-white">
-                    You Send
-                  </label>
-                  <div className="flex relative w-full rounded-lg flex-col md:flex-row justify-center border-1 md:border-2 border-[#454545] items-center  bg-[#242424]">
-                    <input
-                      id="amount"
-                      name="amount"
-                      value={youget}
-                      onChange={(e) => {
-                        const regex: any = /^[0-9]*\.?[0-9]*$/;
-                        if (
-                          e.target.value === "" ||
-                          regex.test(e.target.value)
-                        ) {
-                          handleChange(e);
-                          handleKeyDown(e.target.value);
-                        }
-                      }}
-                      type="text"
-                      autoComplete="off"
-                      placeholder="Enter amount"
-                      className="text-white appearance-none bg-[#242424] rounded-lg outline-none disabled:cursor-not-allowed w-full h-full p-4 "
-                    />
-                    <div
-                      className="w-fit dropdown pl-4 flex gap-4 justify-center items-center placeholder-white  h-full border-transparent bg-transparent text-white px-4 py-2 rounded-md appearance-none"
-                      style={{
-                        backgroundColor: "#111010",
+            <Formik
+              initialValues={{
+                amount: "",
+              }}
+              validateOnChange={true}
+              validationSchema={Yup.object({
+                amount: Yup.number().required("Required"),
+              })}
+              onSubmit={(values, { resetForm }) => {
+                createTransactiom(values.amount, resetForm);
+              }}
+            >
+              {({ handleChange, handleSubmit }) => (
+                <form onSubmit={handleSubmit}>
+                  <div className="flex flex-col justify-center items-start gap-2 md:p-4">
+                    <label htmlFor="currencyToSend" className="text-white">
+                      You Send
+                    </label>
+                    <div className="flex relative w-full rounded-lg flex-col md:flex-row justify-center border-1 md:border-2 border-[#454545] items-center  bg-[#242424]">
+                      <input
+                        id="amount"
+                        name="amount"
+                        value={youget}
+                        onChange={(e) => {
+                          const regex: any = /^[0-9]*\.?[0-9]*$/;
+                          if (
+                            e.target.value === "" ||
+                            regex.test(e.target.value)
+                          ) {
+                            handleChange(e);
+                            handleKeyDown(e.target.value);
+                          }
+                        }}
+                        type="text"
+                        autoComplete="off"
+                        placeholder="Enter amount"
+                        className="text-white appearance-none bg-[#242424] rounded-lg outline-none disabled:cursor-not-allowed w-full h-full p-4 "
+                      />
+                      <div
+                        className="w-fit dropdown pl-4 flex gap-4 justify-center items-center placeholder-white  h-full border-transparent bg-transparent text-white px-4 py-2 rounded-md appearance-none"
+                        style={{
+                          backgroundColor: "#111010",
+                        }}
+                      >
+                        <DropDown
+                          selectedValues={
+                            flip ? selectedValues : selectedValues2
+                          }
+                          items={data.slice(0, 100)}
+                          selected={flip ? selected2 : selected1}
+                          selected1={flip ? selected2 : selected1}
+                          handleSelect={handleSelect2}
+                          setSelectedNetwork={setSelectedNetwork2}
+                        />
+                      </div>
+                    </div>
+                    <span
+                      className={`ExchangeForm_exchangeBg__csoF9 ${
+                        flip ? "open" : "null"
+                      }`}
+                      onClick={() => {
+                        setflip(!flip);
+                        setyouget("");
+                        setRate(0);
+                        setbrn("");
                       }}
                     >
-                      <DropDown
-                        selectedValues={flip ? selectedValues : selectedValues2}
-                        items={data.slice(0, 100)}
-                        selected={flip ? selected2 : selected1}
-                        selected1={flip ? selected2 : selected1}
-                        handleSelect={handleSelect2}
-                        setSelectedNetwork={setSelectedNetwork2}
+                      <svg
+                        width="31"
+                        height="31"
+                        viewBox="0 0 31 31"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <g id="exchange">
+                          <path
+                            id="Shape"
+                            fill-rule="evenodd"
+                            clip-rule="evenodd"
+                            d="M22.1589 5.99713L27.7373 11.7699L22.1589 17.5426V13.2131L12.3581 13.2131L12.3581 10.3267L22.1589 10.3267V5.99713ZM17.95 21.8722L8.1493 21.8722V26.2017L2.57086 20.429L8.1493 14.6562L8.1493 18.9858L17.95 18.9858L17.95 21.8722Z"
+                            fill="white"
+                          ></path>
+                          <path
+                            id="Shape_2"
+                            d="M27.7354 11.7699L22.1569 5.99713V10.3267L12.3562 10.3267L12.3562 13.2131L22.1569 13.2131V17.5426L27.7354 11.7699Z"
+                            fill="#F9DA0A"
+                          ></path>
+                        </g>
+                      </svg>
+                    </span>
+                    <label htmlFor="currencyToSend" className="text-white">
+                      You Get
+                    </label>
+                    <div className="flex relative w-full rounded-lg flex-col md:flex-row justify-center border-1 md:border-2 border-[#454545] items-center  bg-[#242424]">
+                      <input
+                        id="amount"
+                        name="amount"
+                        value={rate}
+                        type="tel"
+                        autoComplete="off"
+                        disabled
+                        inputMode="numeric"
+                        placeholder="Enter amount"
+                        className="text-white  appearance-none bg-[#242424] outline-none  rounded-lg disabled:cursor-not-allowed w-full h-full p-4 "
                       />
+                      <div
+                        className="w-fit dropdown pl-4 flex gap-4 justify-center items-center placeholder-white  h-full border-transparent bg-transparent text-white px-4 py-2 rounded-md appearance-none"
+                        style={{
+                          backgroundColor: "#111010",
+                        }}
+                      >
+                        <DropDown
+                          selectedValues={
+                            !flip ? selectedValues : selectedValues2
+                          }
+                          items={data.slice(0, 100)}
+                          selected={!flip ? selected2 : selected1}
+                          selected1={!flip ? selected2 : selected1}
+                          handleSelect={handleSelect}
+                          setSelectedNetwork={setSelectedNetwork}
+                        />
+                      </div>
                     </div>
+                    {
+                      <>
+                        <p className="text-gray-400 pt-2">
+                          {youget < min
+                            ? `minimum amount` +
+                              " " +
+                              min +
+                              transactionCoin.coinTo
+                            : ""}
+                        </p>
+                      </>
+                    }
+                    <button
+                      type="submit"
+                      className={`${
+                        min > youget
+                          ? "bg-[#242424] text-[#fff]"
+                          : "bg-[#f9da0a] text-[#000]"
+                      } mt-4 w-fit group gap-2 flex items-center rounded-lg p-4 text-sm `}
+                      style={{
+                        fontWeight: "600",
+                      }}
+                    >
+                      <img src="/assets/greentick.svg" alt="user" /> Deposit now
+                    </button>
                   </div>
-                  <span
-                    className={`ExchangeForm_exchangeBg__csoF9 ${
-                      flip ? "open" : "null"
-                    }`}
-                    onClick={() => {
-                      setflip(!flip);
-                      setyouget("");
-                      setRate(0);
-                      setbrn("");
+                </form>
+              )}
+            </Formik>
+          </div>
+        )}
+        {type === "Buy / Sell Crypto" && (
+          <div className="pb-4">
+            <button
+              className={`px-3 py-2  mb-5 ${
+                type !== "Buy / Sell Crypto" ? "active-btn" : ""
+              }`}
+              onClick={() => {
+                settype("Exchange Crypto");
+              }}
+              style={{ color: "#fff", cursor: "pointer" }}
+            >
+              Exchange Crypto
+            </button>
+            <button
+              className={`px-3 py-2 ${
+                type === "Buy / Sell Crypto" ? "active-btn" : ""
+              }`}
+              style={{ color: "#fff", cursor: "pointer" }}
+              onClick={() => {
+                settype("Buy / Sell Crypto");
+              }}
+            >
+              Buy Crypto
+            </button>
+            <div
+              className="ExchangeTop_advantage__baA2Y md:px-4 py-4 md:py-0"
+              style={{ color: "#fff", display: "flex" }}
+            >
+              <div
+                className="ExchangeTop_advantageItem__5TJeU"
+                style={{ color: "#fff", display: "flex" }}
+              >
+                Excellent rating on
+              </div>
+              <div
+                className="ExchangeTop_advantageItem__5TJeU"
+                style={{ color: "#fff", display: "flex" }}
+              >
+                <div className="ExchangeTop_trust__hjLah">
+                  <div
+                    className="TrustBox_trustpilotBox__i66t2"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
                     }}
                   >
-                    <svg
-                      width="31"
-                      height="31"
-                      viewBox="0 0 31 31"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <g id="exchange">
-                        <path
-                          id="Shape"
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
-                          d="M22.1589 5.99713L27.7373 11.7699L22.1589 17.5426V13.2131L12.3581 13.2131L12.3581 10.3267L22.1589 10.3267V5.99713ZM17.95 21.8722L8.1493 21.8722V26.2017L2.57086 20.429L8.1493 14.6562L8.1493 18.9858L17.95 18.9858L17.95 21.8722Z"
-                          fill="white"
-                        ></path>
-                        <path
-                          id="Shape_2"
-                          d="M27.7354 11.7699L22.1569 5.99713V10.3267L12.3562 10.3267L12.3562 13.2131L22.1569 13.2131V17.5426L27.7354 11.7699Z"
-                          fill="#F9DA0A"
-                        ></path>
-                      </g>
-                    </svg>
-                  </span>
-                  <label htmlFor="currencyToSend" className="text-white">
-                    You Get
-                  </label>
-                  <div className="flex relative w-full rounded-lg flex-col md:flex-row justify-center border-1 md:border-2 border-[#454545] items-center  bg-[#242424]">
-                    <input
-                      id="amount"
-                      name="amount"
-                      value={rate}
-                      type="tel"
-                      autoComplete="off"
-                      disabled
-                      inputMode="numeric"
-                      placeholder="Enter amount"
-                      className="text-white  appearance-none bg-[#242424] outline-none  rounded-lg disabled:cursor-not-allowed w-full h-full p-4 "
-                    />
-                    <div
-                      className="w-fit dropdown pl-4 flex gap-4 justify-center items-center placeholder-white  h-full border-transparent bg-transparent text-white px-4 py-2 rounded-md appearance-none"
-                      style={{
-                        backgroundColor: "#111010",
-                      }}
-                    >
-                      <DropDown
-                        selectedValues={
-                          !flip ? selectedValues : selectedValues2
-                        }
-                        items={data.slice(0, 100)}
-                        selected={!flip ? selected2 : selected1}
-                        selected1={!flip ? selected2 : selected1}
-                        handleSelect={handleSelect}
-                        setSelectedNetwork={setSelectedNetwork}
-                      />
+                    <div style={{ display: "flex" }}>
+                      <a
+                        href="https://www.trustpilot.com/review/exolix.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <img
+                          className="TrustBox_logo__-Ngun mb-1 px-2"
+                          src="https://cdn.trustpilot.net/brand-assets/1.1.0/logo-white.svg"
+                          alt="Trustpilot logo"
+                          width="144"
+                          height="36"
+                          style={{ width: 100 }}
+                        />
+                      </a>
+                    </div>
+                    <div>
+                      <a
+                        href="https://www.trustpilot.com/review/exolix.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <img
+                          className="TrustBox_rating__qI0Fc false px-2"
+                          src="https://exolix.com/img/stars/4.5_star.svg"
+                          alt="Trustpilot rating stars"
+                          width="300"
+                          height="56"
+                          style={{ width: 100 }}
+                        />
+                      </a>
                     </div>
                   </div>
-                  {
-                    <>
+                </div>
+              </div>
+            </div>
+
+            <Formik
+              initialValues={{
+                amount: "",
+              }}
+              validateOnChange={true}
+              validationSchema={Yup.object({
+                amount: Yup.number().required("Required"),
+              })}
+              onSubmit={(values, { resetForm }) => {
+                createTransactiom123(values.amount, resetForm);
+              }}
+            >
+              {({ handleChange: handleChange1, handleSubmit }) => (
+                <form onSubmit={handleSubmit}>
+                  <div className="flex flex-col justify-center items-start gap-2 md:p-4">
+                    <label htmlFor="currencyToSend" className="text-white">
+                      You Send
+                    </label>
+                    <div className="flex relative w-full rounded-lg flex-col md:flex-row justify-center border-1 md:border-2 border-[#454545] items-center  bg-[#242424]">
+                      <input
+                        id="amount"
+                        name="amount"
+                        value={youget1}
+                        onChange={(e) => {
+                          const regex: any = /^[0-9]*\.?[0-9]*$/;
+                          if (
+                            e.target.value === "" ||
+                            regex.test(e.target.value)
+                          ) {
+                            handleChange1(e);
+                            handleKeyDown1(e.target.value);
+                          }
+                        }}
+                        type="text"
+                        autoComplete="off"
+                        placeholder="Enter amount"
+                        className="text-white appearance-none bg-[#242424] rounded-lg outline-none disabled:cursor-not-allowed w-full h-full p-4 "
+                      />
+                      <div
+                        className="w-fit dropdown pl-4 flex gap-4 justify-center items-center placeholder-white  h-full border-transparent bg-transparent text-white px-4 py-2 rounded-md appearance-none"
+                        style={{
+                          backgroundColor: "#111010",
+                        }}
+                      >
+                        <DropDown
+                          selectedValues={null}
+                          items={data1234.slice(0, 100)}
+                          selected={data1234[8]}
+                          selected1={data1234[8]}
+                          setSelectedNetwork={setSelectedNetwork4}
+                          handleSelect={handleSelect4}
+                        />
+                      </div>
+                    </div>
+                    <label htmlFor="currencyToSend" className="text-white">
+                      You Get
+                    </label>
+                    <div className="flex relative w-full rounded-lg flex-col md:flex-row justify-center border-1 md:border-2 border-[#454545] items-center  bg-[#242424]">
+                      <input
+                        id="amount"
+                        name="amount"
+                        value={rate1}
+                        type="tel"
+                        autoComplete="off"
+                        disabled
+                        inputMode="numeric"
+                        placeholder="Enter amount"
+                        className="text-white  appearance-none bg-[#242424] outline-none  rounded-lg disabled:cursor-not-allowed w-full h-full p-4 "
+                      />
+                      <div
+                        className="w-fit dropdown pl-4 flex gap-4 justify-center items-center placeholder-white  h-full border-transparent bg-transparent text-white px-4 py-2 rounded-md appearance-none"
+                        style={{
+                          backgroundColor: "#111010",
+                        }}
+                      >
+                        <DropDown
+                          selectedValues={
+                            !flip ? selectedValues : selectedValues2
+                          }
+                          items={data.slice(0, 100)}
+                          selected={selected1}
+                          selected1={selected1}
+                          handleSelect={handleSelect3}
+                          setSelectedNetwork={setSelectedNetwork3}
+                        />
+                      </div>
+                    </div>
+                    {
                       <p className="text-gray-400 pt-2">
-                        {youget < min
-                          ? `minimum amount` +
-                            " " +
-                            min +
-                            transactionCoin.coinTo
+                        {youget1 !== "" &&
+                        (min1 > youget1).toString() === "true"
+                          ? `minimum amount` + " " + min1 + " "
+                          : ""}
+                        {youget1 !== "" &&
+                        (min1 > youget1).toString() === "true"
+                          ? selectedNetwork4?.code
+                            ? selectedNetwork4?.code
+                            : "AUD"
                           : ""}
                       </p>
-                    </>
-                  }
-                  <button
-                    type="submit"
-                    className={`${
-                      min > youget
-                        ? "bg-[#242424] text-[#fff]"
-                        : "bg-[#f9da0a] text-[#000]"
-                    } mt-4 w-fit group gap-2 flex items-center rounded-lg p-4 text-sm `}
-                    style={{
-                      fontWeight: "600",
-                    }}
-                  >
-                    <img src="/assets/greentick.svg" alt="user" /> Deposit now
-                  </button>
-                </div>
-              </form>
-            )}
-          </Formik>
-          <Formik
-            initialValues={{
-              amount: "",
-            }}
-            validateOnChange={true}
-            validationSchema={Yup.object({
-              amount: Yup.number().required("Required"),
-            })}
-            onSubmit={(values, { resetForm }) => {
-              createTransactiom123(values.amount, resetForm);
-            }}
-          >
-            {({ handleChange: handleChange1, handleSubmit }) => (
-              <form onSubmit={handleSubmit}>
-                <div className="flex flex-col justify-center items-start gap-2 md:p-4">
-                  <label htmlFor="currencyToSend" className="text-white">
-                    You Send
-                  </label>
-                  <div className="flex relative w-full rounded-lg flex-col md:flex-row justify-center border-1 md:border-2 border-[#454545] items-center  bg-[#242424]">
-                    <input
-                      id="amount"
-                      name="amount"
-                      value={youget1}
-                      onChange={(e) => {
-                        const regex: any = /^[0-9]*\.?[0-9]*$/;
-                        if (
-                          e.target.value === "" ||
-                          regex.test(e.target.value)
-                        ) {
-                          handleChange1(e);
-                          handleKeyDown1(e.target.value);
-                        }
-                      }}
-                      type="text"
-                      autoComplete="off"
-                      placeholder="Enter amount"
-                      className="text-white appearance-none bg-[#242424] rounded-lg outline-none disabled:cursor-not-allowed w-full h-full p-4 "
-                    />
-                    <div
-                      className="w-fit dropdown pl-4 flex gap-4 justify-center items-center placeholder-white  h-full border-transparent bg-transparent text-white px-4 py-2 rounded-md appearance-none"
+                    }
+                    <button
+                      type="submit"
+                      className={`${
+                        min1 > youget1
+                          ? "bg-[#242424] text-[#fff]"
+                          : "bg-[#f9da0a] text-[#000]"
+                      } mt-4 w-fit group gap-2 flex items-center rounded-lg p-4 text-sm `}
                       style={{
-                        backgroundColor: "#111010",
+                        fontWeight: "600",
                       }}
                     >
-                      <DropDown
-                        selectedValues={null}
-                        items={data1234.slice(0, 100)}
-                        selected={data1234[8]}
-                        selected1={data1234[8]}
-                        setSelectedNetwork={setSelectedNetwork4}
-                        handleSelect={handleSelect4}
-                      />
-                    </div>
+                      <img src="/assets/greentick.svg" alt="user" /> Deposit now
+                    </button>
                   </div>
-                  <label htmlFor="currencyToSend" className="text-white">
-                    You Get
-                  </label>
-                  <div className="flex relative w-full rounded-lg flex-col md:flex-row justify-center border-1 md:border-2 border-[#454545] items-center  bg-[#242424]">
-                    <input
-                      id="amount"
-                      name="amount"
-                      value={rate1}
-                      type="tel"
-                      autoComplete="off"
-                      disabled
-                      inputMode="numeric"
-                      placeholder="Enter amount"
-                      className="text-white  appearance-none bg-[#242424] outline-none  rounded-lg disabled:cursor-not-allowed w-full h-full p-4 "
-                    />
-                    <div
-                      className="w-fit dropdown pl-4 flex gap-4 justify-center items-center placeholder-white  h-full border-transparent bg-transparent text-white px-4 py-2 rounded-md appearance-none"
-                      style={{
-                        backgroundColor: "#111010",
-                      }}
-                    >
-                      <DropDown
-                        selectedValues={
-                          !flip ? selectedValues : selectedValues2
-                        }
-                        items={data.slice(0, 100)}
-                        selected={selected1}
-                        selected1={selected1}
-                        handleSelect={handleSelect3}
-                        setSelectedNetwork={setSelectedNetwork3}
-                      />
-                    </div>
-                  </div>
-                  {
-                    <p className="text-gray-400 pt-2">
-                      {youget1 !== "" && (min1 > youget1).toString() === "true"
-                        ? `minimum amount` + " " + min1 + " "
-                        : ""}
-                      {youget1 !== "" && (min1 > youget1).toString() === "true"
-                        ? selectedNetwork4?.code
-                          ? selectedNetwork4?.code
-                          : "AUD"
-                        : ""}
-                    </p>
-                  }
-                  <button
-                    type="submit"
-                    className={`${
-                      min1 > youget1
-                        ? "bg-[#242424] text-[#fff]"
-                        : "bg-[#f9da0a] text-[#000]"
-                    } mt-4 w-fit group gap-2 flex items-center rounded-lg p-4 text-sm `}
-                    style={{
-                      fontWeight: "600",
-                    }}
-                  >
-                    <img src="/assets/greentick.svg" alt="user" /> Deposit now
-                  </button>
-                </div>
-              </form>
-            )}
-          </Formik>
-        </div>
+                </form>
+              )}
+            </Formik>
+          </div>
+        )}
         <div className="flex items-start text-left flex-col justify-start gap-4 p-4">
           <h1 className="text-2xl cursor-pointer text-[#F9DA0A] font-medium">
             Please make sure
@@ -861,6 +976,7 @@ const Deposit = ({ selected1 }: any) => {
         isOpen={isOpen}
         closeModal={closeModal}
         address={address}
+        type={type}
         transaction={transaction}
       />
       {showLoading && <Loader />}

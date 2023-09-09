@@ -4096,3 +4096,9 @@ canvas {
 div[data-headlessui-state="open"] {
   z-index: 99999 !important;
 }
+.active-btn {
+  background: #f9da0a;
+  color: #161628 !important;
+  font-weight: 700;
+  border-radius: 14px;
+}
