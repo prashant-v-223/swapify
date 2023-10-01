@@ -251,7 +251,7 @@ const AdminTable = () => {
                   </td>
                   <td className="px-2 md:px-6 py-4">{data.status}</td>
                   <td className="px-2 md:px-6 py-4">
-                    {data.amount.toFixed(3)}
+                    {data.amount?.toFixed(3)}
                   </td>
 
                   {data.transactionType == "deposit" ? (

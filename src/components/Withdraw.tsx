@@ -42,34 +42,34 @@ const Withdraw = () => {
           amount
         )}&rateType=fixed`
       );
-      // if (user.balance > data.toAmount) {
-      await axios.post(`${process.env.VITE_SERVER_URL}/users/transactions`, {
-        transaction: {
-          time: new Date(),
-          amount: data.toAmount,
-          coin: selected.name,
-          status: "pending",
-          user_id: user._id,
-          transactionType: "withdraw",
-          address: address,
-          network: selectedNetwork.network,
-        },
-        userId: user._id,
-      });
-      toast.success("Withdrawal request sent successfully");
-
-      const response = await axios(
-        `${process.env.VITE_SERVER_URL}/users/fetch-user`,
-        {
-          headers: {
-            "auth-token": localStorage.getItem("token"),
+      if (user.balance > data.toAmount) {
+        await axios.post(`${process.env.VITE_SERVER_URL}/users/transactions`, {
+          transaction: {
+            time: new Date(),
+            amount: data.toAmount,
+            coin: selected.name,
+            status: "pending",
+            user_id: user._id,
+            transactionType: "withdraw",
+            address: address,
+            network: selectedNetwork.network,
           },
-        }
-      );
-      setdata1(response.data.user);
-      // } else {
-      //   toast.error("Please make sure you have enough balance...");
-      // }
+          userId: user._id,
+        });
+        toast.success("Withdrawal request sent successfully");
+
+        const response = await axios(
+          `${process.env.VITE_SERVER_URL}/users/fetch-user`,
+          {
+            headers: {
+              "auth-token": localStorage.getItem("token"),
+            },
+          }
+        );
+        setdata1(response.data.user);
+      } else {
+        toast.error("Please make sure you have enough balance...");
+      }
     } catch (error) {
       // @ts-ignore
       if (error?.response.status === 422 && error?.response.data?.minAmount) {

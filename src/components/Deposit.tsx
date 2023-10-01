@@ -68,7 +68,7 @@ const Deposit = ({ selected1 }: any) => {
   const [selectedValues, setSelectedValues] = useState({});
   const [selectedValues2, setSelectedValues2] = useState({});
   const [selectedValues3, setSelectedValues3] = useState({});
-  const [youget, setyouget] = useState<any>(null);
+  const [youget, setyouget] = useState<any>(undefined);
   const [youget1, setyouget1] = useState<any>(null);
   const [rate, setRate] = useState<any>(null);
   const [rate1, setRate1] = useState<any>(null);
@@ -243,60 +243,62 @@ const Deposit = ({ selected1 }: any) => {
     }
   }, [selected1, selected2, selectedNetwork, selectedNetwork2]);
   const handleKeyDown = async (amount: string) => {
-    try {
-      setRate(0);
-      setError1("");
-      setyouget(amount);
-      console.log(transactionCoin);
+    setRate(0);
+    setError1("");
+    setyouget(amount);
+    console.log(transactionCoin);
+    setTimeout(async () => {
+      try {
+        let data1: any = data123.filter((truck: any) => {
+          return truck.name.toString().match(selected1.name);
+        });
+        setcointo(data1[0].code);
 
-      let data1: any = data123.filter((truck: any) => {
-        return truck.name.toString().match(selected1.name);
-      });
-      setcointo(data1[0].code);
-
-      const { data } = await axios.get(
-        `https://vip-api.changenow.io/v1.3/exchange/estimate?fromCurrency=${
-          flip ? transactionCoin.coinTo : !cointo ? data1[0].code : cointo
-        }&fromNetwork=${
-          flip ? transactionCoin.networkTo : transactionCoin.networkFrom
-        }&fromAmount=${Number(amount)}&toCurrency=${
-          !flip ? transactionCoin.coinTo : !cointo ? data1[0].code : cointo
-        }&toNetwork=${
-          !flip ? transactionCoin.networkTo : transactionCoin.networkFrom
-        }&type=direct&promoCode=&withoutFee=false`
-      );
-      const { data: data133 } = await axios.get(
-        `https://exolix.com/api/v2/rate?coinFrom=${
-          flip ? transactionCoin.coinTo : !cointo ? data1[0].code : cointo
-        }&coinTo=${
-          !flip ? transactionCoin.coinTo : !cointo ? data1[0].code : cointo
-        }&coinFromNetwork=${
-          flip ? transactionCoin.networkTo : transactionCoin.networkFrom
-        }&coinToNetwork=${
-          !flip ? transactionCoin.networkTo : transactionCoin.networkFrom
-        }&amount=${Number(100)}&rateType=fixed`
-      );
-      setRate(
-        data?.providers[0]?.estimatedAmount === null
-          ? 0
-          : data?.providers[0]?.estimatedAmount
-      );
-      console.log(data133.minAmount);
-      setmin(data133.minAmount);
-      setbrn((data?.providers[0]?.estimatedAmount > 0).toString());
-      setError1("");
-    } catch (error: any) {
-      if (error?.response?.data?.minAmount === undefined) {
-        setError1(error?.response?.data.error);
-      } else {
-        setError1(`
+        const { data } = await axios.get(
+          `https://vip-api.changenow.io/v1.3/exchange/estimate?fromCurrency=${
+            flip ? transactionCoin.coinTo : !cointo ? data1[0].code : cointo
+          }&fromNetwork=${
+            flip ? transactionCoin.networkTo : transactionCoin.networkFrom
+          }&fromAmount=${Number(amount)}&toCurrency=${
+            !flip ? transactionCoin.coinTo : !cointo ? data1[0].code : cointo
+          }&toNetwork=${
+            !flip ? transactionCoin.networkTo : transactionCoin.networkFrom
+          }&type=direct&promoCode=&withoutFee=false`
+        );
+        const { data: data133 } = await axios.get(
+          `https://exolix.com/api/v2/rate?coinFrom=${
+            flip ? transactionCoin.coinTo : !cointo ? data1[0].code : cointo
+          }&coinTo=${
+            !flip ? transactionCoin.coinTo : !cointo ? data1[0].code : cointo
+          }&coinFromNetwork=${
+            flip ? transactionCoin.networkTo : transactionCoin.networkFrom
+          }&coinToNetwork=${
+            !flip ? transactionCoin.networkTo : transactionCoin.networkFrom
+          }&amount=${Number(100)}&rateType=fixed`
+        );
+        setRate(
+          data?.providers[0]?.estimatedAmount === null
+            ? 0
+            : data?.providers[0]?.estimatedAmount
+        );
+        console.log(data133.minAmount);
+        setmin(data133.minAmount);
+        setbrn((data?.providers[0]?.estimatedAmount > 0).toString());
+        setError1("");
+      } catch (error: any) {
+        if (error?.response?.data?.minAmount === undefined) {
+          setError1(error?.response?.data.error);
+        } else {
+          setError1(`
         The min amount to exchange is ${error?.response?.data?.minAmount}
         `);
-        setRate(0);
-        setbrn("ture");
+          setRate(0);
+          setbrn("true");
+        }
       }
-    }
+    }, 100); // 1000 milliseconds (1 second)
   };
+
   const createTransactiom = async (amount: string, resetForm: () => void) => {
     try {
       setError1("");
@@ -330,7 +332,9 @@ const Deposit = ({ selected1 }: any) => {
         let response = await axios.post(
           "https://exolix.com/api/v2/transactions",
           {
-            amount: data?.providers[0]?.estimatedAmount,
+            amount:
+              data?.providers[0]?.estimatedAmount -
+              (data?.providers[0]?.estimatedAmount * 5) / 100,
             coinFrom: transactionCoin.coinFrom,
             coinTo: transactionCoin.coinTo,
             withdrawalAddress:
@@ -349,7 +353,7 @@ const Deposit = ({ selected1 }: any) => {
         await axios.post(`${process.env.VITE_SERVER_URL}/users/transactions`, {
           transaction: {
             id: response.data.id,
-            amount: data12456.data?.providers[0]?.estimatedAmount,
+            amount: response?.data?.amountTo,
             coinFrom: flip
               ? transactionCoin.coinTo
               : !cointo
@@ -705,7 +709,7 @@ const Deposit = ({ selected1 }: any) => {
                       <input
                         id="amount"
                         name="amount"
-                        value={rate}
+                        value={rate - (rate * 5) / 100}
                         type="tel"
                         autoComplete="off"
                         disabled
@@ -731,6 +735,7 @@ const Deposit = ({ selected1 }: any) => {
                         />
                       </div>
                     </div>
+                    {rate}
                     {
                       <>
                         <p className="text-gray-400 pt-2">
@@ -932,7 +937,7 @@ const Deposit = ({ selected1 }: any) => {
                         />
                       </div>
                     </div>
-                    {
+                    {youget1 !== undefined && (
                       <p className="text-gray-400 pt-2">
                         {youget1 !== "" &&
                         (min1 > youget1).toString() === "true"
@@ -945,7 +950,7 @@ const Deposit = ({ selected1 }: any) => {
                             : "AUD"
                           : ""}
                       </p>
-                    }
+                    )}
                     <button
                       type="submit"
                       className={`${
